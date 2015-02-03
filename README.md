@@ -1,8 +1,9 @@
 # Projecect_Euler
 Incomplete solutions to the Project Euler problems
 
-I will slowly update my solution to the Project Euler problems. Please note that most of solutions will not be the
-most effective solutions. 
+I will slowly update my solution to the Project Euler problems. 
+
+*Please note that most of solutions will not be the most effective solutions.* 
 
 Project Euler website: https://projecteuler.net/about
 
