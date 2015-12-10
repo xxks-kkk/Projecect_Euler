@@ -1,4 +1,9 @@
-# Projecect_Euler
+# Solutions
+
+Includes incomplete solutions to various problems from various source.
+
+
+## Projecect_Euler
 
 Incomplete solutions to the Project Euler problems. 
 
