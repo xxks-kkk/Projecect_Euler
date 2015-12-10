@@ -3,7 +3,7 @@
 Includes incomplete solutions to various problems from various source.
 
 
-## Projecect_Euler
+## Project-Euler
 
 Incomplete solutions to the Project Euler problems. 
 
