@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+
+% The geometry package allows for easy page formatting.
+\usepackage[margin=1.0in,letterpaper]{geometry}
+\geometry{letterpaper}
+
+% Load up special logo commands.
+\usepackage{doc}
+
+% Package for formatting URLs.
+\usepackage{url}
+
+% Package for formatting solutions.
+\usepackage{exsheets}
+
+\SetupExSheets{
+  question/print = false ,
+  solution/print = true ,
+  counter-format = se.qu ,
+  counter-within = section
+}
+
+\makeatletter
+\@addtoreset{question}{section}
+\makeatother
+
+% Packages and definitions for graphics files.
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage[boxruled]{algorithm2e}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage[bottom]{footmisc}
+\usepackage{threeparttable}
+\usepackage{bm}
+\doublespacing
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\usepackage[authoryear,round,longnamesfirst]{natbib}
+\bibliographystyle{apalike}
+
+%
+% Set the title, author, and date.
+%
+\title{The Algorithm Design Manual (2nd Edition) Solution}
+\author{Zeyuan Hu\\
+\texttt{hzyhuhzy@cn.ibm.com}}
+\date{\today}
+
+%
+% The document proper.
+%
+\begin{document}
+
+% Add the title section.
+\maketitle
+
+% Add an abstract.
+\abstract{
+This is a soultion guide made for The Algorithm Design Manual (2nd Edition). It includes the solutions worked out by Zeyuan himself
+as well as provided by others. The goal is to provide solutions to \textbf{ALL} problems. But, errors will surely include, and please use on your own guidance.
+}
+
+\vspace{40 mm}
+
+% Add various lists on new pages.
+\pagebreak
+\tableofcontents
+
+%\pagebreak
+%\listoffigures
+
+%\pagebreak
+%\listoftables
+
+% Start the paper on a new page.
+\pagebreak
+
+%
+% Body text.
+%
+\section{Chapter 1}
+\label{chapter-1}
+\input{./ADM-Sol/chap-one.tex}
+
+\end{document}
