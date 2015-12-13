@@ -1,6 +1,9 @@
-# Solutions
+# Solutions & Notes
 
-Includes incomplete solutions to various problems from various source.
+Solutions & notes to problems & books.
+
+**GOAL:** try to keep some good stuff from reading CS books and solving
+programming problems. Aside, practice to work with LaTex.
 
 
 ## Project-Euler
