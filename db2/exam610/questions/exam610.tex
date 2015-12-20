@@ -19,11 +19,11 @@
 
 
 % Here's where you edit the Class, Exam, Date, etc.
-\newcommand{\class}{Math 1234}
-\newcommand{\term}{Spring 2012}
-\newcommand{\examnum}{Exam 2}
-\newcommand{\examdate}{3/28/12}
-\newcommand{\timelimit}{50 Minutes}
+\newcommand{\class}{IBM Exam 610 Question Bank}
+% \newcommand{\term}{Spring 2012}
+% \newcommand{\examnum}{Exam 2}
+\newcommand{\examdate}{2/8/15}
+\newcommand{\timelimit}{90 Minutes}
 
 % For an exam, single spacing is most appropriate
 \singlespacing
@@ -38,61 +38,65 @@
 % These commands set up the running header on the top of the exam pages
 \pagestyle{head}
 \firstpageheader{}{}{}
-\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheader{\class}{Page \thepage\ of \numpages}{\examdate}
 \runningheadrule
 
 \begin{flushright}
 \begin{tabular}{p{2.8in} r l}
-\textbf{\class} & \textbf{Name (Print):} & \makebox[2in]{\hrulefill}\\
-\textbf{\term} &&\\
-\textbf{\examnum} &&\\
-\textbf{\examdate} &&\\
-\textbf{Time Limit: \timelimit} & Teaching Assistant & \makebox[2in]{\hrulefill}
+\textbf{\class} & \\
+% \textbf{\term} &&\\
+% \textbf{\examnum} &&\\
+\textbf{\examdate} &  \\
+\textbf{Time Limit: \timelimit} & \textbf{Name (Print):} & \makebox[2in]{\hrulefill}
 \end{tabular}\\
 \end{flushright}
 \rule[1ex]{\textwidth}{.1pt}
 
 
-This exam contains \numpages\ pages (including this cover page) and
-\numquestions\ problems.  Check to see if any pages are missing.  Enter
-all requested information on the top of this page, and put your initials
-on the top of every page, in case the pages become separated.\\
+This question bank contains \numpages\ pages (including this cover page) and
+\numquestions\ questions. 
 
-You may \textit{not} use your books, notes, or any calculator on this exam.\\
+% You may \textit{not} use your books, notes, or any calculator on this exam.\\
 
-You are required to show your work on each problem on this exam.  The following rules apply:\\
+% You are required to show your work on each problem on this exam.  The following rules apply:\\
 
 \begin{minipage}[t]{3.7in}
 \vspace{0pt}
 \begin{itemize}
 
-\item \textbf{If you use a ``fundamental theorem'' you must indicate this} and explain
-why the theorem may be applied.
+\item IBM Exam 610 corresponds to \textbf{Test C2090-610: DB2 10.1 Fundamentals}
 
-\item \textbf{Organize your work}, in a reasonably neat and coherent way, in
-the space provided. Work scattered all over the page without a clear ordering will 
-receive very little credit.  
+\item The questions adapted from the following sources:
 
-\item \textbf{Mysterious or unsupported answers will not receive full
-credit}.  A correct answer, unsupported by calculations, explanation,
-or algebraic work will receive no credit; an incorrect answer supported
-by substantially correct calculations and explanations might still receive
-partial credit.
+\begin{itemize}
+\item \textbf{DB 2 10.1 Fundamentals Certification Study Guide} by Roger E. Sanders
+\end{itemize}
+% \item \textbf{If you use a ``fundamental theorem'' you must indicate this} and explain
+% why the theorem may be applied.
+
+% \item \textbf{Organize your work}, in a reasonably neat and coherent way, in
+% the space provided. Work scattered all over the page without a clear or
+
+% \item \textbf{Mysterious or unsupported answers will not receive full
+% credit}.  A correct answer, unsupported by calculations, explanation,
+% or algebraic work will receive no credit; an incorrect answer supported
+% by substantially correct calculations and explanations might still receive
+% partial credit.
 
 
-\item If you need more space, use the back of the pages; clearly indicate when you have done this.
+% \item If you need more space, use the back of the pages; clearly indicate when you have done this.
 \end{itemize}
 
-Do not write in the table to the right.
+% Do not write in the table to the right.
 \end{minipage}
 \hfill
 \begin{minipage}[t]{2.3in}
 \vspace{0pt}
 %\cellwidth{3em}
 \gradetablestretch{2}
-\vqword{Problem}
+\vqword{Question}
 \addpoints % required here by exam.cls, even though questions haven't started yet.	
-\gradetable[v]%[pages]  % Use [pages] to have grading table by page instead of question
+\gradetable[v][pages]  % Use [pages] to have grading table by page instead of question
 
 \end{minipage}
 \newpage % End of cover page
@@ -108,33 +112,193 @@ Do not write in the table to the right.
 
 \begin{questions}
 
+\fullwidth{\Large \textbf{Planning}}
+
 % Basic question
 \addpoints
-\question[10] Differentiate $f(x)=x^2$ with respect to $x$.
+% \question[10] Differentiate $f(x)=x^2$ with respect to $x$.
+\question[1]
+A database will be used primarily to identify sales patterns
+for products sold within the last three years and to summarize
+sales by region, on a quarterly basis. Which type of system is 
+needed?
+\begin{choices}
+\choice Analytical
+\choice DB2 pureScale
+\choice Data warehouse
+\choice Online transaction processing (OLTP)
+\end{choices}
 
-% Question with parts
+\question[1]
+Which product can be used to tune performance for a single query?
+\begin{choices}
+\choice IBM Data Studio
+\choice IBM Control Center
+\choice IBM Data Administrator
+\choice IBM Workload Manager
+\end{choices}
+
+\question[1]
+Which two DB2 products are suitable for very large data warehouse applications? (Choose two.)
+\begin{choices}
+\choice DB2 for i
+\choice DB2 for AIX
+\choice DB2 for z/OS
+\choice DB2 pureScale
+\choice DB2 Express-C
+\end{choices}
+
+\question[1]
+What is the DB2 Workload Manager (WLM) used for?
+\begin{choices}
+\choice To identify, diagnose, solve, and prevent performance problems in DB2 products and associated applications.
+\choice To customize execution environments for the purpose of controlling system resources so that one
+		department or service class does not overwhelm the system.
+\choice To respond to significant changes in a database's workload by dynamically distributing available memory resources
+		among several different database memory consumers.
+\choice To improve the performance of applications that require frequent, but relatively transient, simultaneous user
+		connections by allocating host database resources only for the duration of an SQL transaction.
+\end{choices}
+
+\question[1]
+Which of the following is NOT a characteristic of a data warehouse?
+\begin{choices}
+\choice Sub-second response time
+\choice Voluminous historical data
+\choice Heterogeneous data sources
+\choice Summarized queries that perform aggregations and joins
+\end{choices}
+
 \newpage
 \addpoints
-\question Consider the function $f(x)=x^2$.
-\begin{parts}
-\part[5] Find $f'(x)$ using the limit definition of derivative.
-\vfill
-\part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
-\vfill
-\end{parts}
+\question[1]
+Which statement about the DB2 pureScale feature is NOT true?
+\begin{choices}
+\choice The DB2 pureScale feature provides a database cluster solution for nonmainframe platforms.
+\choice The DB2 pureScale feature is only available as part of DB2 Advanced Enterprise Server Edition.
+\choice The DB2 pureScale feature can only work with the General Parallel File System (GPFS) file system.
+\choice The DB2 pureScale feature is best suited for online transaction processing (OLTP) workloads.
+\end{choices}
+
+\question[1]
+Which two statements about large object (LOB) locators are true? (Choose two.)
+\begin{choices}
+\choice A LOB locator represents a value for a LOB resource that is stored in a database.
+\choice A LOB locator is a simple token value that is used to refer to a much bigger LOB value.
+\choice A LOB locator is a special data type that is used to store LOB data in external binary files.
+\choice A LOB locator represents a value for a LOB resource that is stored in an external binary file.
+\choice A LOB locator is a mechanism that acts similar to an index in the way that is organizes LOB values
+		so they can be quickly located in response to a query.
+\end{choices}
+
+\question[1]
+Which type of database workload typically involves making changes to a small number of records within
+a single transaction?
+\begin{choices}
+\choice Decision support
+\choice Data warehousing
+\choice Online analytical processing (OLAP)
+\choice Online transaction processing (OLTP)
+\end{choices}
+
+\question[1]
+Which of the following is NOT a characteristic of an OLTP database?
+\begin{choices}
+\choice Current data
+\choice Frequent updates
+\choice Granular transactions
+\choice Optimized for queries
+\end{choices}
+
+\question[1]
+Which two platforms support DB2 10.1 pureScale environments? (Choose two.)
+\begin{choices}
+\choice IBM mainframes running z/OS
+\choice IBM p Series servers running AIX
+\choice IBM p Series servers running Linux
+\choice IBM x Series servers running Linux
+\choice IBM x Series servers running a supported version of Windows
+\end{choices}
+
+\newpage
+\addpoints
+\question[1]
+Which tool can analyze and provide recommendations for tuning individual queries?
+\begin{choices}
+\choice IBM InfoSphere Data Architect
+\choice IBM InfoSphere Optim Query Tuner
+\choice IBM InfoSphere Optim pureQuery Runtime
+\choice IBM InfoSphere Optim Performance Manager Extended Edition
+\end{choices}
+
+\question[1]
+Which SQL statement will create a table named EMPLOYEE that can be used to store XML data?
+\begin{choices}
+\choice CREATE TABLE employee (empid INT, resume XML)
+\choice CREATE TABLE employee (empid INT, resume XML(2000))
+\choice CREATE TABLE employee (empid INT, resume CLOB AS XML)
+\choice CREATE TABLE employee (empid INT, resume CLOB USING XML)
+\end{choices}
+
+\question[1]
+What DB2 product provides a complete data warehousing solution that contains components
+that facilitate data warehouse construction and administration?
+\begin{choices}
+\choice DB2 pureScale Feature
+\choice DB2 Workload Manager
+\choice IBM InfoSphere Warehouse
+\choice Database Partitioning Feature
+\end{choices}
+
+\question[1]
+Which statement about IBM Data Studio is NOT true?
+\begin{choices}
+\choice The IBM Data Studio administration client can be installed on servers running Red Hat Linux, SUSE Linux,
+		Windows, and AIX.
+\choice IBM Data Studio replaces the DB2 Control Center as the standard GUI interface for DB2 database administration
+		and application development.
+\choice IBM Data Studio is an Eclipsed-based, integrated development environment (IDE) that can be used to perform
+		instance and database administration.
+\choice IBM Data Studio allows users to connect to a DB2 database using a wizard; however, users are required to provide
+		login credentials before a connection will be established.
+\end{choices}
+
+\question[1]
+Which statement about inline large objects (LOBs) is NOT true?
+\begin{choices} 
+\choice When a table contains columns with inline LOBs, fewer rows can fit on a page.
+\choice Inline LOBs are created by appending the INLINE LENGTH clause to a LOB column's definition.
+\choice Because DML operations against inline LOBs are never logged, their use can reduce logging overhead.
+\choice Inline LOBs improve query performance by storing LOB data in the same data pages as the rest of a table's rows,
+		rather than in a separate LOB storage object.
+\end{choices}
+
+\newpage
+\addpoints
+\fullwidth{\Large \textbf{Security}}
+% Question with parts
+% \newpage
+% \addpoints
+% \question Consider the function $f(x)=x^2$.
+% \begin{parts}
+% \part[5] Find $f'(x)$ using the limit definition of derivative.
+% \vfill
+% \part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
+% \vfill
+% \end{parts}
 
 % If you want the total number of points for a question displayed at the top,
 % as well as the number of points for each part, then you must turn off the point-counter
 % or they will be double counted.
-\newpage
-\addpoints
-\question[10] Consider the function $f(x)=x^3$.
-\noaddpoints % If you remove this line, the grading table will show 20 points for this problem.
-\begin{parts}
-\part[5] Find $f'(x)$ using the limit definition of derivative.
-\vspace{4.5in}
-\part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
-\end{parts}
+% \newpage
+% \addpoints
+% \question[10] Consider the function $f(x)=x^3$.
+% \noaddpoints % If you remove this line, the grading table will show 20 points for this problem.
+% \begin{parts}
+% \part[5] Find $f'(x)$ using the limit definition of derivative.
+% \vspace{4.5in}
+% \part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
+% \end{parts}
 
 
 
