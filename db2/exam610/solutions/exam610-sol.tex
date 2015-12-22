@@ -135,25 +135,46 @@ needed?
 \begin{solution}
 Data warehouses (\textit{Correct Answer C}) are typically used to store and manage large volumes of data that is often
 historical in nature and that is used primarily for analysis. Thus, a data warehouse could be used to identify sales patterns
-for products sold within the past three years or to summarize sales by region, on a quarterly basis. \textit{InfoSphere Warehouse} offered
-
-
+for products sold within the past three years or to summarize sales by region, on a quarterly basis. \textit{InfoSphere Warehouse} is offered for data warehouse.
 \par
 
 Online transaction processing (OLTP) systems (\textit{Answer D}), are designed to support day-to-day, mission-critical business
-activities such as web-based order entry and stock trading. \par
+activities such as web-based order entry and stock trading. \textit{DB2 pureScale feature} is offered for OLTP workloads. 
+\par
 
+Analytical workloads (\textit{Answer A}) are better handled by a specialized product
+known as \textit{DB2 for i and by IBM BLU Acceleration}, which is currently available
+only with DB2 10.5 for LUW.
 
 \end{solution}
 
 \question[1]
 Which product can be used to tune performance for a single query?
 \begin{choices}
-\choice IBM Data Studio
+\CorrectChoice IBM Data Studio
 \choice IBM Control Center
 \choice IBM Data Administrator
 \choice IBM Workload Manager
 \end{choices}
+
+\begin{solution}
+\textit{IBM Data Studio} (\textit{Correct Answer A}) is an Eclipse-based, integrated
+development environment (IDE) that can be used to perform instance and database
+administration, routine (SQL procedure, SQL functions, etc.) and application
+development, and performance-tuning tasks. It replaces the \textit{DB2 Control Center} 
+(\textit{Answer B}) as the standard GUI tool for DB2 database administration and
+application development.
+\par
+
+\textit{IBM Workload Manager}, or WLM (\textit{Answer D}) is a comprehensive workload
+management feature that can help identify, manage, and control database workloads to
+maximize database server throughput and resource utilization.
+\par
+
+There is \textbf{NO} such product as IBM Data Administrator (\textit{Answer C}).
+
+\end{solution}
+
 
 \question[1]
 Which two DB2 products are suitable for very large data warehouse applications? (Choose two.)
