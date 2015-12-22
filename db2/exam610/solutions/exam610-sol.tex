@@ -16,7 +16,10 @@
 % end up in the "middle" of the page, reducing the amount of space for students
 % to work on them.
 \usepackage[margin=1in]{geometry}
+\usepackage{color}
 
+% Customize the Solution box
+\renewcommand{\solutiontitle}{\noindent\textbf{Explanation:}\par\noindent}
 
 % Here's where you edit the Class, Exam, Date, etc.
 \newcommand{\class}{IBM Exam 610 Question Bank}
@@ -129,6 +132,19 @@ needed?
 \choice Online transaction processing (OLTP)
 \end{choices}
 
+\begin{solution}
+Data warehouses (\textit{Correct Answer C}) are typically used to store and manage large volumes of data that is often
+historical in nature and that is used primarily for analysis. Thus, a data warehouse could be used to identify sales patterns
+for products sold within the past three years or to summarize sales by region, on a quarterly basis. \textit{InfoSphere Warehouse} offered
+
+
+\par
+
+Online transaction processing (OLTP) systems (\textit{Answer D}), are designed to support day-to-day, mission-critical business
+activities such as web-based order entry and stock trading. \par
+
+
+\end{solution}
 
 \question[1]
 Which product can be used to tune performance for a single query?
