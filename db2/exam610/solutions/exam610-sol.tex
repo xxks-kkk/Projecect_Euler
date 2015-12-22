@@ -142,7 +142,7 @@ Online transaction processing (OLTP) systems (\textit{Answer D}), are designed t
 activities such as web-based order entry and stock trading. \textit{DB2 pureScale feature} is offered for OLTP workloads. 
 \par
 
-Analytical workloads (\textit{Answer A}) are better handled by a specialized product
+{\color{red} Analytical} workloads (\textit{Answer A}) are better handled by a specialized product
 known as \textit{DB2 for i and by IBM BLU Acceleration}, which is currently available
 only with DB2 10.5 for LUW.
 
@@ -168,35 +168,91 @@ application development.
 
 \textit{IBM Workload Manager}, or WLM (\textit{Answer D}) is a comprehensive workload
 management feature that can help identify, manage, and control database workloads to
-maximize database server throughput and resource utilization.
+maximize database server \textcolor{red}{throughput} and \textcolor{red}{resource
+ utilization}.
 \par
 
 There is \textbf{NO} such product as IBM Data Administrator (\textit{Answer C}).
 
 \end{solution}
 
+\newpage
+\addpoints
 
 \question[1]
 Which two DB2 products are suitable for very large data warehouse applications? (Choose two.)
 \begin{choices}
 \choice DB2 for i
-\choice DB2 for AIX
-\choice DB2 for z/OS
+\CorrectChoice DB2 for AIX
+\CorrectChoice DB2 for z/OS
 \choice DB2 pureScale
 \choice DB2 Express-C
 \end{choices}
+
+\begin{solution}
+\textit{DB2 for i} (\textit{Answer A}), formerly known as DB2 for i5/OS, is an
+advanced, 64-bit Relational Database Management System that leverages the high
+performance, virtualization, and energy efficiency features of IBM's Power Systems; 
+its self-managing attributes, security, and built-in analytical processing functions
+make \textit{DB2 for i} an ideal database server for {\color{red} applications that 
+are analytical in nature}.
+\par
+
+\textit{DB2 for z/OS} (\textit{Correct Answer C} is a multiuser, full-function
+database management system that has been designed specifically for z/OS, 
+IBM's flagship mainframe operating system. Tightly integrated with the IBM mainframe,
+\textit{DB2 for z/OS} leverages the strengths of System z 64-bit architecture to
+provide, among other things, the ability to support complex {\color{red} data
+warehouses}. 
+\par
+
+In addition to DB2 for z/OS, all of the DB2 Editions available \textbf{except} 
+\textit{DB2 Express-C} (\textit{Answer E}) and \textit{DB2 Express Edition} can be
+used to create data warehouse and OLTP environments. \textbf{However},
+IBM offers two solutions that are tailored specifically for one workload type or
+the other: \textit{InfoSphere Warehouse} for {\color{red} data warehousing} workloads
+and the \textit{DB2 pureScale Feature} (\textit{Answer D}) for {\color{red} OLTP}
+workloads.
+
+\end{solution}
+
 
 \question[1]
 What is the DB2 Workload Manager (WLM) used for?
 \begin{choices}
 \choice To identify, diagnose, solve, and prevent performance problems in DB2 products and associated applications.
-\choice To customize execution environments for the purpose of controlling system resources so that one
+\CorrectChoice To customize execution environments for the purpose of controlling system resources so that one
 		department or service class does not overwhelm the system.
 \choice To respond to significant changes in a database's workload by dynamically distributing available memory resources
 		among several different database memory consumers.
 \choice To improve the performance of applications that require frequent, but relatively transient, simultaneous user
 		connections by allocating host database resources only for the duration of an SQL transaction.
 \end{choices}
+
+\begin{solution}
+\textit{IBM InfoSphere Optim Performance Manager Extended Edition} can be used to 
+identify, diagnose, solve, and prevent performance problems in DB2 products and
+associated applications (\textit{Answer A})
+\par
+
+With \textit{DB2 Workload Manager}, it is possible to customize execution
+environments so that no single workload can control and consume all of the system
+resources available. (This prevents any one department or service class from
+overwhelming the system.) (\textit{Correct Answer B})
+\par
+
+The \textit{Self-Tuning Memory Manager (STMM)} responds to significant changes in
+a database's workload by dynamically distributing available memory resources among
+several different database memory consumers. (\textit{Answer C})
+\par
+
+The \textit{Connection Concentrator} improves the performance of applications that
+require frequent, but relatively transient, simultaneous user connections by
+allocating host database resources only for the duration of an SQL transaction. 
+(\textit{Answer D})
+
+\end{solution}
+
 
 \question[1]
 Which of the following is NOT a characteristic of a data warehouse?
