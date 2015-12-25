@@ -15,6 +15,13 @@
 
 % Load up special logo commands.
 \usepackage{doc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsthm}
+ 
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
 
 % Package for formatting URLs.
 \usepackage{url}
@@ -22,6 +29,7 @@
 % Packages and definitions for graphics files.
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{color}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 %
@@ -30,6 +38,9 @@
 \title{DB2 Exam 610 Summary}
 \author{Zeyuan Hu}
 \date{\today}
+
+% set indentation of paragraph
+\setlength{\parindent}{0em}
 
 %
 % The document proper.
@@ -61,121 +72,279 @@
 \section{Planning}
 \label{planning}
 
-You will almost certainly start with an introductory description of the topic that you investigated in your assignment.  Discuss any goals, motivation, or examples of the subject; the key is to provide the reader with any information that is necessary to understand why your topic was worth investigating.  This descriptive section should also allow the reader to understand the subsequent detail sections on the subject.
-
-\section{Background, Preliminary, and Related Work}
-
-Perhaps the most important functionality to learn for the paper is \LaTeX\ bibliography support.  Citations and references are handled automatically by \LaTeX\ through its companion program, \BibTeX.  All you have to do is provide a bibliography file that provides the reference information and internal keys (very much like variable names) that you use in your document.\footnote{And always remember to run \LaTeX\ \emph{at least twice} after running \BibTeX.}
-
-\BibTeX\ supports virtually all kinds of references, including books \cite{dui,sgg,iokit,palmos}, parts of books \cite{userModeLinux}, articles \cite{nielsen:dui-review,heer-shneiderman,stackableThreads,xpkernel}, and conference proceedings \cite{ux-3d,iring,contextFileSearch,osHaskell,hibernator}, to name a few.  If not already included in your \LaTeX\ distribution, download and install the \texttt{url} package to support formatting of URLs; you can usually mention these in the \emph{note} or \emph{howpublished} fields of your \BibTeX\ file.
-
-Like Section~\ref{introduction}, a background, preliminary, and related work section is also almost certainly needed for your paper.  In this section, describe any history, work, or projects that serve as direct contributors to the subject of your research paper.  Look at other papers in the literature to see how they organized, presented, and discussed prior work.
-
-The Shneiderman/Plaisant text \cite{dui} provide some pointers to seminal or key works; because they made it into the textbook they aren't necessarily ``bleeding edge,'' but they likely provide the foundation for your chosen subject matter.
-
-\section{Main Content Sections}
-
-The outline after the introductory and background, preliminary, and related work sections is more dependent on the specific subject of your research.  Remember to cite references where appropriate, organize the material so that it flows well and is clear to the reader.
-
-\subsection{Multiple Outline Levels}
-
-\LaTeX\ has support for up to three outline levels (\verb!\section!, \verb!\subsection!, and \verb!\subsubsection!).  It also recognizes \verb!\paragraph! and \verb!\subparagraph! directives, though those don't show up in the table of contents.  All of these directives expect a title.
-
-Note also the use of the \verb!\verb! directive for inserting code-like labels or symbols.  It was particularly needed here so that we can include the backslash character in the text.
-
-\subsection{Tables and Figures}
-
-\LaTeX\ has full support for tables and figures.  Table~\ref{table-sample} shows a sample table and Figure~\ref{figure-sample} shows a sample figure.  Note the built-in support for captions and the automated numbering functionality.  Lists of tables and figures can also be automatically generated, as seen at the beginning of this document.
-
-% \begin{table}
-% \centering
-% \begin{tabular}{|c|c|c|}\hline
-% Column 1 & Column 2 & Column 3 \\\hline\hline
-% a & b & c \\
-% d & e & f \\
-% g & h & i \\\hline
-% \end{tabular}
-
-% \caption{A sample table}
-% \label{table-sample}
-% \end{table}
-%} 
-
-
-One very important thing to remember about how \LaTeX\ handles tables and figures by default: you don't have to worry about where they go exactly.  The general rule is that you insert them in the source after your first reference to them, and \LaTeX\ determines their final position.  It also makes decisions on how much page space to devote to them.  This all follows \LaTeX's overall theme of focusing on the content of your paper, and not its format.
-
-Just so you can see a second table, Table~\ref{table-sample2} is provided.
-
-% \begin{table}
-% \centering
-% \begin{tabular}{|c|c|c|}\hline
-% Column 1 & Column 2 & Column 3 \\\hline\hline
-% a & b & c \\
-% d & e & f \\
-% g & h & i \\\hline
-% \end{tabular}
-
-% \caption{Another sample table}
-% \label{table-sample2}
-% \end{table}
-
-\section{Another Section}
-
-We're adding another section just so you can see how that looks.  Plus there are a few more \LaTeX\ features to illustrate.
-
-\subsection{Bulleted and Numbered Lists}
-
-\LaTeX\ is very good at providing clean lists.  Examples are shown below.
+\subsection{Objectives}
+\label{objectives}
 
 \begin{itemize}
-\item Bulleted items come out properly indented and spaced, every time.
+\item Knowledge of DB2 products (z/OS vs LUW vs pureScale - at a high-level; different products 
+and what they do)
+\item Knowledge of database workloads (appropriate DB2 product to use - OLTP vs warehousing)
+\item Knowledge of non-relational data concepts (XML data, LOB data)
+\end{itemize}
+
+\subsection{Database workloads}
+\label{database workloads}
+
+Two main types of database application workloads:
+\begin{itemize}
+\item online transactional processing (OLTP)
+\item data warehousing
+\begin{itemize}
+\item reporting
+\item online analytical processing (OLAP)
+\item data mining applications
+\item decision support
+\end{itemize}
+\end{itemize}
+
+\subsection{OLTP vs. Data Warehousing}
+\label{oltp vs. data warehousing}
+
+An OLTP system is typical of a web order system, where you perform transactions over the web
+(such as ordering a product). Online transaction processing (OLTP) systems features:
 
 \begin{itemize}
-\item Sub-bullets are a virtual no-brainer: just nest another \verb!itemize! block.
-\item Note how the bullet character automatically changes too.
-\end{itemize}
-
-\item Just keep on adding \verb!\item!s\ldots
-
-\item \ldots until you're done.
-\end{itemize}
-
-Numbered lists are almost identical, except that you specify \verb!enumerate! instead of \verb!itemize!.  List items are specified in exactly the same way (thus making it easy to change list types).
-
-\begin{enumerate}
-\item A list item
-\item Another list item
-\item A list item with multiple nested lists
-
+\item Support day-to-day, mission-critical business activities (ie. web-based order entry, stock trading)
+[\textit{current data}]
+\item Support hundreds to thousands of users issuing millions of transactions per day
+against databases that vary in size [\textit{Frequent updates, Granular transactions}]
+\item Response time requirements tend to be subsecond [\textit{Sub-second response time}]
+\item Queries:
 \begin{itemize}
-\item Nested lists can be of mixed types.
-\item That's a lot of power and flexibility for the price of learning a handful of directives.
-
-\begin{enumerate}
-\item Like nested bullet lists, nested numbered lists also ``intelligently'' change their numbering schemes.
-\item Meanwhile, all \emph{you} have to write is \verb!\item!.  \LaTeX\ does the rest.
-\end{enumerate}
+\item tend to be a mix of real-time insert, update, and delete
+operations against current-as opposed to historical-data
+\item single-row lookups with logic that likely updates a small number of records
+\end{itemize}
 \end{itemize}
 
-\item Back to your regularly scheduled list item
 
-\end{enumerate}
+Data warehousing system typically consist of:
+\begin{itemize}
+\item Store and manage large volumes of data that is often historical in nature and is used primarily for
+analysis [\textit{Voluminous historical data}]
+\item Optimized for queries
+\item Heterogeneous data sources
+\item Queries: (ie. [\textit{Summarized queries that perform aggregations and joins}] )
+\begin{itemize}
+\item bulk load operations
+\item short-running queries
+\item long-running complex queries
+\item random queries
+\item occasional updates to data
+\item execution of online utilities
+\end{itemize}
 
-\subsection{Subsection with Another Figure}
+\end{itemize}
 
-We may as well include a second figure also, shown in Figure~\ref{figure-sample2}.  The same image file is used, but note how it can be resized.  Again, observe how the positions of the tables and figures do not necessarily match their positions in the source file, reiterating the aforementioned \LaTeX\ functionality for deciding where these items go in the final document.  You provide an approximate location, and \LaTeX\ does the rest.
+\begin{example}
+A database will be used primarily to identify sales patterns for products sold within the 
+last three years and to summarize sales by region, on a quarterly basis. In case, a Data warehouse 
+system is needed.
+\end{example}
 
-%\begin{figure}
-%\centering
-%\includegraphics[width=1in]{space.jpg} 
+\begin{remark}
+Different by {\color{red} queries that are typically used to access the data} (aka workloads).
+\end{remark}
 
-%\caption{Another sample figure}
-%\label{figure-sample2}
-%\end{figure}
 
-\section{Conclusion}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{workloads.png}
+ 
+\caption{DB2 products, OLTP, Data Warehouse}
+\label{workloads}
+\end{figure}
 
-Wrap up your paper with an ``executive summary'' of the paper itself, reiterating its subject and its major points.  If you want examples, just look at the conclusions from the literature.
+\subsection{DB2 pureScale - IBM solution for OLTP}
+\label{DB2 pureScale}
+
+\medskip
+
+System highlights:
+\begin{itemize}
+\item Best suited for OLTP workloads
+\item Enables a \texttt{DB2 for LUW} database to continously process incoming requests, even if
+multiple system components fail simultaneously, which makes it ideal for OLTP workloads where high
+availability is crucial
+\item Provides a database cluster solution for nonmainframe platforms
+\item Can \textbf{ONLY} work with the General Parallel File System (GFPS) file system
+\end{itemize}
+
+\medskip
+
+Usage:
+\begin{itemize}
+\item Can be used with \texttt{DB2 Workgroup Server Edition (WSE)}, \texttt{DB2 Enterprise Server Edition
+(ESE)}, \texttt{DB2 Advanced Enterprise Server Edition(AESE)}
+\item Can \textbf{ONLY} be installed on IBM p Series or x Series servers that are running either
+the AIX (p Series) or the Linux (x Series) operating system
+\item \textbf{CANNOT} be installed on IBM mainframes running z/OS, IBM p Series server running Linux,
+or IBM x Series servers running Windows
+\end{itemize}
+
+
+\subsection{InfoSphere Warehouse - IBM solution for Data warehousing}
+
+\medskip
+System highlights:
+\begin{itemize}
+\item is a complete data warehousing solution that contains components that facilitate
+data warehouse construction and administration, as well as tools that enable embedded data
+mining and multidimensional online analytical processing (OLAP)
+\end{itemize}
+
+\subsection{Notable DB2 features \& products}
+
+\textbf{IBM Data Studio}
+\begin{itemize}
+\item is an Eclipse-based, integrated development environment (IDE) that can be used to perform
+instance and database administration, routine (SQL procedure, SQL functions, etc.) and application
+development, and performance-tuning tasks.
+\item replaces the \texttt{DB2 Control Center} as the standard GUI tool for DB2 database administration
+and application development.
+\item allows users to connect to a DB2 database using a wizard; however, users are required to provide
+login credentials before a connection will be established.
+\item components:
+\begin{itemize}
+\item \texttt{IBM Data Studio administration client}
+\begin{itemize}
+\item can be installed on servers running Red Hat Linux, SUSE Linux, and Windows
+\item \textbf{CANNOT} be installed on AIX servers
+\end{itemize}
+\item \texttt{IBM Data Studio full client}
+\begin{itemize}
+\item can be installed on servers running Red Hat Linux, SUSE Linux, and Windows
+\end{itemize}
+\item \texttt{IBM Data Studio web console}
+\begin{itemize}
+\item can be installed on servers running Red Hat Linux, SUSE Linux, and Windows
+\item can be installed on servers running the AIX operating system as well
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\textbf{IBM Workload Manager (WLM)}
+\begin{itemize}
+\item is a comprehensive workload management feature that can help identify, manage, and control
+database workloads to maximize database server throughput and resource utilization
+\item cutomize execution environments for the purpose of  controlling system resources so that
+no single workload can control and consume all of the system resources available. 
+(This prevents any one department or service class from overwhelming the system.)
+\end{itemize}
+
+\textbf{IBM InfoSphere Optim Performance Manager Extended Edition}
+\begin{itemize}
+\item can be used to identify, diagnose, solve, and prevent performance problems in DB2 products and 
+associated applications including Java and DB2 Call Level Interface (CLI) applications.
+\end{itemize}
+
+\textbf{Self-Tuning Memory Manager (STMM)}
+\begin{itemize}
+\item responds to significant changes in a database's workload by dynamically distributing available
+memory resources among several different database memory consumers
+\end{itemize}
+
+\textbf{Connection Concentrator}
+\begin{itemize}
+\item improves the performance of applications that require frequent, but relatively transient, 
+simultaneous user connections by allocating host database resources only for the duration of an 
+SQL transaction,
+\end{itemize}
+
+\textbf{IBM InfoSphere Data Architect}
+\begin{itemize}
+\item A complete solution for designing, modeling, discovering, relating, and standardizing data assets.
+\item You can use it for data modeling, transformation, and DDL generation, and to build, debug, and
+manage database objects such as SQL stored procedures and functions.
+\end{itemize}
+
+\textbf{IBM InfoSphere Optim Query Tuner (Query Tuner)}
+\begin{itemize}
+\item can analyze and make recommendations on ways to tune existing queries, as well as provide expert
+advice on writing new queries.
+\end{itemize}
+
+\textbf{IBM InfoSphere Optim pureQuery Runtime}
+\begin{itemize}
+\item Lets you deploy advanced pureQuery applications that use static SQL for a wide range of benefits.
+\item Briges the gap between data and Java technology by harnessing the power of SQL within an easy-to-use
+Java data access platform.
+\item Increases security of Java applications helping to prevent threats like SQL injection.
+\end{itemize}
+
+\textbf{DB2 for i}
+\begin{itemize}
+\item combines with \texttt{IBM BLU Acceleration} to handle Analytical workloads
+\item formerly known as DB2 for i5/OS, is an advanced, 64-bit Relational Database Management System
+that leverages the high performance, virtualization, and energy efficiency features of IBM's Power Systems
+\item its self-managing attributes, security, and built-in analytical processing functions make \texttt{
+DB2 for i} an ideal database server for applications that are analytical in nature
+\end{itemize}
+
+\textbf{DB2 pureXML}
+\begin{itemize}
+\item offers a simple and efficient way to create a "hybrid" DB2 database that allows XML data
+to be storded in its native, hierarchical format.
+\end{itemize}
+
+\textbf{Data Partitioning Feature (DPF)}
+\begin{itemize}
+\item provides the ability to divide very large databases into multiple parts (known as partitions) and
+store them across a cluster of inexpensive servers.
+\end{itemize}
+
+\subsection{DB2 offering}
+\textbf{DB2 for z/OS}
+\begin{itemize}
+\item full-function database management system that has been designed specifically for z/OS, IBM's
+flagship mainframe operating system.
+\item Tightly integrated with the IBM mainframe, \texttt{DB2 for z/OS} leverages the strengths of System
+z 64-bit architecture to provide, among other things, the ability to support complex data warehouse.
+\end{itemize}
+
+
+\subsection{Large Objects (LOB)}
+
+LOB data types-\textbf{not LOB locators}-are used to store binary data values in a DB2 database.
+\begin{itemize}
+\item By default, LOB data is stored in separate LOB storage objects.
+\item Changes to LOB data are not recorded in transaction log files.
+\end{itemize}
+
+\smallskip
+
+\textbf{Inline LOBs}
+\begin{itemize}
+\item improve query performance by storing LOB data in the same data pages as the rest of 
+a table's rows, rather than in a separate LOB storage object.Thus, no additional I/O is needed to store and access this type of data. 
+\item is eligible for compression.
+\item When a table contains columns with inline LOBs, fewer rows can fit on a page.
+\item transactions that modify inline LOB data are always logged. Consequently, the use of inline LOBs
+can \textbf{increase} logging overhead.
+\item are created by appending the \texttt{INLINE LENGTH} clause to a LOB column's definition.
+\end{itemize}
+
+\smallskip
+
+\textbf{LOB locator}
+\begin{itemize}
+\item represents a value for a LOB resource that is stored in a database
+\item is a simple token value that is used to refer to a much bigger LOB value
+\item is a mechanism that refers to a LOB value from within a transaction
+\item is \textbf{NOT} a data type, nor is it a database object
+\item \textbf{do NOT} store copies of LOB data-they store a description of a base LOB value,
+and the actual data that a LOB locator refers to is only materialized when it is assigned to a specific
+location, such as an application host variable or another table record
+\item they behave as a snapshot of a piece of an LOB value, and not as a pointer to a row or a location
+in the database
+\end{itemize}
+
+\subsection{XML data}
+\begin{itemize}
+\item with \texttt{pureXML}, XML documents are stored in tables that contain one or more columns that have
+been defined with the XML data type.
+\item \texttt{CREATE TABLE employee (empid INT, resume XML)}
+\end{itemize}
 
 % Generate the bibliography.
 %\bibliography{latex-sample}
