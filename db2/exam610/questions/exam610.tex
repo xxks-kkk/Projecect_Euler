@@ -89,16 +89,16 @@ This question bank contains \numpages\ pages (including this cover page) and
 
 % Do not write in the table to the right.
 \end{minipage}
-\hfill
-\begin{minipage}[t]{2.3in}
-\vspace{0pt}
+%\hfill
+%\begin{minipage}[t]{2.3in}
+%\vspace{0pt}
 %\cellwidth{3em}
-\gradetablestretch{2}
-\vqword{Question}
-\addpoints % required here by exam.cls, even though questions haven't started yet.	
-\gradetable[v][pages]  % Use [pages] to have grading table by page instead of question
+%\gradetablestretch{2}
+%\vqword{Question}
+%\addpoints % required here by exam.cls, even though questions haven't started yet.	
+%\gradetable[v]  % Use [pages] to have grading table by page instead of question
 
-\end{minipage}
+%\end{minipage}
 \newpage % End of cover page
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -278,21 +278,35 @@ Which statement about inline large objects (LOBs) is NOT true?
 \fullwidth{\Large \textbf{Security}}
 
 \question[1]
-A user named USER1 has been granted DATAACCESS authority for a database named PAYROLL. What is user USER1 allowed to do?
+A user named USER1 has been granted \texttt{DATAACCESS} authority for a database named PAYROLL. What is user USER1 allowed to do?
 \begin{choices}
 	\choice Implicitly create a new schema in the PAYROLL database.
 	\choice Grant and revoke priviledges on objects that reside in the PAYROLL database.
 	\choice Retrieve and change data stored in user tables, views. and materialized query tables.
-	\choice Create database objects, issue database-specific DB2 commands, and run DB2 utilities that do not change data.
+	\choice Create database objects, issue database-specific DB2 commands, and run DB2 utilities that 
+	do not change data.
 \end{choices}
 
 \question[1]
-
+Which attribute is NOT needed to define a trusted context?
 \begin{choices}
-
-
+\choice A system authorization ID
+\choice A data stream encryption value
+\choice A system authorization password
+\choice The IP address or domain name of an incoming connection
 \end{choices}
 
+\question[1]
+Which SQL statement will take the ability to run an Embedded SQL application named 
+PERF\textunderscore REVIEW that calls a package named CORP.CALC\textunderscore Bonus away from a user named USER1?
+\begin{choices}
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{FROM} user1
+\choice \texttt{REVOKE EXECUTION ON PACKAGE} corp.calc\textunderscore bonus \texttt{FROM} user1
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{PACKAGE} corp.calc
+\textunderscore bonus \texttt{FROM} user1
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{USING PACKAGE} corp.calc\textunderscore bonus \texttt{FROM} user1
+
+\end{choices}
 
 
 
