@@ -305,19 +305,227 @@ PERF\textunderscore REVIEW that calls a package named CORP.CALC\textunderscore B
 \choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{PACKAGE} corp.calc
 \textunderscore bonus \texttt{FROM} user1
 \choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{USING PACKAGE} corp.calc\textunderscore bonus \texttt{FROM} user1
-
 \end{choices}
 
 
+\question[1]
+If a user is given \texttt{SELECT} privilege on a table named EMPLOYEES, which two actions are they
+allowed to perform? (Choose two.)
+\begin{choices}
+\choice Add data to the EMPLOYEE table.
+\choice Create a view on the EMPLOYEE table.
+\choice Retrieve data from the EMPLOYEE table.
+\choice Create an index for the EMPLOYEE table.
+\choice Change the definition for the EMPLOYEE table.
+\end{choices}
 
+\question[1]
+Which SQL statement will allow a user named USER1 to both remove records from a table named
+SALES and give the ability to remove records from the SALES table to others?
+\begin{choices}
+\choice \texttt{GRANT DELETE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT OPTION}
+\choice \texttt{GRANT REMOVE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT OPTION}
+\choice \texttt{GRANT DELETE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT PRIVILEGES}
+\choice \texttt{GRANT REMOVE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT PRIVILEGES}
+\end{choices}
 
+\newpage
 
+\question[1]
+If a user is granted the \texttt{BIND} privilege, what are they allowed to do?
+\begin{choices}
+\choice Create a new package.
+\choice Bind or rebind (recreate) a specific package.
+\choice Register user-defined functions (UDFs) and procedures.
+\choice Associate user-defined functions (UDFs) and procedures with specific database objects.
+\end{choices}
 
+\question[1]
+Which statement about \texttt{Security Administrator (SECADM)} authority is true?
+\begin{choices}
+\choice Users with \texttt{SECADM} authority are not allowed to access data stored in system 
+catalog tables and views.
+\choice Only users with \texttt{SECADM} authority are allowed to grant and revoke \texttt{SECADM}
+authority to/from others.
+\choice When a user with \texttt{SECADM} authority creates a database, that user is automatically granted
+\texttt{DBADM} authority for that database.
+\choice With DB2 for z/OS, \texttt{SYSADM} authority and \texttt{SECADM} authority are combined under
+\texttt{SYSADM} authority and cannot be separated.
+\end{choices}
 
+\question[1]
+Which statement about trusted context is true?
+\begin{choices}
+\choice Trusted context objects can only be defined by someone with \texttt{SYSADM} or \texttt{SECADM}
+authority.
+\choice An authorization ID, IP address, encryption value, and authentication type must be identified
+before a trusted context can be defined.
+\choice After a trusted connection is established, if a switch request is made with an authorization ID
+that is not allowed on the connection, the connection is placed in the "Unconnected" state.
+\choice If a trusted context is assigned to a role, any authorization ID that uses the trusted context
+will acquire the authorities and privileges that have been assigned to the role; any authorities or
+privileges that have been granted to the authorization ID are ignored.
+\end{choices}
 
+\question[1]
+If a user has \texttt{ACCESSCTRL} authority, which two authorities and/or privileges are they allowed
+to grant to others? (Choose two.)
+\begin{choices}
+\choice \texttt{SYSADM}
+\choice \texttt{SECADM}
+\choice \texttt{EXECUTE}
+\choice \texttt{CREATETAB}
+\choice \texttt{ACCESSCTRL}
+\end{choices}
 
+\newpage
 
+\question[1]
+Which of the following is used to group a collection of privileges together so that they can be
+simultaneously granted to and revoked from multiple users?
+\begin{choices}
+\choice Role
+\choice Catalog
+\choice Function
+\choice Collection
+\end{choices}
 
+\question[1]
+Which method for restricting data access relies on the server or the local DB2 subsystem to prevent
+unauthorized users from accessing data stored in a database?
+\begin{choices}
+\choice Privileges
+\choice Authentication
+\choice Label-based access control
+\choice Row and column access control
+\end{choices}
+
+\question[1]
+When is an SQL search condition used to limit access to data in a table?
+\begin{choices}
+\choice When \texttt{mandatory access control (MAC)} is used to protect the table.
+\choice When \texttt{label-based access control (LBAC)} is used to protect the table.
+\choice When \texttt{discretionary access control (DAC)} is used to protect the table.
+\choice When \texttt{row and column access control (RCAC)} is used to protect the table.
+\end{choices}
+
+\question[1]
+Which SQL statement will give user USER1 the ability to create tables in a table space named USERSPACE2?
+\begin{choices}
+\choice \texttt{GRANT USE OF TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT ALTER ON TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT USAGE OF TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT CREATETAB ON TABLESPACE} userspace2 \texttt{TO} user1
+\end{choices}
+
+\question[1]
+Which SQL statement will give user USER1 the ability to assign a comment to a table named MYTABLE?
+\begin{choices}
+\choice \texttt{GRANT ALTER ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT USAGE ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT INSERT ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT UPDATE ON TABLE} mytable \texttt{TO} user1
+\end{choices}
+
+\question[1]
+Which privileges are needed to invoke an SQL stored procedure that queries a table?
+\begin{choices}
+\choice \texttt{CALL} privilege on the procedure; \texttt{SELECT} privilege on the table.
+\choice \texttt{EXECUTE} privilege on the procedure; \texttt{SELECT} privilege on the table.
+\choice \texttt{CALL} privilege on the procedure; \texttt{REFERENCES} privilege on the table.
+\choice \texttt{EXECUTE} privilege on the procedure; \texttt{REFERENCES} privilege on the table.
+\end{choices}
+
+\newpage
+
+\question[1]
+Which privileges allows a user to use the \texttt{PREVIOUS VALUE} and \texttt{NEXT VALUE} sequence 
+expressions?
+\begin{choices}
+\choice \texttt{USE}
+\choice \texttt{ALTER}
+\choice \texttt{USAGE}
+\choice \texttt{EXECUTE}
+\end{choices}
+
+\question[1]
+A table named CUSTOMER was created as follows:
+\begin{verbatim}
+CREATE TABLE customer
+(cust_id   INTEGER NOT NULL PRIMARY KEY,
+ f_name    VARCHAR(30),
+ l_name    VARCHAR(40),
+ cc_number NUMERIC(16,0) NOT NULL)
+\end{verbatim}
+Which two actions will prevent unauthorized users from accessing credit card number (CC\textunderscore 
+NUMBER) information? (Choose two.)
+\begin{choices}
+\choice Assign the CC\textunderscore NUMBER column to a restricted role that only authorized users
+are allowed to access.
+\choice Only grant \texttt{ACCESSCTRL} authority for the CC\textunderscore NUMBER column to users who
+need to access credit card number information.
+\choice Alter the table definition so that CC\textunderscore NUMBER data is stored in a separate schema
+that only authorized users are allowed to access.
+\choice Create a view for the CUSTOMER table that does not contain the CC\textunderscore NUMBER column
+and require unauthorized users to use the view.
+\choice Create a column mask for the CC\textunderscore NUMBER column with the ENABLE option specified and 
+alter the CUSTOMER table to activate column access control.
+\end{choices}
+
+\question[1]
+Which authority is needed to create and drop databases?
+\begin{choices}
+\choice \texttt{DBADM}
+\choice \texttt{DBCTRL}
+\choice \texttt{SYSCTRL}
+\choice \texttt{SYSMAINT}
+\end{choices}
+
+\question[1]
+Which statement regarding \texttt{label-based access control (LBAC)} is true?
+\begin{choices}
+\choice Two types of security label components are supported: array and tree.
+\choice Every LBAC-protected table must have only one security policy associated with it.
+\choice To configure a table for row-level LBAC protect, you must include the \texttt{SECURED WITH}
+clause with each column's definition.
+\choice To configure a table for column-level LBAC protection, you must include a column with the
+\texttt{DB2SECURITYLABEL} data type in the table's definition.
+\end{choices}
+
+\newpage
+
+\question[1]
+Which method for restricting data access relies on an SQL CASE expression to control the conditions
+under which a user can access for a column?
+\begin{choices}
+\choice Authority
+\choice Authentication
+\choice Label-based access control
+\choice Row and column access control
+\end{choices}
+
+\question[1]
+Which two statements about Row and column Access Control (RCAC) are valid? (Choose two.)
+\begin{choices}
+\choice A column mask's access control rule is defined by an SQL search condition.
+\choice A column mask's access control rule is defined by an SQL CASE expression.
+\choice A row permission's access control rule is defined by an SQL search condition.
+\choice A row permission's access control rule is defined by an SQL CASE expression.
+\choice A column mask's access control rule is defined by a \texttt{SECURED WITH} clause of 
+a \texttt{CREATE TABLE} or \texttt{ALTER TABLE} statement.
+\end{choices}
+
+\question[1]
+Which privilege is needed to invoke a stored procedure?
+\begin{choices}
+\choice \texttt{USE}
+\choice \texttt{CALL}
+\choice \texttt{USAGE}
+\choice \texttt{EECUTE}
+\end{choices}
+
+\newpage
+\fullwidth{\Large \textbf{Working with Databases and Database Objects}}
 
 % Question with parts
 % \newpage
