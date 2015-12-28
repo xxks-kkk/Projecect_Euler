@@ -23,6 +23,9 @@
 \newtheorem*{remark}{Remark}
 \newtheorem{example}{Example}
 
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+
 % Package for formatting URLs.
 \usepackage{url}
 
@@ -352,8 +355,45 @@ been defined with the XML data type.
 \label{security}
 
 \subsection{Objectives}
+\begin{itemize}
+\item Knowledge of restricting data access
+\item Knowledge of different privileges and authorities
+\item Given a DCL SQL statement, knowledge to identify results (grant/revoke/connect statements)
+\item Knowledge of Row and Column Access Control (RCAC)
+\item Knowledge of Roles and Trusted Contexts
+\end{itemize}
 
+Three levels of security:
+\begin{itemize}
+\item level 1: control access to the instance under which a database was created
+\item level 2: control access to the database itself
+\item level 3: control access to the data and data objects reside within the database
+\end{itemize}
 
+\subsection{Authentication}
+\begin{itemize}
+\item is the process by which a system verifies a user's identity.
+\item normally, an external facility (ie. OS, DCE) that is not pat of DB2 performs the authentication.
+\item \textit{authentication type} for a server is a database manager configuration parameter to 
+decide how and where users are authenticated.
+
+\begin{center}
+	\begin{tabular}{l | p{8cm} }
+	\hline
+	Type &  \multicolumn{1}{c}{Description}  \\ \hline
+	\textbf{SERVER} & Authentication occurs on the server \\ \hline
+	\textbf{SERVER\_ENCRYPT} & \\ \hline
+	\textbf{CLIENT}  \\ \hline
+	\textbf{KERBEROS}  \\ \hline
+	\textbf{KRB\_SERVER\_ENCRYPT}  \\ \hline
+	\textbf{DATA\_ENCRYPT}  \\ \hline
+	\textbf{DATA\_ENCRYPT\_CMP} \\ \hline
+	\textbf{GSSPLUGIN} \\ \hline
+	\textbf{GSS\_SERVER\_ENCRYPT} \\ \hline
+	
+	\end{tabular}
+\end{center}
+\end{itemize}
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
