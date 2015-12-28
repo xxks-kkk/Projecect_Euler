@@ -25,6 +25,9 @@
 
 \usepackage{multirow}
 \usepackage[table]{xcolor}
+% itemize in table
+\usepackage{booktabs}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
 % Package for formatting URLs.
 \usepackage{url}
@@ -381,7 +384,7 @@ decide how and where users are authenticated.
 	\begin{tabular}{l | p{8cm} }
 	\hline
 	Type &  \multicolumn{1}{c}{Description}  \\ \hline
-	\textbf{SERVER} & Authentication occurs on the server \\ \hline
+	\textbf{SERVER} & \tabitem Authentication occurs on the server \\ \hline
 	\textbf{SERVER\_ENCRYPT} & \\ \hline
 	\textbf{CLIENT}  \\ \hline
 	\textbf{KERBEROS}  \\ \hline
