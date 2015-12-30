@@ -25,9 +25,14 @@
 
 \usepackage{multirow}
 \usepackage[table]{xcolor}
+
 % itemize in table
 \usepackage{booktabs}
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{tabularx}
+\usepackage{paralist}
+\usepackage{pifont}
+\usepackage{array}
 
 % Package for formatting URLs.
 \usepackage{url}
@@ -381,22 +386,92 @@ Three levels of security:
 decide how and where users are authenticated.
 
 \begin{center}
-	\begin{tabular}{l | p{8cm} }
-	\hline
-	Type &  \multicolumn{1}{c}{Description}  \\ \hline
-	\textbf{SERVER} & \tabitem Authentication occurs on the server \\ \hline
-	\textbf{SERVER\_ENCRYPT} & \\ \hline
-	\textbf{CLIENT}  \\ \hline
-	\textbf{KERBEROS}  \\ \hline
-	\textbf{KRB\_SERVER\_ENCRYPT}  \\ \hline
-	\textbf{DATA\_ENCRYPT}  \\ \hline
-	\textbf{DATA\_ENCRYPT\_CMP} \\ \hline
-	\textbf{GSSPLUGIN} \\ \hline
-	\textbf{GSS\_SERVER\_ENCRYPT} \\ \hline
-	
-	\end{tabular}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+Type &  \multicolumn{1}{c}{Description}  \\ 
+\midrule
+\textbf{SERVER} & 
+\begin{compactitem}[\ding{212}]
+\item Authentication occurs on the server
+\end{compactitem}
+\\\hline
+\textbf{SERVER\_ENCRYPT} &
+\begin{compactitem}[\ding{212}]
+\item Authentication occurs on the server
+\item Passwords are encrypted at the client machine before being sent to the server
+\end{compactitem}
+\\\hline
+\textbf{CLIENT} &
+\begin{compactitem}[\ding{212}]
+\item Authentication occurs at the client workstation, with no further checks on the server
+\end{compactitem}
+\\\hline
+\textbf{KERBEROS} &
+\begin{compactitem}[\ding{212}]
+\item Authentication is performed by the Kerberos security software
+\end{compactitem}  
+\\\hline
+\textbf{KRB\_SERVER\_ENCRYPT} &
+\begin{compactitem}[\ding{212}]
+\item Authentication is performed by Kerberos security software if the client's authentication 
+type is set to KERBEROS. Otherwise, SERVER\_ENCRYPT is used
+\end{compactitem} 
+\\\hline
+\textbf{DATA\_ENCRYPT} &
+\begin{compactitem}[\ding{212}]
+\item SERVER\_ENCRYPT
+\item user data are encrypted
+\end{compactitem}
+\\\hline
+\textbf{DATA\_ENCRYPT\_CMP} &
+\begin{compactitem}[\ding{212}]
+\item DATA\_ENCRYPT
+\item Use SERVER\_ENCRYPT if DATA\_ENCRYPT not supported
+\end{compactitem}
+\\\hline
+\textbf{GSSPLUGIN} &
+\begin{compactitem}[\ding{212}]
+\item Authentication is controlled by an external GSS-API plugin
+\end{compactitem} 
+\\\hline
+\textbf{GSS\_SERVER\_ENCRYPT} &
+\begin{compactitem}[\ding{212}]
+\item GSSPLUGININ
+\item Use SERVER\_ENCRYPT if GSSPLUGIN not supported
+\end{compactitem}
+\\
+\bottomrule
+\end{tabularx}
 \end{center}
+
+
 \end{itemize}
+
+
+% \begin{table*}[h]
+%    \begin{tabular}{l p{8cm}}
+%        \hline \bfseries Name & \bfseries Opt 2 \\\hline 
+%        \hline \bfseries Item 1 & \\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
+%            \begin{itemize}
+%                \item Key 
+%                \item Key 
+%                \item Key 
+%            \end{itemize} }}
+%         \\ \bfseries Item 2 & X \\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
+%            \begin{itemize}
+%                \item Key key key key key key key key key key key
+%                \item Key key key key key key key key key key key
+%                \item Key key key key key key
+%            \end{itemize} }}
+%         \\ \bfseries Item 3 &  & X\\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
+%            \begin{itemize}
+%                \item Key
+%             \end{itemize} }}
+%          \\ \hline
+%     \end{tabular}
+%\end{table*}
+
+
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
