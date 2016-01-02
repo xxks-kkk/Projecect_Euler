@@ -33,6 +33,7 @@
 \usepackage{paralist}
 \usepackage{pifont}
 \usepackage{array}
+\usepackage{longtable}
 
 % Package for formatting URLs.
 \usepackage{url}
@@ -443,35 +444,448 @@ type is set to KERBEROS. Otherwise, SERVER\_ENCRYPT is used
 \bottomrule
 \end{tabularx}
 \end{center}
-
-
 \end{itemize}
 
+\newpage
 
-% \begin{table*}[h]
-%    \begin{tabular}{l p{8cm}}
-%        \hline \bfseries Name & \bfseries Opt 2 \\\hline 
-%        \hline \bfseries Item 1 & \\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
-%            \begin{itemize}
-%                \item Key 
-%                \item Key 
-%                \item Key 
-%            \end{itemize} }}
-%         \\ \bfseries Item 2 & X \\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
-%            \begin{itemize}
-%                \item Key key key key key key key key key key key
-%                \item Key key key key key key key key key key key
-%                \item Key key key key key key
-%            \end{itemize} }}
-%         \\ \bfseries Item 3 &  & X\\\multicolumn{3}{|c|}{\parbox{0.9\textwidth}{
-%            \begin{itemize}
-%                \item Key
-%             \end{itemize} }}
-%          \\ \hline
-%     \end{tabular}
-%\end{table*}
+\subsection{Authorities}
+\begin{itemize}
+\item convey the right to perform high-level administrative and maintenance/utility operations
+on an instance or a database
+\item instance-level authorities:
+\begin{itemize}
+\item System Administrator (\textbf{SYSADM}) authority:
+	\begin{itemize}
+	\item Highest level of administrative authority at the instance level
+	\item Only a user with SYSADM authority can perform the following:
+		\begin{itemize}
+		\item Upgrade a database
+		\item Restore a database
+		\item Change the database manager configuration file (including specifying the groups
+		having SYSADM, SYSCTRL, SYSMAINT, or SYSMON authority)
+		\item Grant and revoke table space privileges and also use any table space
+		\item Perform any SQL or XQuery operation that does not attempt to access data that is 
+		protected by RCAC or LBAC.
+		\end{itemize}
+	\item When a user with SYSADM authority creates a database, that user is automatically
+	granted ACCESSCTRL, DATAACCESS, DBADM, SECADM authority on the database.
+	\end{itemize}
+\item Installation System Administrator (Installation SYSADM) authority:
+	\begin{itemize}
+	\item Conveys the same set of abilities that SYSADM authority provides.
+	\item Can perform recovery operations when the system catalog for a database is inaccessible or 
+	unavailable.
+	\end{itemize}
+\item System Control (\textbf{SYSCTRL}) authority:
+	\begin{itemize}
+	\item Highest level of system and instance control authority
+	\item Intended to provide select users with nearly complete control of a DB2 system without 
+	letting them access sensitive data
+	\item Similar to SYSADM but cannot access any data within the databases unless they are
+	granted  the privileges required to do so.
+	\item Commands a SYSCTRL user can perform against any database in the instance are:
+		\begin{itemize}
+		\item \texttt{db2start}/\texttt{db2stop}
+		\item \texttt{db2 create}/\texttt{drop database}
+		\item \texttt{db2 create}/\texttt{drop tablespace}
+		\item \texttt{db2 backup}/\texttt{restore}/\texttt{rollforward database}
+		\item \texttt{db2 runstats} (against any table)
+		\item \texttt{db2 update db cfg for database} dbname
+		\end{itemize}
+	\end{itemize}
+\item System Operator (SYSOPER) authority:
+	\begin{itemize}
+	\item the ability to execute all DB2 commands available \textit{except} ARCHIVE LOG,
+	START DATABASE, STOP DATABASE, and RECOVER BSDS.
+	\item run the DSN1SDMP utility, and terminate any running utility job.
+	\end{itemize}
+\item Installation System Operator (Installation SYSOPER) authority:
+	\begin{itemize}
+	\item SYSOPER authority
+	\item Perform select operations when the system catalog for a database is unavailable.
+	\end{itemize}
+\item System Maintenance (\textbf{SYSMAINT}) authority:
+	\begin{itemize}
+	\item SYSMAINT users can only perform tasks related to mainenance (subset of SYSCTRL authority):
+		\begin{itemize}
+		\item \texttt{db2start}/\texttt{db2stop}
+		\item \texttt{db2 backup}/\texttt{restore}/\texttt{rollforward database}
+		\item \texttt{db2 runstats} (against any table)
+		\item \texttt{db2 update db cfg for database} dbname
+		\end{itemize}
+	\item users with SYSMAINT \textbf{CANNOT} create or drop databases or tablespaces.
+	\item They cannot access any data within the databases unless they are granted the explicit
+	privileges required to do so.
+	\end{itemize}
+\item System Monitor (\textbf{SYSMON}) authority:
+	\begin{itemize}
+	\item Provides the ability to take database system monitor snapshots of an instance and its databases.
+	\item SYSMON authority enables the user to run the following commands:
+		\begin{itemize}
+		\item \texttt{GET DATABASE MANAGER MONITOR SWITCHES}
+		\item \texttt{GET MONITOR SWITCHES}
+		\item \texttt{GET SNAPSHOT}
+		\item \texttt{LIST ACTIVE DATABASES}
+		\item \texttt{LIST APPLICATIONS}
+		\item \texttt{LIST DATABASE PARTITION GROUPS}
+		\item \texttt{LIST DCS APPLICATIONS}
+		\item \texttt{LIST PACKAGES}
+		\item \texttt{LIST TABLES}
+		\item \texttt{LIST TABLESPACE CONTAINERS}
+		\item \texttt{LIST TABLESPACE}
+		\item \texttt{LIST UTILITIES}
+		\item \texttt{RESET MONITOR}
+		\item \texttt{UPDATE MONITOR SWITCHES}
+		\end{itemize}
+	\item following APIs:
+		\begin{itemize}
+		\item \texttt{db2GetSnapshot} - Get snapshot
+		\item \texttt{db2GetSnapshotSize} - Estimate size required for \texttt{db2GetSnapshot} output
+		buffer
+		\item \texttt{db2MonitorSwitches} - Get/update monitor switches
+		\item \texttt{db2ResetMonitor} - Reset monitor
+		\item \texttt{db2mtrk} - Memory tracker
+		\end{itemize}
+	\item Users with the SYSADM, SYSCTRL or SYSMAINT authority level also possess SYSMON
+	\end{itemize}
+\end{itemize}
+\newpage
+\item Database-level authorities:
+\begin{itemize}
+\item Database Administrator (\textbf{DBADM}) authority:
+	\begin{itemize}
+	\item DBADM users \textbf{CANNOT} perform such maintenance or administrative tasks as:
+		\begin{itemize}
+		\item \texttt{db2 drop database}
+		\item \texttt{db2 drop}/\texttt{create tablespace}
+		\item \texttt{db2 backup}/\texttt{restore database}
+		\item \texttt{db2 update db cfg for database} dbname
+		\end{itemize}
+	\item DBADM users can perform the following tasks:
+		\begin{itemize}
+		\item \texttt{db2 drop}/\texttt{create table} (index, views)
+		\item \texttt{db2 grant}/\texttt{revoke} (any privilege)
+		\item \texttt{db2 runstats} (any table)
+		\end{itemize}
+	\item access data stored in tables, views, including
+	system catalog tables and views-provided that data is not protected by RCAC or LBAC
+	\end{itemize}
+\item Database Control (DBCTRL) authority:
+	\begin{itemize}
+	\item create database objects
+	\item issue database-specific DB2 commands
+	\item run DB2 utilities (\textit{including those that change data})
+	\item terminate any running utility \textit{except} DIAGNOSE, REPORT, and STOSPACE
+	\end{itemize}
+\item Database Maintenance (DBMAINT) authority:
+	\begin{itemize}
+	\item create database objects
+	\item issue database-specific DB2 commands
+	\item run DB2 utilities that do not change data
+	\item terminate any running utility \textit{except} DIAGNOSE, REPORT, and STOSPACE
+	\end{itemize}
+\item Package Administrator (PACKADM) authority:
+	\begin{itemize}
+	\item BIND, COPY, and EXECUTE privileges on all packages in one or more specific collections
+	\item BIND subcommand to create new packages in certain collections
+	\end{itemize}
+\item System Database Administrator (System DBADM) authority:
+	\begin{itemize}
+	\item create, alter and drop database objects
+	\item issue database-specific DB2 commands
+	\item run the following DB2 utilities:
+		\begin{verbatim}
+		CHECK INDEX, CHECK LOB, COPY, COPYTOCOPY, DIAGNOSE, MODIFY RECOVERY,
+		MODIFY STATISTICS, QUIESCE, REBUILD INDEX, RECOVER, REPORT, RUNSTATS
+		\end{verbatim}
+	\item access and modified data stored in system catalog tables and views
+	\item \textbf{cannot} access user data
+	\item \textbf{cannot} grant and revoke authorities and privileges
+	\end{itemize}
+\item Security Administrator (\textbf{SECADM}) authority:
+	\begin{itemize}
+	\item can only be granted by a SYSADM user
+	\item can perform the following:
+		\begin{itemize}
+		\item Create and drop security label components
+		\item Create and drop security policies
+		\item Create and drop security labels
+		\item Grant and revoke security labels
+		\item Grant and revoke LBAC rule exemptions
+		\item Grant and revoke setsessionuser privileges
+		\item Grant and revoke database privileges and authorities
+		\item Execute the SQL statement \texttt{TRANSFER OWNERSHIP} on objects that you do not own
+		\item Execute the following audit routines:
+			\begin{enumerate}
+			\item \texttt{SYSPROC.AUDIT\_ARCHIVE} used to archive audit logs
+			\item \texttt{SYSPROC.AUDIT\_LIST\_LOGS} used to locate audit files present in a specific
+			directory
+			\item \texttt{SYSPROC.AUDIT\_DELIM\_EXTRACT} used to extract audit data to delimited files 
+			format
+			\end{enumerate}
+		\end{itemize}
+	\item No other user can perform these functions, not even the SYSADM, unless SECADM was 
+	explicitly granted to that SYSADM user
+	\end{itemize}
+\item Access Control (ACCESSCTRL) authority:
+	\begin{itemize}
+	\item can only be granted by SECADM
+	\item cannot grant to PUBLIC group
+	\item can access and modify data stored in system catalog tables and views
+	\item cannot access or modify user data
+	\item issue following GRANT (and REVOKE) statements:
+		\begin{itemize}
+		\item GRANT (Database Authorities). Does not give the holder the ability to grant ACCESSCTRL,
+		DATAACCESS, DBADM, or SECADM authority. Only SECADM can grant these authorities.
+		\item GRANT (Global Variable Privileges)
+		\item GRANT (Index Privileges)
+		\item GRANT (Module Privileges)
+		\item GRANT (Package Privileges)
+		\item GRANT (Routine Privileges)
+		\item GRANT (Schema Privileges)
+		\item GRANT (Sequence Privileges)
+		\item GRANT (Server Privileges)
+		\item GRANT (Table, View or Nickname Privileges)
+		\item GRANT (Table Space Privileges)
+		\item GRANT (Workload Privileges)
+		\item GRANT (XSR Object Privileges)
+		\end{itemize}
+	\end{itemize}
+\item Data Access (DATAACCESS) authority:
+	\begin{itemize}
+	\item can be granted only by SECADM
+	\item cannot be granted to PUBLIC
+	\item provides the following privilege and authorities:
+		\begin{itemize}
+		\item LOAD authority
+		\item SELECT, INSERT, UPDATE, DELETE privilege on tables, views, nicknames, and 
+		materialized query tables
+		\item EXECUTE privilege on packages
+		\item EXECUTE privilege on modules
+		\item EXECUTE privilege on routines \textit{except} AUDIT\_ARCHIVE, AUDIT\_LIST\_LOGS,
+		AUDIT\_DELIM\_EXTRACT
+		\item READ privilege on all global variables and WRITE privilege on all global variables except
+		variables that are read-only
+		\item USAGE privilege on all XSR objects
+		\item USAGE privilege on all sequences
+		\end{itemize}
+	\end{itemize}
+\item SQL Administrator (SQLADM) authority:
+	\begin{itemize}
+	\item Monitor and tune SQL statements
+	\item granted by ACCESSCTRL and SECADM authority
+	\item can perform the following:
+		\begin{itemize}
+		\item EXPLAIN SQL statements and PROFILE commands
+		\item run the RUNSTATS and MODIFY STATISTICS utilities
+		\item execute system-defined stored procedures, functions, and packages
+		\item DB2 for LUW can also run the following:
+			\begin{verbatim}
+			CREATE EVENT MONITOR, DROP EVENT MONITOR, FLUSH EVENT MONITOR
+			FLUSH OPTIMIZATION PROFILE CACHE, FLUSH PACKAGE CACHE,
+			PREPARE, REORG, SET EVENT MONITOR STATE
+			\end{verbatim}
+		\end{itemize}
+	\end{itemize}
+\item Workload Management Administrator (WLMADM) authority:
+	\begin{itemize}
+	\item manage workload management objects (service classes, work action sets, work class sets,
+	workloads)
+	\item granted by ACCESSCTRL or SECADM authority
+	\end{itemize}
+\end{itemize}
+\end{itemize}
 
+\begin{remark}
+DB2 for LUW only:
+\begin{verbatim}
+SYSMAINT, SYSMON, WLMADM
+\end{verbatim}
+DB2 for z/OS:
+\begin{verbatim}
+Installation SYSADM, SYSOPER, INSTALLATION SYSOPER, DBCTRL, 
+DBMAINT, PACKADM, System DBADM
+\end{verbatim}
+\end{remark}
 
+\newpage
+\subsection{Privileges}
+\begin{itemize}
+\item database-level privileges, which span all objects within the database
+\begin{itemize}
+\item DB2 for LUW
+\begin{itemize}
+\item BINDADD: create packages in the database using the BIND command
+\item CONNECT: connect to the database
+\item CREATETAB: create tables within the database
+\item CREATE\_EXTERNAL\_ROUTINE: create a procedure for use by applications and other users of the 
+database
+\item CREATE\_NOT\_FENCED\_ROUTINE: create unfenced user-defined functions (UDFs)
+\item EXPLAIN: generate Explain query plans
+\item IMPLICIT\_SCHEMA: implicitly create schemas within the database without using the
+CREATE SCHEMA command
+\item LOAD: load data into a table
+\item QUIESCE\_CONNECT: access a database while it is in a quiesced state
+\end{itemize}
+\item DB2 for z/OS
+\begin{itemize}
+\item CREATETAB: create tables within the database
+\item CREATETS: create table spaces for database
+\item DISPLAYDB: display the status of a database
+\item DROP: drop or alter a database
+\item IMAGCOPY: prepare for, make, and merge copies of table spaces in a database; 
+remove records of any table space copies made
+\item LOAD: load data into a database
+\item RECOVERDB: recover objects in a database and report recovery status
+\item REORG: reorganize objects in a database ( run REORG utility)
+\item REPAIR: generate diagnostic information about and repair data stored in a database's objects
+\item STARTDB: start database
+\item STATS: gather statistics; check index and referential constraints for associated objects;
+delete unwanted statistics history records from the system catalog tables
+\item STOPDB: stop database
+\end{itemize}
+\end{itemize}
+\item object privilege, apply to specific database objects:
+{\color{red} DB2 z/OS only};
+{\color{green} DB2 LUW only};
+Both
+\begin{center}
+\begin{longtable}{l |p{5cm}| p{7cm}}
+\hline
+Privilege name & Relevant objects & Description \\
+\hline
+CONTROL & {\color{green}table}, {\color{green}view}, {\color{green}index}, {\color{green}package},{\color{green}nickname} & Provides full authority on the object. Users with this privilege can also grant 
+or revoke privileges on the object to other users\\\hline
+DELETE  & table, view, {\color{green}nickname} & allows a user to remove data from object\\\hline
+INSERT  & table, view, {\color{green}nickname} & allows a user to add data into object\\\hline
+SELECT  & table, view, {\color{green}nickname} & allows a user to retrieve data from the object\\\hline
+UPDATE  & table, view, {\color{green}nickname} & allows a user to modify data within the object\\\hline
+ALTER   & table, sequence, {\color{green}nickname} & allows a user to alter the object definition, comment associated with\\\hline
+INDEX   & table, {\color{green}nickname} & allows a user to create an index on object\\\hline
+REFERENCES & table, {\color{green}nickname} & provides the ability to create or drop foreign key constraints on the object\\\hline
+BIND & package, {\color{red}plan} & allows a user to rebind(recreate) existing packages\\\hline
+{\color{red}COPY} & package & {\color{red}allows a user to copy a certain package} \\\hline
+EXECUTE & {\color{red}function}, {\color{red}stored procedure}, {\color{green}routine}, package, {\color{red}plan} & allows a user to invoke object\\\hline
+USAGE & sequence, {\color{red}jar}, {\color{green}XSR}, {\color{green}workload} & allows a user to use PREVIOUS VALUE 
+and NEXT VALUE associated with sequence/use a jar file/{\color{green}use a XSR object
+/{\color{green}use a workload}} \\\hline
+{\color{red}USAGE OF} & TYPE, DISTINCT TYPE & {\color{red}allows a user to use object} \\\hline
+{\color{red}TRIGGER} & table & {\color{red}allows a user to create triggers for object}\\\hline
+ALTERIN & schema & allows a user to change the comment associated with any object in a schema or
+modify definitions of objects in a schema\\\hline
+CREATEIN & schema & allows a user to create objects within a schema\\\hline
+{\color{red}CREATE IN} & collection & {\color{red}allows a user to name a collection, execute the BIND PACKAGE subcommand} \\\hline
+DROPIN  & schema & allows user to drop objects within a schema\\\hline
+{\color{green}SETSESSIONUSER} & & {\color{green}set the session authorization ID to one of a set of 
+specified authorization IDs available}\\\hline
+{\color{red}USE OF}  & {\color{red}BUFFERPOOL, ALL BUFFERPOOLS, TABLESPACE, STORAGEGROUP} & 
+{\color{red}allows user to use the object} \\\hline
+{\color{red}ARCHIVE} & & {\color{red}allows a user to archive active log} \\\hline
+{\color{red}BINDADD} & & {\color{red}allows a user to create new plans and packages} \\\hline
+{\color{red} BINDAGENT} & plan, package & {\color{red} allows a user to bind, rebind, or free object} \\\hline
+{\color{red}BSDS} &  & {\color{red} recover the bootstrap data set} \\\hline
+{\color{red} CREATEALIAS} & table, view & {\color{red} allows a user to create alias for object} \\\hline
+{\color{red} CREATEDBA} & & {\color{red} allows a user to create a new database and have DBADM authority over it} \\\hline
+{\color{red} CREATEDBC} & & {\color{red} allows a user to create a new database and have DBCTRL authority
+over it} \\\hline
+{\color{red} CREATESG} & & {\color{red} allows a user to create a storage group} \\\hline
+{\color{red} CREATE\_SECURE\_OBJECT} & & {\color{red} allows a user to create secure triggers or UDFs} 
+\\\hline
+{\color{red} CREATETMTAB} & & {\color{red} allows a user to define a created temporary table}\\\hline
+{\color{red} DEBUGSESSION} & & {\color{red} allows a user to control debug session activity for 
+stored procedures, functions} \\\hline
+{\color{red} DISPLAY} & &  {\color{red}allows a user to display system information}\\\hline
+{\color{red} EXPLAIN} & & {\color{red}allows a user to generate Explain query plans} \\\hline
+{\color{red} MONITOR1} & & {\color{red}allows a user to receive trace data} \\\hline
+{\color{red} MONITOR2} & & {\color{red}allows a user to receive trace data regardless of its sensitivity}
+\\\hline
+{\color{red} RECOVER} & & {\color{red}allows a user to recover threads}\\\hline
+{\color{red} STOPALL} & & {\color{red}allows a user to stop DB2}\\\hline
+{\color{red} STOSPACE} & & {\color{red}allows a user to obtain information about storage space usage}\\\hline
+{\color{red} TRACE} & & {\color{red}allows a user to control tracing}\\\hline
+{\color{green} PASSTHRU} & & {\color{green}allows a user to issue DDL and DML directly to a data source
+via a federated database server}\\\hline
+{\color{green}READ} & & {\color{green} allows a user to read the value of a certain global variable} \\\hline
+{\color{green}WRITE} & & {\color{green} allows a user to assign a value to a certain global variable}\\\hline
+\end{longtable}
+\end{center}
+\end{itemize}
+
+\begin{remark}
+\begin{itemize}
+\item Objects that can be manipulated within a schema:
+\item DB2 for LUW: tables, views, index, packages, data types, functions, triggers, procedures, alias
+\item DB2 for z/OS: distinct data types, UDFs, triggers, procedures
+\end{itemize}
+\end{remark}
+
+\subsection{Granting/Revoking Authorities and Privileges}
+\begin{itemize}
+\item Implicitly:
+	\begin{itemize}
+	\item DB2 may grant privileges automatically when certain commands are issued without the need for an 
+	explicit GRANT statement being issued.
+	\end{itemize}
+\item Indirectly:
+	\begin{itemize}
+	\item When a user executes a package that performs operations that require certain privileges
+	(ie. a package that deletes a row of data from a table will require DELETE privilege on the table),
+	he or she is indirectly given those privileges for the express purpose of executing the package.
+	\end{itemize}
+\item Explicit:
+	\begin{itemize}
+	\item To explicitly grant authorities and privileges, a user must possess SECADM, ACCESSCTRL, or
+	{\color{green} CONTROL privilege on the object that privileges are to be granted for}
+	\end{itemize}
+\item GRANT statement:
+	\begin{itemize}
+	\item if the \texttt{ALL PRIVILEGES} clause is specified with the \texttt{GRANT} statement used,
+	all authorities and privileges for the designated object-\textit{except} the CONTROL privilege-
+	will be granted to each recipient indicated.
+	\item CONTROL privilege must be granted separately.
+	\item if the \texttt{GRANT OPTION} clause is specified with the \texttt{GRANT} statement used,
+	the individual receiving the designated authorities and privileges will receive the ability
+	to grant those authorities and privileges to others.
+	\item if the \texttt{WITH ADMIN OPTION} clause is specified with the \texttt{GRANT} statement used,
+	the individual being granted will receive the ability to grant that role to others.
+	\end{itemize}
+\item REVOKE statement:
+\item Roles:
+	\begin{itemize}
+	\item is a database object that groups together one or more privileges and can be assigned to users,
+	groups, PUBLIC, or other roles by using a GRANT statement.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Row and Column Access Control (RCAC)}
+\begin{itemize}
+\item RCAC controls access to a table at the row level, column level or both.
+\item can use RCAC to ensure that your users have access to only the data that is required for their
+work.
+\item Regular SQL privileges cannot restrict access to portions of a table. This was usually done through
+views or application logic. However, users with direct access to the database can bypass these layers.
+\item With RCAC, even higher level authorities such as users with DATAACCESS authority are not exempt
+from RCAC rules. Only users with SECADM authority can manage RCAC within a database. Thus, you can use
+RCAC to prevent users with DATAACCESS from freely accessing all data in a database.
+\item RCAC rules:
+RCAC is compromised of SQL rules that place access control at the table level around the data itself. RCAC
+permits all users to access the same table. But, RCAC restricts access to the table based upon individual
+user permissions or roles as specified by a policy associated with the table
+	\begin{itemize}
+	\item Row permissions
+		\begin{itemize}
+		\item Row permission is a database object that expresses a row access control rule
+	for a specific table. A row access control rule is an \textbf{SQL search condition} that describes
+	what set of rows a user has access to.
+		\end{itemize}
+	\item Column masks
+		\begin{itemize}
+		\item Column mask is a database object that expresses a column access control rule for a specific
+		column in a table. A column access control rule is an \textbf{SQL CASE expression} that describes
+		what column values a user is permitted to see and under what conditions/
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
