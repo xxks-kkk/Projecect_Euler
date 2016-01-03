@@ -605,6 +605,7 @@ on an instance or a database
 \item Security Administrator (\textbf{SECADM}) authority:
 	\begin{itemize}
 	\item can only be granted by a SYSADM user
+	\item CANNOT access user data and create databases
 	\item can perform the following:
 		\begin{itemize}
 		\item Create and drop security label components
@@ -882,10 +883,75 @@ user permissions or roles as specified by a policy associated with the table
 		\begin{itemize}
 		\item Column mask is a database object that expresses a column access control rule for a specific
 		column in a table. A column access control rule is an \textbf{SQL CASE expression} that describes
-		what column values a user is permitted to see and under what conditions/
+		what column values a user is permitted to see and under what conditions
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
+
+\subsection{Trusted contexts}
+\begin{itemize}
+\item is a database object that defines a trust relationship for a connection between database
+and an external entity such as an application server.
+\item the following information is used to define a trusted context:
+	\begin{itemize}
+	\item \textbf{System authorization ID} - Represents the user that establishes a database connection
+	\item \textbf{IP address (or domain name)} - Represents the host from which a database connection is
+	established
+	\item \textbf{Data stream encryption} - Represents the encryption setting (if any) for the data
+	communication between the database server and the database client
+	\end{itemize}
+\item When a user establishes a database connection, the DB2 database system checks whether the connection
+matches the definition of a trusted context object in the database. When a match occurs, the database
+connection is said to be trusted.
+\item trusted context objects can only be defined by SECADM
+\item implicit trusted connection
+	\begin{itemize}
+	\item results from a normal connection request and allows users to inherit a role that is unavailable
+	to them outside the scope of the trusted connection
+	\end{itemize}
+\item explicit trusted connection
+	\begin{itemize}
+	\item is established by making a connection request within an application.
+	\item can switch the connection's user to a different authorization ID
+	\end{itemize}
+\end{itemize}
+
+\subsection{Label-Based Access Control (LBAC)}
+%\begin{itemize}
+%\item is a security feature that uses one or more security labels to control who has read access,
+%who has write access, and who has both read and write access to individual rows and/or columns in a table
+%\item LBAC is implemented by assigning unique labels to users and data and allowing access only when
+%assigned labels match
+%\item Implement LBAC procedure
+%	\begin{enumerate}
+%	\item user with SECADM define \textit{security label components}, \textit{security policies},
+%	\textit{security labels}
+%	\item that user grant the proper security labels to the appropriate users
+%	\item someone with LBAC credentials must create an LBAC-protected table or alter an existing table 
+%	to add LBAC protection
+%	\end{enumerate}
+%\item security label components
+%	\begin{itemize}
+%	\item represents criteria that can be used to determine whether a user should have access to 
+%	specific data
+%	\item three types of security label components
+%		\begin{itemize}
+%		\item SET
+%		\item ARRAY
+%		\item TREE
+%		\end{itemize}
+%	\end{itemize}
+%\item security policies
+%	\begin{itemize}
+%	\item determine exactly how LBAC is to protect a table:
+%		\begin{itemize}
+%		\item security label components to use in the security labels that will be part of the policy
+%		\item rules to use when security label components are compared (ie. DB2LBACRULES)
+%		\item Optional behaviors to use when data protected by the policy is accessed
+%		\end{itemize}
+%	\end{itemize}
+%\item security labels
+%\end{itemize}
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
