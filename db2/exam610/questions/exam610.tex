@@ -527,6 +527,371 @@ Which privilege is needed to invoke a stored procedure?
 \newpage
 \fullwidth{\Large \textbf{Working with Databases and Database Objects}}
 
+\question[1]
+Which statement about views is NOT true?
+\begin{choices}
+\choice A view can be defined as being updatable or read-only.
+\choice Views obtain their data from the table(s) or view(s) they are based on.
+\choice A view can be used to limit a user's ability to retrieve data from a table
+\choice The SQL statement provided as part of a view's definition determines what data is 
+presented when the view is referenced.
+\end{choices}
+
+\question[1]
+If the following SQL statement is executed: 
+\begin{verbatim}
+CREATE DISTINCT TYPE pound_sterling AS DECIMAL (9,2) WITH COMPARISONS
+\end{verbatim}
+Which event will NOT happen?
+\begin{choices}
+\choice A user-defined data type that can be used to store numerical data as British currency will be
+created.
+\choice Six comparison functions will be created so that POUND\_STERLING values can be compared to each
+other.
+\choice Two casting functions will be created so that POUND\_STERLING values can be converted to DECIMAL
+values, and vice versa.
+\choice A compatibility function will be created so all of DB2's built-in functions that accept DECIMAL
+values as input can be used with POUND\_STERLING data.
+\end{choices}
+
+\question[1]
+If the following SQL statements are executed:
+\begin{verbatim}
+CREATE TABLE sales(
+	order_num      INTEGER NOT NULL,
+	customer_name  VARCHAR(50),
+	amount_due     DECIMAL(6,2));
+CREATE UNIQUE INDEX idx_ordernum ON sales(order_num);
+\end{verbatim}
+Which two statements are true? (Choose two.)
+\begin{choices}
+\choice Every ORDER\_NUM value must be unique.
+\choice Duplicate ORDER\_NUM values are allowed.
+\choice No other indexes can be created for the SALES table.
+\choice A query will return rows from the SALES table in no specific order.
+\choice Index IDX\_ORDERNUM will serve as the primary key for the SALES table.
+\end{choices}
+
+\question[1]
+What is the minimum product that is needed to give applications running on personal computers the 
+ability to work with DB2 databases that reside on System z platforms, without using a gateway?
+\begin{choices}
+\choice DB2 Connect Personal Edition
+\choice DB2 Connect Enterprise Edition
+\choice IBM DB2 Connect Unlimited Advanced Edition for System z
+\choice IBM DB2 Connect Unlimited Advanced Edition for System i
+\end{choices}
+
+\newpage
+\question[1]
+Which action does NOT need to be performed to complete the definition of an application-period temporal
+table?
+\begin{choices}
+\choice A business-time-begin column must be created for the table.
+\choice A business-time-end column must be created for the table.
+\choice A BUSINESS\_TIME period must be specified in a CREATE or ALTER of the table.
+\choice A unique index must be created that prevents overlapping of the BUSINESS\_TIME period of the 
+table.
+\end{choices}
+
+\question[1]
+What are buffer pools used for?
+\begin{choices}
+\choice To cache table and index data as it is read from disk.
+\choice To keep track of changes that are made to a database as they occur.
+\choice To control the amount of processor resources that SQL statements can consume.
+\choice To provide a layer of indirection between a data object and the storage where that object's data
+resides.
+\end{choices}
+
+\question[1]
+Which statement regarding distributed requests is NOT true?
+\begin{choices}
+\choice To implement distributed request functionality, all you need is a federated database and one
+or more remote data sources.
+\choice Distributed request functionality allows a UNION operation to be performed between a DB2 table and
+an Oracle view.
+\choice Distributed request functionality allows SQL operations to reference two or more databases or 
+relational database management systems in a single statement.
+\choice DB2 Connect provides the ability to perform distributed requests across members of the DB2 Family,
+as well as across other relational database management systems.
+\end{choices}
+
+\question[1]
+Which statement about indexes is NOT true?
+\begin{choices}
+\choice An index can be used to enforce the uniqueness of records in a table.
+\choice Indexes provide a fast, efficient method for locating specific rows in a table.
+\choice When an index is created, metadata for the index is stored in the system catalog.
+\choice Indexes automatically provide both a logical and physical ordering of the rows in a table.
+\end{choices}
+
+\question[1]
+What are Materialized Query Tables (MQTs) used for?
+\begin{choices}
+\choice To physically cluster data on more than one dimension, simultaneously.
+\choice To improve the execution performance of qualified SELECT statements.
+\choice To hold nonpresistent data temporarily, on behalf of a single application.
+\choice To track effective dates for data that is subject to changing business conditions.
+\end{choices}
+
+\newpage
+\question[1]
+Which two actions must be performed to track changes made to a system-period temporal table over time?
+(Choose two.)
+\begin{choices}
+\choice A history table must be created with columns that are identical to those of the system-period
+temporal table.
+\choice The system-period temporal table must be altered using the ADD VERSIONING clause to relate it to
+a history table.
+\choice A primary key must be defined for the system-period temporal table that prevents overlapping
+of SYSTEM\_TIME periods.
+\choice A unique index must be defined on the transaction-start-id column of both the system-period 
+temporal table and its associated history table.
+\choice The system-period temporal table must be altered to add system-time-begin, system-time-end, 
+transaction-start-id, and transaction-end-id columns.
+\end{choices}
+
+\question[1]
+Which database object can be used to automatically generate a numeric value that is not tied to any
+specific column or table?
+\begin{choices}
+\choice Alias
+\choice Schema
+\choice Package
+\choice Sequence
+\end{choices}
+
+\question[1]
+Which column is NOT required as part of the table definition for a system-period temporal table?
+\begin{choices}
+\choice A row-begin column with a TIMESTAMP(12) data type
+\choice A row-end column with a TIMESTAMP(12) data type
+\choice A transaction-start-id column with a TIMESTAMP(12) data type
+\choice A transaction-stop-id column with a TIMESTAMP(12) data type
+\end{choices}
+
+\question[1]
+Which object can NOT be enabled for compression?
+\begin{choices}
+\choice Views
+\choice Indexes
+\choice Base tables
+\choice Temporary tables
+\end{choices}
+
+\question[1]
+What is a schema used for?
+\begin{choices}
+\choice To provide an alternate name for a table or view.
+\choice To provide a logical grouping of database objects.
+\choice To generate a series of numbers, in ascending or descending order.
+\choice To provide an alternative way of describing data stored in one or more tables.
+\end{choices}
+
+\question[1]
+Which view definition type is NOT supported?
+\begin{choices}
+\choice Insertable
+\choice Updatable
+\choice Read-only
+\choice Write-only
+\end{choices}
+
+\newpage
+\question[1]
+When should an application-period temporal table be used?
+\begin{choices}
+\choice When you want to keep track of historical versions of a table's rows.
+\choice When you want to define specific time periods in which data is valid.
+\choice When you want to cluster data according to the time in which rows are inserted.
+\choice When you want to cluster data on more than one key or dimension, simultaneously.
+\end{choices}
+
+\question[1]
+Which statement about buffer pools is NOT true?
+\begin{choices}
+\choice Every table space must have a buffer pool assigned to it.
+\choice One buffer pool is created automatically as part of the database creation process.
+\choice Dirty pages are automatically removed from a buffer pool when they are written to storage.
+\choice Once a page has been copied to a buffer pool, it remains there until the space it occupies is 
+needed.
+\end{choices}
+
+\question[1]
+Which DB2 object can a view NOT be derived from?
+\begin{choices}
+\choice Alias
+\choice View
+\choice Table
+\choice Procedure
+\end{choices}
+
+\question[1]
+Which two expressions can be used with a sequence? (Choose two.)
+\begin{choices}
+\choice NEXT VALUE
+\choice PRIOR VALUE
+\choice CURRENT VALUE
+\choice PREVIOUS VALUE
+\choice SUBSEQUENT VALUE
+\end{choices}
+
+\question[1]
+Which object is a distinct data type defined into?
+\begin{choices}
+\choice Schema
+\choice Package
+\choice Database
+\choice Table space
+\end{choices}
+
+\question[1]
+Which two objects can NOT be created in DB2? (Choose two.)
+\begin{choices}
+\choice Plan
+\choice Trigger
+\choice Scheme
+\choice Function
+\choice Sequence
+\end{choices}
+
+\newpage
+\question[1]
+Which statement about Type 2 connections is true?
+\begin{choices}
+\choice Type 2 connections cannot be used with DB2 for z/OS
+\choice Type 2 connections are used by default with DB2 for Linux, Unix, and Windows.
+\choice Type 2 connections allow applications to be connected to only one database at a time.
+\choice Type 2 connections allow applications to connect to and work with multiple DB2 databases 
+simultaneously.
+\end{choices}
+
+\question[1]
+Which two statements about bitemporal tables are valid? (Choose two.)
+\begin{choices}
+\choice Bitemporal tables are system tables and can only be queried by the table owner.
+\choice When data in a bitemporal table is updated, a row is added to its associated history table.
+\choice Creating a bitemporal table is similar to creating a base table except users must define a 
+SYSTEM\_TIME\_PERIOD column.
+\choice When querying a bitemporal table, you have the option of providing a system time-period 
+specification, a business time-period specification, or both.
+\choice Bitemporal tables must contain bitemporal-time-begin, bitemporal-time-end, and transaction-start-i
+id columns, along with SYSTEM\_TIME and BUSINESS\_TIME periods.
+\end{choices}
+
+\question[1]
+Which programming interface is widely used for database access because it allows applications to run, 
+unchanged, on most hardware platforms?
+\begin{choices}
+\choice ODBC
+\choice SQLJ
+\choice JDBC
+\choice OLE DB
+\end{choices}
+
+\question[1]
+Which two types of temporal tables can be used to store time-sensitive data? (Choose two.)
+\begin{choices}
+\choice Bitemporal
+\choice Time-period
+\choice System-period
+\choice Business-period
+\choice Application-period
+\end{choices}
+
+\question[1]
+In which of the following scenarios would a stored procedure be beneficial?
+\begin{choices}
+\choice An application running on a remote client needs to track every modification made to a 
+table that contains sensitive data.
+\choice An application running on a remote client needs to be able to convert degress Celsius to degrees
+Fahrenheit and vice versa.
+\choice An application running on a remote client needs to ensure that every new employee that joins the 
+company is assigned a unique, sequential employee number.
+\choice An application running on a remote client needs to collect input values from a user, 
+perform a calculation using the values provided, and store the input data, along with the calculation
+results, in a base table.
+\end{choices}
+
+\newpage
+\question[1]
+Given the following SQL statement:
+\begin{verbatim}
+CREATE ALIAS emp_info FOR employees
+\end{verbatim}
+Which two objects can the name EMPLOYEES refer to? (Choose two.)
+\begin{choices}
+\choice A view
+\choice An alias
+\choice An index
+\choice A sequence
+\choice A procedure
+\end{choices}
+
+\question[1]
+Which operation can NOT be performed by executing an ALTER SEQUENCE statement?
+\begin{choices}
+\choice Change a sequence's data type.
+\choice Change whether a sequence cycles.
+\choice Establish new minimum and maximum sequence values.
+\choice Change the number of sequence numbers that are cached.
+\end{choices}
+
+\question[1]
+Which object must exist before an index can be created?
+\begin{choices}
+\choice View
+\choice Table
+\choice Schema
+\choice Sequence
+\end{choices}
+
+\question[1]
+If the following SQL statement is executed:
+\begin{verbatim}
+CREATE DATABASE payroll
+\end{verbatim}
+Which two statements are true? (Choose two.)
+\begin{choices}
+\choice The PAYROLL database will have a page size of 4KB.
+\choice The PAYROLL database will have a page size of 8KB.
+\choice The PAYROLL database will be an automatic storage database.
+\choice The PAYROLL database will not be an automatic storage database.
+\choice The PAYROLL database will be assigned the comment "PAYROLL DATABASE."
+\end{choices}
+
+\newpage
+\fullwidth{\Large \textbf{Working with DB2 Data Using SQL}}
+%\question[1]
+%
+%\begin{choices}
+%\choice
+%\choice
+%\choice
+%\choice
+%\end{choices}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % Question with parts
 % \newpage
 % \addpoints
