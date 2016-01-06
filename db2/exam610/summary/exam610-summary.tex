@@ -952,6 +952,80 @@ connection is said to be trusted.
 %	\end{itemize}
 %\item security labels
 %\end{itemize}
+
+\newpage
+
+\section{Working with Databases and Database Objects}
+
+\subsection{Objectives}
+\begin{itemize}
+\item Ability to create and connect to DB2 servers and databases (requirements to give ability to connect)
+\item Ability to identify DB2 objects
+\item Knowledge of basic characteristics and properties of DB2 objects
+\item Given a DDL SQL statement, knowledge to identify results (ability to create objects)
+\item Knowledge of Temporal (Time Travel) Tables-System-period, Application-period, and Bi-temporal-
+ability to create (Greater precision time stamps)
+\end{itemize}
+
+\subsection{Basic DB2 organization}
+\begin{itemize}
+\item servers
+\item instances
+\item databases
+\end{itemize}
+
+\subsection{DB2 Objects}
+\begin{itemize}
+\item Schemas
+	\begin{itemize}
+	\item A way to logically group objects in a database (organize data objects into sets)
+	\item \texttt{CREATE TABLE HR.EMPLOYEES ...}
+	\end{itemize}
+\item Tables
+	\begin{itemize}
+	\item Base tables (regular tables)
+	\item {\color{green} Multidimensional clustering (MDC) tables}
+	\item {\color{green} Insert time clustering (ITC) tables}
+	\item {\color{green} Ranged-clustered tables (RCTs)}
+	\item Partitioned tables
+	\item Temporal tables
+	\item {\color{red} Auxiliary tables}
+	\item {\color{red} Clone tables}
+	\item History tables
+	\item Result tables
+	\item Materialized query tables (MQTs)
+	\item Temporary tables
+	\item Declared global temporary tables
+	\item Created global temporary tables
+	\item {\color{green} Typed tables}
+	\end{itemize}
+	\begin{remark}
+	Base tables, temporary tables, and indexes can be enabled for data compression.
+	\end{remark}
+\item Views
+	\begin{itemize}
+	\item do not contain data (only a view's definition is stored in a database)
+	\item can be derived from other views
+	\item view can be defined as being \textit{insertable}, \textit{updatable}, \textit{deletable},
+	or \textit{read-only}
+	\item used to control access to sensitive data (each see different presentations of data that 
+	resides in the same table)
+	\end{itemize}
+\item Indexes
+\item Aliases
+\item Sequences
+\item Triggers
+\item User-defined data types (UDTs)
+\item User-defined functions (UDFs)
+\item Stored procedures
+\item Packages
+\end{itemize}
+
+
+
+
+
+
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
