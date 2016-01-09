@@ -48,7 +48,7 @@
 % Source code
 %% minted package
 \usepackage{minted}
-\newminted{sql}{mathescape,linenos, numbersep=5pt, gobble=2, frame=lines, framesep=2mm}
+\newminted{sql}{mathescape, linenos, numbersep=5pt, gobble=2, frame=lines, framesep=2mm}
 
 %% listing package
 \usepackage{listings}
@@ -995,22 +995,45 @@ ability to create (Greater precision time stamps)
 	\begin{itemize}
 	\item A way to logically group objects in a database (organize data objects into sets)
 	\item \texttt{CREATE TABLE HR.EMPLOYEES ...}
+	\item When table spaces, tables, index, \textit{distnct data types}, functions, stored procedures, and triggers are created, they are
+	automatically assigned to (or defined into) a schema, based upon the qualifier that was provided as part of the user-supplied name.
 	\end{itemize}
 \item Tables
 	\begin{itemize}
 	\item Base tables (regular tables)
 	\item {\color{green} Multidimensional clustering (MDC) tables}
+		\begin{itemize}
+			\item are physically clustered on more than one key or dimension simultaneously.
+		\end{itemize}
 	\item {\color{green} Insert time clustering (ITC) tables}
+		\begin{itemize}
+			\item are used to cluster data according to the time in which rows are inserted
+		\end{itemize}
 	\item {\color{green} Ranged-clustered tables (RCTs)}
 	\item Partitioned tables
 	\item Temporal tables
+		\begin{itemize}
+			\item application-period temporal tables: used to track effective dates for data that is subject to changing business conditions
+			\item system-period temporal tables
+			\item bitemporal tables
+		\end{itemize}
 	\item {\color{red} Auxiliary tables}
 	\item {\color{red} Clone tables}
 	\item History tables
 	\item Result tables
 	\item Materialized query tables (MQTs)
+		\begin{itemize}
+			\item improve the execution performance of qualified SELECT statements
+			\item derive their definitions from the results of a query (SELECT statement)
+			\item their data consists of precomputed values taken from one or more tables the MQT is based upon.
+			\item MQTs can greatly improve performance and response time for complex queries, particularly queries that
+			aggregate data over one or more dimensions or that join data across multiple base tables.
+		\end{itemize}
 	\item Temporary tables
 	\item Declared global temporary tables
+		\begin{itemize}
+			\item are used to hold nonpresistent data temporarily, on behalf of a single application
+		\end{itemize}
 	\item Created global temporary tables
 	\item {\color{green} Typed tables}
 	\end{itemize}
@@ -1062,6 +1085,11 @@ ability to create (Greater precision time stamps)
 \item Sequences
 	\begin{itemize}
 	\item PREVIOUS VALUE, NEXT VALUE
+	\item Example scenario: An application running on a remote client needs to ensure that every new employee that joins the 
+	company is assigned a unique, sequential employee number.
+	\item "Change whether a sequence cycles", "establish new minimum and maximum sequence values", and "change the number of sequence numbers that are cached" can be done
+	with ALTER SEQUENCE.
+	\item "Change a sequence's data type" CANNOT done with ALTER SEQUENCE.
 	\end{itemize}
 \item Triggers
 	\begin{itemize}
@@ -1076,6 +1104,8 @@ ability to create (Greater precision time stamps)
 		applications can perform insert, update, delete and query operations against an updatable
 		view only)
 		\end{itemize}
+	\item Example scenario: An application running on a remote client needs to track every modification made to a 
+	table that contains sensitive data.
 	\end{itemize}
 \item User-defined data types (UDTs)
 	\begin{itemize}
@@ -1085,19 +1115,30 @@ ability to create (Greater precision time stamps)
 	\end{itemize}
 \item User-defined functions (UDFs)
 	\begin{itemize}
-	\item SQL
-	\item Sourced (Template): A function that is based on some other function that already exists.
-	\item External Scalar: A function that is written using a high-level programming language.
-	\item External Table: A function that returns a result data set in the form of a table.
-	\item OLE DB External Table: A function that can access data from on Object Linking and 
-	Embedding Database (OLE DB) provider and return a result data set in the form of a table.
+		\item Example scenario: An application running on a remote client needs to be able to convert degress Celsius to degrees
+		Fahrenheit and vice versa.
+		\item category"
+		\begin{itemize}
+			\item SQL
+			\item Sourced (Template): A function that is based on some other function that already exists.
+			\item External Scalar: A function that is written using a high-level programming language.
+			\item External Table: A function that returns a result data set in the form of a table.
+			\item OLE DB External Table: A function that can access data from on Object Linking and 
+				Embedding Database (OLE DB) provider and return a result data set in the form of a table.
+		\end{itemize}
 	\end{itemize}
 \item Stored procedures
 	\begin{itemize}
-	\item SQL: body is written entirely in SQL or SQL PL.
-	\item {\color{red}External SQL}: body is written entirely in SQL, but that DB2 supports by generating 
-	an associate C program for.
-	\item External: body is written in a high-level programming language.
+		\item Example scenario: An application running on a remote client needs to collect input values from a user, 
+		perform a calculation using the values provided, and store the input data, along with the calculation
+		results, in a base table.
+		\item Category
+		\begin{itemize}
+			\item SQL: body is written entirely in SQL or SQL PL.
+			\item {\color{red}External SQL}: body is written entirely in SQL, but that DB2 supports by generating 
+				an associate C program for.
+			\item External: body is written in a high-level programming language.
+		\end{itemize}
 	\end{itemize}
 \item Packages
 \end{itemize}
@@ -1105,8 +1146,13 @@ ability to create (Greater precision time stamps)
 \subsubsection{System objects}
 	\begin{itemize}
 	\item Buffer pools
+		\begin{itemize}
+			\item One buffer pool is created automatically as part of the database creation process
+			\item Once a page has been copied to a buffer pool, it remains there until the space it occupies is needed
+		\end{itemize}
 	\item Table spaces
 		\begin{itemize}
+		\item Every table space must have a buffer pool assigned to it
 		\item DB2 for LUW:
 			\begin{itemize}
 			\item System Managed Space (SMS)
@@ -1210,17 +1256,38 @@ ability to create (Greater precision time stamps)
 	\includegraphics[scale=0.6]{type-connection.png}
 	\caption{Difference between Type1 and Type2 connection}
 	\end{figure}	
+	\begin{itemize}
+		\item Type 1 connections are used by default with DB2 LUW; Type 2 connections are used by default with DB2 z/OS.
+		\item Type 2 connections allow a single transaction to connect to and work with multiple databases simultaneously.
+		\item Type 1 connections allow a transaction to be connected to only one database at a time.
+	\end{itemize}
 \item DB2 Connect
 	\begin{itemize}
 	\item IBM DB2 Connect Application Server Edition
 	\item IBM DB2 Connect Personal Edition
+		\begin{itemize}
+			\item makes DB2 data stored on System z, System i, and IBM Power Systems servers directly available to desktop applications
+			\item enables applications to work transparently with data stored on multiple systems \textit{without using a gateway}
+		\end{itemize}
 	\item IBM DB2 Connect Enterprise Edition
+		\begin{itemize}
+			\item connects LAN-based systems and desktop applications to System z, System i, and IBM Power Systems databases
+			\item host access can be consolidated through a gateway, making it easier to deploy web and multitier client/server applications
+		\end{itemize}
 	\item IBM DB2 Connect Unlimited Advanced Edition for System z
+		\begin{itemize}
+			\item makes it easy to access, manage, and optimize the performance of enterprise information, wherever it resides.
+			\item Because it is licensed for unlimited deployment on authorized servers, this edition is cost-effective solution for organizations that
+			use DB2 Connect extensively, especially where multiple applications are involved.
+		\end{itemize}
 	\item IBM DB2 Connect Unlimited Edition for System i
+		\begin{itemize}
+			\item integrates IBM System i data with client/server, web, mobile, and service-oriented architecture (SOA) applications.
+			\item it delivers unified application development, integrated data, and pervasive data functionality to System i users.
+		\end{itemize}
 	\end{itemize}
 \end{itemize}
 
-\newpage
 \subsection{Temporal Data Management and Time Travel Tables}
 \subsubsection{Basic Temporal Data Concepts}
 \begin{itemize}
@@ -1239,9 +1306,9 @@ tracking the effective dates of certain business conditions.
 the original row into the corresponding history table.
 \item Requirement:
 	\begin{itemize}
-		\item system time begin (\texttt{sys\_start})
-		\item system time end (\texttt{sys\_end})
-		\item transaction start-ID (\texttt{ts\_id}): allow DB2 to capture the start times of transactions that perform update or delete operations on a particular row
+		\item system/row time begin (\texttt{sys\_start}) (TIMESTAMP(12) data type)
+		\item system/row time end (\texttt{sys\_end}) (TIMESTAMP(12) data type)
+		\item transaction start-ID (\texttt{ts\_id}) (TIMESTAMP(12) data type): allow DB2 to capture the start times of transactions that perform update or delete operations on a particular row
 		\item \texttt{PERIOD SYSTEM\_TIME} clause
 	\end{itemize}
 \item Example:
@@ -1325,8 +1392,9 @@ the original row into the corresponding history table.
 \begin{itemize}
 	\item combines the historical tracking of a system-period temporal table with the time-specific data storage capabilities of an application-period temporal table.
 	\item a single table needs to maintain historical versions of its rows and keep track of data values that are currently considered valid.
+	\item When querying a bitemporal table, you have the option of providing a system time-period 
+	specification, a business time-period specification, or both, or neither.
 	\item Example: 
-		\newpage
 		\begin{itemize}
 			\item Create a bitemporal table named INVENTORY
 			\begin{sqlcode}
