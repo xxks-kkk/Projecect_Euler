@@ -37,6 +37,7 @@
 
 % Package for formatting URLs.
 \usepackage{url}
+\usepackage{float}
 
 % Packages and definitions for graphics files.
 \usepackage{graphicx}
@@ -44,6 +45,9 @@
 \usepackage{color}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
+% Source code
+\usepackage{listings}
+\usepackage{minted}
 %
 % Set the title, author, and date.
 %
@@ -975,6 +979,7 @@ ability to create (Greater precision time stamps)
 \end{itemize}
 
 \subsection{DB2 Objects}
+\subsubsection{Data objects}
 \begin{itemize}
 \item Schemas
 	\begin{itemize}
@@ -1012,19 +1017,231 @@ ability to create (Greater precision time stamps)
 	resides in the same table)
 	\end{itemize}
 \item Indexes
+	\begin{itemize}
+	\item an object that contains pointers to rows in a table that are logically ordered according to
+	the values of one or more columns (known as keys)
+	
+		\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{index.png}
+ 
+		\caption{Index that has a one-column key}
+		\label{workloads}
+		\end{figure}	
+	\item Usage:
+		\begin{itemize}
+		\item fast, efficient method for locating specific rows of data in large tables
+		\item logical ordering of the rows in a table
+		\item enforce the uniqueness of records in a table
+		\item force a table to use \textit{clustering} storage, which causes the rows of a table to be 
+		physically arranged according to the ordering of their key column values.
+		\end{itemize}
+	\item tables that are used for data mining, business intelligence, business warehousing, and by
+	applications that execute many (and often complex) queries but that rarely modify data are prime 
+	candidates for index.
+	\item tables in OLTP or environments where data throughput is high should use index sparingly or
+	avoid them altogether.
+	\end{itemize}
 \item Aliases
+	\begin{itemize}
+	\item Similar to table or view, but cannot be used in the check condition of a check contraint
+	or to reference a user-defined temporary table.
+	\item Usage: allow to construct SQL statements in such a way that they are independent of the base
+	tables or views they reference.
+	\end{itemize}
 \item Sequences
+	\begin{itemize}
+	\item PREVIOUS VALUE, NEXT VALUE
+	\end{itemize}
 \item Triggers
+	\begin{itemize}
+	\item an object that is used to define a set of actions that are to be executed whenever an insert,
+	update, or delete operation is performed against a table or updatable view.
+	\item Types:
+		\begin{itemize}
+		\item BEFORE triggers - The trigger's actions occur just before the triggering event takes place.
+		\item AFTER triggers - The trigger's actions occur immediately after the triggering event takes
+		place
+		\item INSTEAD OF triggers - are executed in place of the trigger event (to ensure that 
+		applications can perform insert, update, delete and query operations against an updatable
+		view only)
+		\end{itemize}
+	\end{itemize}
 \item User-defined data types (UDTs)
+	\begin{itemize}
+	\item distinct data type - derived from one of the built-in data types that are provided with DB2
+	\item {\color{green} structured data type} - contains multiple attributes, each of which has a name
+	and data type of its own
+	\end{itemize}
 \item User-defined functions (UDFs)
+	\begin{itemize}
+	\item SQL
+	\item Sourced (Template): A function that is based on some other function that already exists.
+	\item External Scalar: A function that is written using a high-level programming language.
+	\item External Table: A function that returns a result data set in the form of a table.
+	\item OLE DB External Table: A function that can access data from on Object Linking and 
+	Embedding Database (OLE DB) provider and return a result data set in the form of a table.
+	\end{itemize}
 \item Stored procedures
+	\begin{itemize}
+	\item SQL: body is written entirely in SQL or SQL PL.
+	\item {\color{red}External SQL}: body is written entirely in SQL, but that DB2 supports by generating 
+	an associate C program for.
+	\item External: body is written in a high-level programming language.
+	\end{itemize}
 \item Packages
 \end{itemize}
 
+\subsubsection{System objects}
+	\begin{itemize}
+	\item Buffer pools
+	\item Table spaces
+		\begin{itemize}
+		\item DB2 for LUW:
+			\begin{itemize}
+			\item System Managed Space (SMS)
+			\item Database Managed Space (DMS)
+			\item Automatic Storage (AS)
+			\end{itemize}
+		\item DB2 for z/OS:
+			\begin{itemize}
+			\item Partitioned table space
+			\item Segmented table space
+			\item Universal table space
+			\item Large object (LOB) table space
+			\item XML table space
+			\end{itemize}
+		\end{itemize}
+	\item The system catalog: DB2 updates the information stored in the system catalog whenever any
+	of the following events occur:
+		\begin{itemize}
+		\item Database objects (ie. tables, index, views) are created, altered, or dropped
+		\item Authorizations and privileges are granted or revoked
+		\item Statistical information is collected
+		\item Packages are bound to the database
+		\end{itemize}
+	\item Transaction log files
+		\begin{itemize}
+		\item write-ahead logging:
+			\begin{itemize}
+			\item insert operation - a record for the new row is written to the log buffer
+			\item delete operation - a record containing the row's original values is written to the log
+			buffer
+			\item update operation - a record containing the row's original data, together with the 
+			corresponding new data, is stored in the log buffer
+			
+			\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.5]{transaction-logging.png}
+ 
+			\caption{Transaction logging process}
+			\end{figure}	
+			\end{itemize}
+		\end{itemize}
+	\item The DB2 directory
+	\item The bootstrap data set
+	\item The data definition control supports (DDCS) database
+	\item Resource limit facility tables
+	\item The work file database
+	\end{itemize}
 
+\subsection{Creating a DB2 Database}
+\begin{itemize}
+\item DB2 for LUW:
+	\begin{itemize}
+	\item Syntax:
+	\begin{verbatim}
+	CREATE [DATABASE | DB] [DatabaseName]
+		<AUTOMATIC STORAGE [YES | NO]>
+		<ON [StoragePath, ...] <DBPATH [DBPath]>>
+		<ALIAS [Alias]>
+		<USING CODESET [CodeSet] TERRITORY [Territory]>
+		<COLLATE USING [CollateType]>
+		<PAGESIZE [4096 | Pagesize <k>]>
+		<DFT_EXTENT_SZ [DefaultExtentSize]>
+		<RESTRICTIVE>
+		<CATALOG TABLESPACE [TS_Definition]>
+		<USER TABLESPACE [TS_Definition]>
+		<TEMPORARY TABLESPACE [TS_Definiton]>
+		<WITH "[Description]">		
+	\end{verbatim}
+	\item Example:
+		\begin{itemize}
+		\item Requirement:
+			\begin{itemize}
+			\item Uses automatic storage
+			\item Uses the paths "/mnt/fsystem1" and "/mnt/fsystem2" to store its data and metadata
+			\item Recoginzes the United States and Canada code set
+			\item Uses a collating sequence that is based on the United States and Canada code set
+			\item Has a page size of 8 KB
+			\end{itemize}
+		\item SQL:
+			\begin{verbatim}
+			CREATE DATABASE sample
+				ON /mnt/fsystem1, /mnt/fsystem2
+				USING CODESET 1252 TERRITORY US
+				COLLATE USING SYSTEM
+				PAGESIZE 8192
+			\end{verbatim}
+		\end{itemize}
+	\end{itemize}
+\item DB2 for z/OS
+\end{itemize}
 
+\subsection{Establishing a Database Connection}
+\begin{itemize}
+\item connect example:
+	\begin{verbatim}
+	CONNECT TO sample USER db2user USING ibmdb2
+	\end{verbatim}
+\item Type 1 and Type 2 Connections
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{type-connection.png}
+	\caption{Difference between Type1 and Type2 connection}
+	\end{figure}	
+\item DB2 Connect
+	\begin{itemize}
+	\item IBM DB2 Connect Application Server Edition
+	\item IBM DB2 Connect Personal Edition
+	\item IBM DB2 Connect Enterprise Edition
+	\item IBM DB2 Connect Unlimited Advanced Edition for System z
+	\item IBM DB2 Connect Unlimited Edition for System i
+	\end{itemize}
+\end{itemize}
 
+\newpage
+\subsection{Temporal Data Management and Time Travel Tables}
+\subsubsection{Basic Temporal Data Concepts}
+\begin{itemize}
+\item time period: {[date/time/timestamp, date/time/timestamp)}
+\item system period: refers to the period in which a particular row is considered \textbf{current}. (
+\textit{system time} is often associated with traching when changes are made to the state of a record)
+\item application period: refers to the period in which a particular row is considered valid. (\textit{business time} (aka \textit{valid time}, \textit{application time}) is usually associated with
+tracking the effective dates of certain business conditions.
+\end{itemize}
 
+\subsubsection{System-period temporal tables}
+\begin{itemize}
+\item table that maintains historical versions of its rows. 
+\item must be associated with a history table
+\item any time a row in a system-period temporal table is modified, DB2 automatically inserts a copy of
+the original row into the corresponding history table.
+\item Example:
+	\begin{itemize}
+	\item 
+%		\begin{minted}{mathescape,
+%					  linenos,
+%					  numbersep=5pt,
+%					  gobble=2,
+%					  frame=lines,
+%					  framesep=2mm]{sql}
+%		CREATE TABLE tax_info
+%		
+%		\end{minted}
+		
+	\end{itemize}
+\end{itemize}
 
 % Generate the bibliography.
 %\bibliography{latex-sample}
