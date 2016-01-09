@@ -15,7 +15,7 @@
 
 % Load up special logo commands.
 \usepackage{doc}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
 \usepackage{amsthm}
@@ -46,8 +46,18 @@
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 % Source code
-\usepackage{listings}
+%% minted package
 \usepackage{minted}
+\newminted{sql}{mathescape,linenos, numbersep=5pt, gobble=2, frame=lines, framesep=2mm}
+
+%% listing package
+\usepackage{listings}
+\lstset{language=SQL}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
 %
 % Set the title, author, and date.
 %
@@ -1227,22 +1237,126 @@ tracking the effective dates of certain business conditions.
 \item must be associated with a history table
 \item any time a row in a system-period temporal table is modified, DB2 automatically inserts a copy of
 the original row into the corresponding history table.
+\item Requirement:
+	\begin{itemize}
+		\item system time begin (\texttt{sys\_start})
+		\item system time end (\texttt{sys\_end})
+		\item transaction start-ID (\texttt{ts\_id}): allow DB2 to capture the start times of transactions that perform update or delete operations on a particular row
+		\item \texttt{PERIOD SYSTEM\_TIME} clause
+	\end{itemize}
 \item Example:
 	\begin{itemize}
-	\item 
-%		\begin{minted}{mathescape,
-%					  linenos,
-%					  numbersep=5pt,
-%					  gobble=2,
-%					  frame=lines,
-%					  framesep=2mm]{sql}
-%		CREATE TABLE tax_info
-%		
-%		\end{minted}
-		
-	\end{itemize}
+	\item Create a system-period temporal table named TAX\_INFO
+    \begin{minted}[mathescape,
+    	linenos,
+    	numbersep=5pt,
+    	gobble=2,
+    	frame=lines,
+    	framesep=2mm]{sql}
+		CREATE TABLE tax_info
+		 (taxpayer_id  CHAR(4) NOT NULL,
+		  tax_amount   INT NOT NULL,
+		  sys_start    TIMESTAMP(12) NOT NULL
+						 GENERATED ALWAYS AS ROW BEGIN,
+		  sys_end      TIMESTAMP(12) NOT NULL
+						 GENERATED ALWAYS AS ROW END,
+		  ts_id        TIMESTAMP(12) NOT NULL
+						 GENERATED ALWAYS AS,
+						 TRANSACTION START ID
+						 IMPLICITLY HIDDEN
+		  PERIOD SYSTEM_TIME (sys_start, sys_end))
+    \end{minted}
+    
+    \item Create a history table named HIST\_TAX\_INFO with the same definition as the TAX\_INFO
+    \begin{sqlcode}
+    CREATE TABLE hist_tax_info LIKE tax_info
+    \end{sqlcode}
+    
+    \item Establish a link between the system-period temporal table named TAX\_INFO and the history table
+    named HIST\_TAX\_INFO
+    \begin{sqlcode}
+    	ALTER TABLE tax_info
+    	 ADD VERSIONING
+    	 USE HISTORY TABLE hist_tax_info
+    \end{sqlcode}
+%    \begin{lstlisting}[caption=hello]  % Start your code-block
+%    
+% CREATE TABLE tax_info
+%  (taxpayer_id  CHAR(4) NOT NULL,
+%   tax_amount   INT NOT NULL,
+%   sys_start    TIMESTAMP(12) NOT NULL
+%			      GENERATED ALWAYS AS ROW BEGIN,
+%   sys_end      TIMESTAMP(12) NOT NULL
+%				  GENERATED ALWAYS AS ROW END,
+%   ts_id        TIMESTAMP(12) NOT NULL
+%				  GENERATED ALWAYS AS,
+%				  TRANSACTION START ID
+%				  IMPLICITLY HIDDEN
+%				  PERIOD SYSTEM_TIME (sys_start, sys_end))
+%    \end{lstlisting}
+\end{itemize}
 \end{itemize}
 
+\subsubsection{Application-period temporal tables}
+\begin{itemize}
+	\item a table that maintains "currently in effect" values of application data.
+	\item Requirement:
+		\begin{itemize}
+			\item business time begin (\texttt{bus\_start})
+			\item business time end (\texttt{bus\_end})
+			\item \texttt{PERIOD BUSINESS\_TIME} clause
+		\end{itemize}
+	\item Example:
+		\begin{itemize}
+			\item Create an application-period temporal table named INVENTORY
+			\begin{sqlcode}
+			CREATE TABLE inventory
+			 (item_id         CHAR(4) NOT NULL,
+			  price           DOUBLE NOT NULL,
+			  bus_start       DATE NOT NULL,
+			  bus_end         DATE NOT NULL,
+			 PERIOD BUSINESS_TIME (bus_start, bus_end),
+			 PRIMARY KEY(item_id, BUSINESS_TIME WITHOUT OVERLAPS))
+			\end{sqlcode}
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Bitemporal tables}
+\begin{itemize}
+	\item combines the historical tracking of a system-period temporal table with the time-specific data storage capabilities of an application-period temporal table.
+	\item a single table needs to maintain historical versions of its rows and keep track of data values that are currently considered valid.
+	\item Example: 
+		\newpage
+		\begin{itemize}
+			\item Create a bitemporal table named INVENTORY
+			\begin{sqlcode}
+			CREATE TABLE inventory
+			 (item_id         CHAR(4) NOT NULL,
+			  price           DOUBLE NOT NULL,
+			  sys_start       TIMESTAMP(12) NOT NULL
+							    GENERATED ALWAYS AS ROW BEGIN,
+			  sys_end  		  TIMESTAMP(12) NOT NULL
+							    GENERATED ALWAYS AS ROW END,
+			  ts_id			  TIMESTAMP(12) NOT NULL
+							    GENERATED ALWAYS AS
+							    TRANSACTION START ID, 
+			  business_start  DATE NOT NULL,
+			  bus_end         DATE NOT NULL,
+			 PERIOD SYSTEM_TIME (sys_start, sys_end)
+			 PERIOD BUSINESS_TIME (bus_start, bus_end))
+			\end{sqlcode}
+			\item Create a corresponding history table
+			\begin{sqlcode}
+			CREATE TABLE hist_inventory LIKE inventory
+			\end{sqlcode}
+			\item Establish a link between \texttt{HIST\_INVENTORY} and \texttt{INVENTORY} table
+			\begin{sqlcode}
+				ALTER TABLE inventory
+				 ADD VERSIONING
+				 USE HISTORY TABLE hist_inventory
+			\end{sqlcode}
+		\end{itemize}
+\end{itemize}
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
