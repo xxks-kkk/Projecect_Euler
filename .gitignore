@@ -49,3 +49,6 @@ Temporary Items
 *.lot
 *.synctex.gz
 *.toc
+*.pyg
+*.pygtex
+*.pygstyle
