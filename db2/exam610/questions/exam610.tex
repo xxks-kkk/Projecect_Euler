@@ -863,35 +863,393 @@ Which two statements are true? (Choose two.)
 
 \newpage
 \fullwidth{\Large \textbf{Working with DB2 Data Using SQL}}
-%\question[1]
-%
-%\begin{choices}
-%\choice
-%\choice
-%\choice
-%\choice
-%\end{choices}
 
+\question[1]
+If the following result set is desired:
+\begin{verbatim}
+STATE          REGION          AVG_INCOME
+------------- --------------- -------------
+MARYLAND      MID-ATLANTIC     86056.00
+NEW JERSEY    NORTHEAST        85005.00
+CONNECTICUT   NORTHEAST        84558.00
+MASSACHUSETTS NORTHEAST        82009.00
+ALASKA        PACIFIC-ALASKA   79617.00
+\end{verbatim}
+Which SQL statement must be executed?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS ONLY
+	    \end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS ONLY
+        \end{verbatim}
+\end{choices}
 
+\question[1]
+Which type of join will usually produce the smallest result set?
+\begin{choices}
+\choice INNER JOIN
+\choice LEFT OUTER JOIN
+\choice RIGHT OUTER JOIN
+\choice FULL OUTER JOIN
+\end{choices}
 
+\question[1]
+Which statement about SQL subqueries is NOT true?
+\begin{choices}
+\choice A subquery can be used with an UPDATE statement to supply values for one or more columns 
+that are to be updated.
+\choice A subquery can be used with an INSERT statement to retrieve values from one base table or view
+and copy them to another.
+\choice If a subquery is used with a DELETE statement and the result set produced is empty, every record
+will be deleted from the table specified.
+\choice If a subquery is used with an UPDATE statement and the result set produced contains multiple rows,
+the operation will fail and an error will be generated.
+\end{choices}
 
+\newpage
+\question[1]
+Which statement about savepoints is NOT true?
+\begin{choices}
+\choice You can use as many savepoints as you desire within a single unit of work, provided you do not
+nest them.
+\choice Savepoints provide a way to break the work being done by a single large transaction into one or
+more smaller subsets.
+\choice The COMMIT FROM SAVEPOINT statement is used to commit a subset of database changes that have
+been made within a unit of work.
+\choice The ROLLBACK TO SAVEPOINT statement is used to back out a subset of database changes that have
+been made within a unit of work.
+\end{choices}
 
+\question[1]
+Which two statements about UPDATE processing are true? (Choose two.)
+\begin{choices}
+\choice A positioned UPDATE is used to modify one or more rows, and a searched UPDATE is used to 
+modify exactly one row.
+\choice A searched UPDATE is used to modify one or more rows, and a positioned UPDATE is used to
+modify exactly one row.
+\choice When the UPDATE statement modifies parent key columns, the values of corresponding foreign key
+columns are modified as well.
+\choice The UPDATE statement can be used to remove data from specified columns in the rows of a table,
+provided those columns are not nullable.
+\choice The UPDATE statement can be used to modify the values of specified columns in the rows
+of a table, view, or underlying table(s) of a specified fullselect.
+\end{choices} 
 
+\question[1]
+A table named SALES has two columns: SALES\_AMT and REGION\_CD. Which SQL statement will return the number
+of sales in each region, ordered by number of sales made?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  ORDER BY 2
+	 	\end{verbatim}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY 1
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY region_cd
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\end{choices}
 
+\newpage
+\question[1]
+A user wants to retrieve records from a table named SALES that satisfy at least one of the following
+criteria:
+	\begin{itemize}
+	\item The sales date (SALESDATE) is after June 1, 2012, and the sales amount (AMT) is greater
+	than \$40.00.
+	\item The sales was made in the hardware department. 
+	\end{itemize}
+Which SQL statement will accomplish this?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' OR (amt > 40
+		   AND (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01') OR (amt > 40)
+		    OR (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+ 		SELECT * FROM sales
+ 		  WHERE (salesdate > '2012-06-01' AND amt > 40
+ 		   AND (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' AND amt > 40)
+		   OR (dept = 'Hardware')
+		\end{verbatim}
+\end{choices}
 
+\question[1]
+Which two statements about INSERT operations are true? (Choose two.)
+\begin{choices}
+\choice The INSERT statement can be used to insert rows into a table, view, or table function.
+\choice Inserted values must satisfy the conditions of any check constraints that have been defined on the
+table specified.
+\choice The values provided in the VALUES clause of an INSERT statement are assigned to columns in the 
+order in which they appear.
+\choice If an INSERT statement omits any column from the inserted row that is defined as NULL or NOT
+NULL WITH DEFAULT, the statement will fail.
+\choice If the underlying table of a view that is referenced by an INSERT statement has one or more
+unique indexes, each row inserted does not have to conform to the constraints imposed by those indexes.
+\end{choices}
 
+\question[1]
+Which SQL statement should be used to select the minimum and maximum rainfall amounts (RAINFALL), by 
+month (MONTH), from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\end{choices}
 
+\newpage
+\question[1]
+An SQL function named REGIONAL\_SALES was created as follows:
+	\begin{verbatim}
+	CREATE FUNCTION regional_sales()
+		RETURNS TABLE (region_id VARCHAR(20),
+					   sales_amt DECIMAL(8,2))
+		READS SQL DATA
+		BEGIN ATOMIC
+		RETURN
+			SELECT region, amt
+			FROM sales
+			ORDER BY region;
+		END
+	\end{verbatim}
+Which two statements demonstrate the proper way to use this function in a query? (Choose two.)
+\begin{choices}
+\choice \texttt{SELECT * FROM regional\_sales()}
+\choice \texttt{SELECT regional\_sales (region\_id, sales\_amt)}
+\choice \texttt{SELECT region\_id, sales\_amt FROM regional\_sales()}
+\choice \texttt{SELECT * FROM TABLE (regional\_sales()) AS results}
+\choice \texttt{SELECT region\_id, sales\_amt FROM TABLE(region\_sales()) AS results}
+\end{choices}
 
+\question[1]
+If the following SQL statement is executed:
+\begin{verbatim}
+SELECT dept, AVG(salary)
+ FROM employee
+ GROUP BY dept
+ ORDER BY 2
+\end{verbatim}
+What will be the results?
+\begin{choices}
+\choice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by department.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by department.
+\choice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by average departmental salary.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by average departmental salary.
+\end{choices}
 
+\newpage
+\question[1]
+If a table named SALES contains information about invoices that do not have a negative balance, which 
+two SQL statements can be used to retrieve invoice numbers for invoices that are for less than \$25,000.00
+? (Choose two.)
+\begin{choices}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt LESS THAN 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25000}
+\end{choices}
 
+\question[1]
+An SQL function designed to convert miles to kilometers was created as follows:
+\begin{verbatim}
+CREATE FUNCTION mi_to_km (IN miles FLOAT)
+  RETURN FLOAT
+  LANGUAGE SQL
+  SPECIFIC convert_mtok
+  READS SQL DATA
+  RETURN FLOAT (miles * 1.60934)
+\end{verbatim}
+How can this function be used to convert miles (MILES) values stored in a table named DISTANCES?
+\begin{choices}
+\choice CALL mi\_to\_km (distances.miles)
+\choice CALL convert\_mtok (distances.miles)
+\choice SELECT mi\_to\_km (miles) FROM distances
+\choice SELECT convert\_mtok (miles) FROM distances
+\end{choices}
 
+\question[1]
+Which two statements about system-period temporal tables are true? (Choose two.)
+\begin{choices}
+\choice They store user-based period information.
+\choice They do not require a separate history table.
+\choice They store system-based historical information.
+\choice They can be queried without a time-period specification.
+\choice They manage data based on time criteria specified by users or applications.
+\end{choices} 
 
+\question[1]
+A table named PARTS contains a record of every part that has been manufactured by a company. A user
+wishes to see the total number of parts that have been made by each craftsman employed at the company.
+Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts}
+\choice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts GROUP BY name}
+\choice \texttt{SELECT name, COUNT(DISTINCT name) AS parts\_made FROM parts}
+\choice \texttt{SELEC DISTINCT name, COUNT(*) AS parts\_made FROM parts GROUP BY parts\_made}
+\end{choices}
 
+\newpage
+\question[1]
+Given an EMPLOYEES table and a DEPARTMENT table, a user wants to produce a list of all departments and
+employees who work in them, including departments that no employees have been assigned to. Which SQL
+statement will produce the desired list?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		employees.dept = departments.deptno
+		\end{verbatim} 
+\choice	\begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		departments.deptno = employees.dept
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		LEFT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname,
+		FROM employees
+		RIGHT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\end{choices}
 
+\question[1]
+Which statements are NOT allowed in the body of an SQL scalar user-defined function?
+\begin{choices}
+\choice CALL statements
+\choice COMMIT statements
+\choice SQL CASE statements
+\choice SQL control statements
+\end{choices}
 
+\newpage
+\question[1]
+A table named TABLE\_A contains 200 rows and a user wants to update the 10 rows in this table with the
+lowest values in a column named COL1. Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC) AS temp
+		  SET col2 = 99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC) AS temp
+		  SET col2=99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC
+	  		FETCH FIRST 10 ROWS ONLY) AS temp
+	  	  SET col2=99
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC
+		    FETCH FIRST 10 ROWS ONLY) AS temp
+		  SET col2 = 99
+		\end{verbatim}
+\end{choices}
 
+\question[1]
+Which statement best descirbes a transaction?
+\begin{choices}
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+only when a savepoint is created.
+\choice A transaction is recoverable sequence of operations whose point of consistency can be obtained
+by querying the system catalog tables.
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+when a database connection is established or a savepoint is created.
+\choice A transaction is recoverable sequence of operations whose point of consistency is established
+when an executable SQL statement is processed after a database connection has been established or a
+previous transaction has been terminated.
+\end{choices}
 
+\question[1]
 
+\begin{choices}
+\choice
+\choice
+\choice
+\choice
+\end{choices}
 % Question with parts
 % \newpage
 % \addpoints
