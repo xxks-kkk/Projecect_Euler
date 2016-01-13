@@ -1243,12 +1243,58 @@ previous transaction has been terminated.
 \end{choices}
 
 \question[1]
+A table named TABLE\_A contains 200 rows and a user wants to delete
+the last 10 rows from this table. Which SQL statement will produce the
+desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a 
+		   ORDER BY col1 ASC
+		   FETCH FIRST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		  (SELECT * FROM table_a
+			ORDER BY col1 ASC
+			FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 ASC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 DESC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\end{choices}
 
+\question[1]
+Which clause could be added to the following SQL statement
+\begin{verbatim}
+SELECT student_id, enroll_date, gpa
+ FROM students
+\end{verbatim}
+to ensure that only information (STUDENT\_ID, ENROLL\_DATE, and
+GPA) for students who started school before 2012 and who have a GPA
+that is higher than 3.50 will be retrieved?
+\begin{choices}
+\choice FOR enroll\_date <'2012-01-01' OR gpa>3.50
+\choice FOR enroll\_date <'2012-01-01' AND gpa>3.50
+\choice WHERE enroll\_date <'2012-01-01' OR gpa>3.5
+\choice	WHERE enroll\_date <'2012-01-01' AND gpa>3.5
+\end{choices}
+
+\question[1]
 \begin{choices}
 \choice
 \choice
 \choice
-\choice
+\choice	
 \end{choices}
 % Question with parts
 % \newpage
