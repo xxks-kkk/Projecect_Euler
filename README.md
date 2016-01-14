@@ -5,13 +5,12 @@ Solutions & notes to problems & books.
 **GOAL:** try to keep some good stuff from reading CS books and solving
 programming problems. Aside, practice to work with LaTex.
 
+## DB2
 
-## Project-Euler
+- Exam 610 practice questions, solutions, summary
 
-Incomplete solutions to the Project Euler problems. 
+## Coding
 
-<strong>Please note that most of solutions will not be the most effective solutions.</strong> 
+Codes for practice
 
-Project Euler website: https://projecteuler.net/about
-
-My Project Euler friend key: 388066_25bf57ebe6f1fbd8bbbcbd864685c2c9
+- usaco: USA Computing Olympiad
