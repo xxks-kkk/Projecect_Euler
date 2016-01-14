@@ -1290,11 +1290,141 @@ that is higher than 3.50 will be retrieved?
 \end{choices}
 
 \question[1]
+Which statement correctly describes what a native SQL stored procedure is?
 \begin{choices}
-\choice
-\choice
-\choice
-\choice	
+\choice A procedure whose body is written entirely in SQL or SQL PL.
+\choice A procedure that is written in a high-level programming language such as Java or REXX.
+\choice A procedure whose body is written entirely in SQL, but that is implemented as an external program.
+\choice	A procedure that accesses data using an Object Linking and Embedding, Database (OLE DB) provider.
+\end{choices}
+
+\question[1]
+Given the following statements:
+\begin{verbatim}
+CREATE TABLE customer (custid INTEGER, custinfo XML);
+INSERT INTO customer VALUES (100,
+'<customerinfo>
+  <name>ACME Manufacturing</name>
+  <addr country="United States">
+     <street>25 Elm Street</street>
+ <city>Raleigh</city>
+ <state>North Carolina</state>
+ <zip>27603</zip>
+  </addr>
+</customerinfo>');
+\end{verbatim}
+If the following XQuery statement is executed:
+\begin{verbatim}
+XQUERY
+for $info in db2-fn:xmlcolumn('CUSTOMER.CUSTINFO')/customerinfo
+return $info/name
+\end{verbatim}
+What will be the result?
+\begin{choices}
+\choice \texttt{ACME Manufacturing}
+\choice \texttt{<name>ACME Manufacturing</name>}
+\choice \texttt{<customerinfo>ACME Manufacturing</customerinfo>}
+\choice \texttt{<customerinfo><name>ACME Manufacturing</name></customerinfo>}
+\end{choices}
+
+\question[1]
+Which two statements about roll back operations are correct? (Choose two.)
+\begin{choices}
+\choice When a ROLLBACK statement is executed, all locks held by the terminating transaction are released.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired after the most recent
+savepoint are released.
+\choice When a ROLLBACK statement is executed, all locks acquired for open cursors that were 
+declared WITH HOLD are held.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired up to the most recent
+savepoint are released.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, a savepoint is not automatically deleted as
+part of the rollback operation.
+\end{choices}
+
+\question[1]
+Which SQL statement illustrates the proper way to perform a positioned update operation on a table named
+SALES?
+\begin{choices}
+\choice \texttt{UPDATE sales SET amt = 102.45}
+\choice \texttt{UPDATE sales SET amt = 102.45 WHERE cust\_id='000290'}
+\choice \texttt{UPDATE sales SET amt = 102.45 WHERE CURRENT OF cursor1}
+\choice \begin{verbatim}
+		UPDATE sales SET amt = 102.45
+		WHERE ROWID = (SELECT ROWID FROM sales WHERE cust_id='000290')
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+Which two statements about application-period temporal tables are true? (Choose two.)
+\begin{choices}
+\choice They are useful when one wants to keep user-based time period information.
+\choice They consist of explicitly supplied timestamps and a separate associated history table.
+\choice They are useful when one wants to keep both user-based and system-based time period information.
+\choice They are based on explicitly supplied timestamps that define the time periods during which
+data is valid.
+\choice They consist of a pair of columns with database-manager maintained values that indicate the 
+period when a row is current.
+\end{choices}
+
+\newpage
+\question[1]
+When should the TRUNCATE statement be used?
+\begin{choices}
+\choice When you want to delete all rows from a table without generating log records.
+\choice When you want to delete select rows from a table without generating log records.
+\choice When you want to delete all rows from a table and fire any delete triggers that have been 
+defined for the table.
+\choice When you want to delete select rows from a table and fire any delete triggers that have been
+defined for the table.
+\end{choices}
+
+\question[1]
+Which two commands will terminate the current transaction and start a new transaction boundary?
+(Choose two.)
+\begin{choices}
+\choice COMMIT
+\choice REFRESH
+\choice RESTART
+\choice CONNECT
+\choice ROLLBACK
+\end{choices}
+
+\question[1]
+Which SQL statement should be used to retrieve the minimum and maximum annual temperature (TEMP) for
+each major city (CITY), sorted by city, from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY MIN(temp), MAX(temp)
+		  ORDER BY city
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+What is the XMLTABLE() function typically used for?
+\begin{choices}
+\choice To convert a well-formed XML document into a table of character string values.
+\choice To obtain values from XML documents that are to be inserted into one or more tables.
+\choice To parse a character string value and return a table of well-formed XML documents.
+\choice To produce a temporary table whose columns are based on the elements found in a well-formed XML
+document.
 \end{choices}
 % Question with parts
 % \newpage
