@@ -48,7 +48,7 @@
 % Source code
 %% minted package
 \usepackage{minted}
-\newminted{sql}{mathescape, linenos, numbersep=5pt, gobble=2, frame=lines, framesep=2mm}
+\newminted{sql}{mathescape, linenos, numbersep=5pt, gobble=0, frame=lines, framesep=2mm}
 
 %% listing package
 \usepackage{listings}
@@ -1397,32 +1397,32 @@ the original row into the corresponding history table.
 	\item Example: 
 		\begin{itemize}
 			\item Create a bitemporal table named INVENTORY
-			\begin{sqlcode}
-			CREATE TABLE inventory
-			 (item_id         CHAR(4) NOT NULL,
-			  price           DOUBLE NOT NULL,
-			  sys_start       TIMESTAMP(12) NOT NULL
-							    GENERATED ALWAYS AS ROW BEGIN,
-			  sys_end  		  TIMESTAMP(12) NOT NULL
-							    GENERATED ALWAYS AS ROW END,
-			  ts_id			  TIMESTAMP(12) NOT NULL
-							    GENERATED ALWAYS AS
-							    TRANSACTION START ID, 
-			  business_start  DATE NOT NULL,
-			  bus_end         DATE NOT NULL,
-			 PERIOD SYSTEM_TIME (sys_start, sys_end)
-			 PERIOD BUSINESS_TIME (bus_start, bus_end))
-			\end{sqlcode}
+\begin{sqlcode}
+CREATE TABLE inventory
+(item_id         CHAR(4) NOT NULL,
+ price           DOUBLE NOT NULL,
+ sys_start       TIMESTAMP(12) NOT NULL
+				 GENERATED ALWAYS AS ROW BEGIN,
+ sys_end         TIMESTAMP(12) NOT NULL
+				 GENERATED ALWAYS AS ROW BEGIN,
+ ts_id           TIMESTAMP(12) NOT NULL
+ 				GENERATED ALWAYS AS
+ 				TRANSACTION START ID, 
+ bus_start       DATE NOT NULL,
+ bus_end         DATE NOT NULL,
+ PERIOD SYSTEM_TIME (sys_start, sys_end)
+ PERIOD BUSINESS_TIME (bus_start, bus_end))
+\end{sqlcode}
 			\item Create a corresponding history table
-			\begin{sqlcode}
-			CREATE TABLE hist_inventory LIKE inventory
-			\end{sqlcode}
+\begin{sqlcode}
+CREATE TABLE hist_inventory LIKE inventory
+\end{sqlcode}
 			\item Establish a link between \texttt{HIST\_INVENTORY} and \texttt{INVENTORY} table
-			\begin{sqlcode}
-				ALTER TABLE inventory
-				 ADD VERSIONING
-				 USE HISTORY TABLE hist_inventory
-			\end{sqlcode}
+\begin{sqlcode}
+ALTER TABLE inventory
+ADD VERSIONING
+USE HISTORY TABLE hist_inventory
+\end{sqlcode}
 		\end{itemize}
 \end{itemize}
 
@@ -1453,13 +1453,90 @@ SELECT * FROM sales FETCH FIRST 2 ROWS ONLY
 \end{sqlcode}
 \end{itemize}
 
+\subsubsection{Isolation clause - Accessing restricted data}
+\begin{itemize}
+\item To specify the isolation level a query is to be run under, and in some cases, to suggest the type
+of lock DB2 should acquire and hold on the data being queried.
+\item Example: retrieve uncommitted data from \textit{sales} table:
+\begin{sqlcode}
+SELECT * FROM sales WITH UR
+\end{sqlcode}
+\item Example: retrieve data from a table with minimal locking, use the FOR FETCH ONLY or FOR READ ONLY
+\begin{sqlcode}
+SELECT * FROM sales FOR FETCH ONLY
+\end{sqlcode}
+\end{itemize}
+\subsubsection{WHERE clause - Restricting the result set}
+\subsubsection*{WHERE clause}
+\begin{itemize}
+\item To restrict the data in the result set
+\item Example: get all the employees from the \textit{employee} table who are hired after year 2005
+and whose workdept is in 'AOO' and 'E21'
+\begin{sqlcode}
+SELECT * FROM employee WHERE YEAR(hiredate) > '2005' AND workdept IN ('AOO', 'E21')
+\end{sqlcode}
+\end{itemize}
+\subsubsection*{Predicate}
+\begin{itemize}
+\item \textbf{LIKE} predicate: search for string patterns in column values
+\item Example: find all employees whose first name starts with 'E' in the \textit{employee} table:
+\begin{sqlcode}
+SELECT * FROM employee WHERE firstnme LIKE 'E%'
+\end{sqlcode}
+\item \textbf{BETWEEN} predicate: specifying data ranges
+\item Example: select employees whose hire date is between 1998 and 2000:
+\begin{sqlcode}
+SELECT firstnme FROM employee WHERE YEAR(hiredate) BETWEEN '1998' AND '2000'
+\end{sqlcode}
+\item \textbf{NULL} predicate: search for colmuns that have null values
+\item Example: select all employees without a middle initial:
+\begin{sqlcode}
+SELECT firstnme FROM employee WHERE midinit IS NULL
+\end{sqlcode}
+\item \textbf{EXISTS} predicate: determine whether a particular value exists in a given result set
+\item \textbf{IN} predicate
+\end{itemize}
 
+\subsubsection{DISTINCT clause - Eliminating duplicates}
+\begin{itemize}
+\item To eliminate duplicates from the final result set, use the SELECT DISTINCT clause
+\item Example: select all the names of salespersons from the \textit{sales} table without duplicates:
+\begin{sqlcode}
+SELECT DISTINCT sales_person FROM sales
+\end{sqlcode}
+\end{itemize}
 
+\subsubsection{GROUP BY clause - grouping data in result sets}
+\subsubsection*{GROUP BY}
+\begin{itemize}
+\item Example: determine the average sales of a sales person in sales table:
+\begin{sqlcode}
+SELECT sales_person, AVG(sales) avg_sales FROM sales GROUP BY sales_person
+\end{sqlcode}
+\begin{verbatim}
+SALES_PERSON   AVG_SALES
+------------  -----------
+GOUNOT                 3
+LEE                    5 
+LUCCHESSI              1
+\end{verbatim}
+\item Specify all columns that are not aggregated in GROUP BY clause
+\end{itemize}
+\subsubsection*{HAVING clause}
+\begin{itemize}
+\item \textbf{HAVING} clause: If you use the aggregate functins such as MIN() or MAX() to specify 
+a condition, you must use the HAVING clause.
+\item Example: determine the minimum and maximum salary paid for a job and the maximum salary is greater
+than 27000
+\begin{sqlcode}
+SELECT job, MIN(salary), MAX(salary)
+FROM employee
+GROUP BY job
+HAVING MAX(salary) >= 27000
+\end{sqlcode}
+\end{itemize}
 
-
-
-
-
+\subsubsection*{GROUP BY ROLLUP clause}
 
 
 
