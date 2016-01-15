@@ -1425,8 +1425,49 @@ the original row into the corresponding history table.
 			\end{sqlcode}
 		\end{itemize}
 \end{itemize}
+
+\newpage
+\section{Working with DB2 Data Using SQL}
+
+\subsection{Objectives}
+\begin{itemize}
+\item Ability to use SQL to SELECT data from tables
+\item Ability to use SQL to SORT or GROUP data
+\item Ability to use SQL to UPDATE, DELETE, or INSERT data
+\item Knowledge of transactions (ie. commit/rollback and transaction boundaries)
+\item Ability to create and call an SQL supported procedure or a user defined function (understanding
+of passing parameters and results)
+\item Given an XQuery statement, knowledge to identify results
+\item Knowledge of Temporal(Time Travel) Tables - System-period, Application-period, and Bi-temporal-
+ability to query
+\end{itemize}
+
+\subsection{SELECT data from tables}
+\subsubsection{FETCH FIRST - Getting a limited amount of data}
+\begin{itemize}
+\item To retrieve a specific number of rows from a table, use the SELECT statement with the FETCH FIRST
+clause
+\item Example: retrieve the first two rows from the \textit{sales} table:
+\begin{sqlcode}
+SELECT * FROM sales FETCH FIRST 2 ROWS ONLY
+\end{sqlcode}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
+
 
 \end{document}
