@@ -1610,6 +1610,72 @@ SALESREP M      66500.00
 	\end{verbatim}
 \end{itemize}
 
+\subsubsection{ORDER BY - Sorting data}
+\begin{itemize}
+\item sort the data in the result set. If multiple sort keys are specified, they are applied in the
+order of specification.
+\item can indicate ascending order or descending order. The default is ascending order.
+\item Example: order the result set by first name and then by last name in ascending order:
+\begin{sqlcode}
+SELECT firstnme, midinit, lastname FROM employee ORDER BY firstnme, lastname
+\end{sqlcode}
+\item can specify the position of a column in the result set instead of the column name in the ORDER BY clause.
+\item Example: order the result set using the firstnme column in ascending order and the lastname column
+in descending order:
+\begin{sqlcode}
+SELECT firstnme, midinit, lastname FROM employee ORDER BY 1 asc, 3 desc
+\end{sqlcode}
+\end{itemize}
+
+\subsubsection{Retrieving data from multiple tables}
+\subsubsection*{Cartesian product}
+\begin{itemize}
+\item A cartesian product merges all the values from two tables in one result set. 
+\item A cartesian product happens when you specify multiple tables in the FROM clause without a WHERE
+clause.
+\item Example: 
+\begin{sqlcode}
+SELECT * FROM employee, department
+\end{sqlcode}
+\item Explanation: the above query returns a total row count of 630 because the EMPLOYEE table has 42 rows 
+and the DEPARTMENT table has 15 rows.
+\end{itemize}
+
+\subsubsection*{Inner joins}
+\begin{itemize}
+\item Inner joins can be thought of as the cross product of two tables, in which every row in one table
+is paired with rows in another table that have matching values in one or more columns.
+\item Example: 
+\begin{sqlcode}
+SELECT deptno, deptname, firstnme FROM department, employee WHERE deptno=workdept
+\end{sqlcode}
+\item Explanation: returns the department number, department name, and first name for each employee
+where the department number in the employee table is found in the department table. The employees
+that have a department number in the employee table without a match in the department table are
+not listed in the result set.
+\item Example:
+\begin{sqlcode}
+SELECT deptno, deptname, firstnme FROM department INNER JOIN employee ON deptno=workdept
+\end{sqlcode}
+\item This returns the same result set as previous.
+\end{itemize}
+
+\subsubsection*{Outer joins}
+\begin{itemize}
+\item An outer joins returns rows that match the join condition and the row from both tables that
+do not match the join condition.
+\end{itemize}
+
+\subsubsection*{Left outer join}
+\begin{itemize}
+\item returns the matching rows from both tables and the rows in the left
+table that do not match the join condition
+\item Example:
+\begin{sqlcode}
+SELECT deptno, deptname, firstnme FROM department LEFT OUTER JOIN employee ON deptno=workdept
+\end{sqlcode}
+\end{itemize}
+
 
 % Generate the bibliography.
 %\bibliography{latex-sample}
