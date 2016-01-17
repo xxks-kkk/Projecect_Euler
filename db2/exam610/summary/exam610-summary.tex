@@ -1820,12 +1820,54 @@ you can roll back to that savepoint.
 \end{itemize}
 
 \subsection{Using a Cursor to Obtain Results from a Result Data Set}
+\begin{itemize}
+\item When a SELECT statement is executed from within an application program, DB2 uses a mechanism
+known as a \textit{cursor} to retrieve data values from the result data set produced.
+\item Category:
+	\begin{itemize}
+	\item Read-only
+	\item Updatable: rows in the result data set that cursor are associated with can be modified or
+					 deleted
+	\end{itemize}
+\item use a cursor:
+	\begin{enumerate}
+	\item Declare the cursor along with its type and associate it with a query (SELECT or VALUES 
+		  statement)
+	\item Open the cursor. This will cause the corresponding query to be executed an a result data set
+	to be produced.
+	\item Fetch each row in the result data set, one by one, until an "End of data" condition occurs-
+	each time a row is fetched, the cursor is automatically moved to the next row.
+	\item If appropriate, alter or delete the current row by executing an UPDATE ... WHERE CURRENT OF
+	or a DELETE ... WHERE CURRENT OF statement (only cursor is updatable).
+	\item Close the cursor. This will delete the result data set that was produced when the cursor was 
+	first opened.
+	\end{enumerate}
+\item corresponding SQL statements:
+	\begin{itemize}
+	\item \texttt{DECLATE} cursor-name \texttt{CURSOR FOR} SELECT-Statement
+	\item \texttt{OPEN} cursor-name
+	\item \texttt{FETCH FROM} cursor-name \texttt{INTO} VAR1, VAR2, ...
+	\item \texttt{CLOSE} cursor-name
+	\end{itemize}
+\item Often used in stored procedure		
+\end{itemize}
 
-
-\subsection{Working with SQL procedures or user-defined functions}
+\subsection{Working with SQL procedures}
+You can create SQL procedures in the db2 database server as a way to convert business or system
+logic to a process that uses SQL and runs on the db2 database server.
 \subsubsection{Creating SQL prodcedures}
+\begin{itemize}
+\item Use the \texttt{CREATE PROCEDURE} statement to create a new SQL procedure or recreate an existing
+SQL procedure by using the \texttt{REPLACE} keyword.
+\item You can indicate input (IN), output (OUT), or both input and output (INOUT) parameters enclosed
+in parenthesis and separately by comma.
+\end{itemize}
 \subsubsection{SQL Procedural Language}
+See my page example
 \subsubsection{Calling SQL procedures}
+See my page example
+
+\subsection{Working with user-defined functions}
 \subsubsection{Creating user-defined functions}
 \subsubsection{Calling user-defined functions}
 
