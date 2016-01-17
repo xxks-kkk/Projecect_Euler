@@ -1676,6 +1676,162 @@ SELECT deptno, deptname, firstnme FROM department LEFT OUTER JOIN employee ON de
 \end{sqlcode}
 \end{itemize}
 
+\subsubsection*{Right outer join}
+\begin{itemize}
+\item returns the matching rows from both tables and the rows in the right
+table that do not match the join condition
+\item Example:
+\begin{sqlcode}
+SELECT deptno, deptname, firstnme FROM department RIGHT OUTER JOIN employee ON deptno=workdept
+\end{sqlcode}
+\end{itemize}
+
+\subsubsection*{Full outer join}
+\begin{itemize}
+\item returns the matching rows from both tables and the rows in both
+table that do not match the join condition
+\item Example:
+\begin{sqlcode}
+SELECT deptno, deptname, firstnme FROM department FULL OUTER JOIN employee ON deptno=workdept
+\end{sqlcode}
+\end{itemize}
+
+\subsubsection{Using set operators in queries}
+\subsubsection*{UNION}
+\begin{itemize}
+\item use UNION to combine two sets of values and eliminate duplicates
+\item Example:
+\begin{sqlcode}
+SELECT sales_person, MAX(sales) FROM sales GROUP BY sales_person
+UNION
+SELECT sales_person, MIN(sales) FROM sales GROUP BY sales_person
+\end{sqlcode}
+\item to retrieve all the rows in the result set including duplicates, use \texttt{UNION ALL}.
+\end{itemize}
+
+\subsubsection*{INTERSECT}
+\begin{itemize}
+\item use INTERSECT to combine answers from two different sets. It returns the common values between
+the two sets.
+\item Example: list all the employees whose resumes are in emp\_resume table:
+\begin{sqlcode}
+SELECT empno FROM emp_resume INTERSECT SELECT empno FROM employee
+\end{sqlcode}
+\item \texttt{INTERSECT ALL} retrieve the common values including duplicates.
+\end{itemize}
+
+\subsubsection*{EXCEPT}
+\begin{itemize}
+\item use EXCEPT to retrieve the rows that are not present in another result set.
+\item Example: determine how many employees do not have a project assigned:
+\begin{sqlcode}
+SELECT empno FROM employee EXCEPT SELECT empno FROM empprojact
+\end{sqlcode}
+\item \texttt{EXCEPT ALL} retains duplicate
+\end{itemize}
+
+\subsection{Manipulating data with SQL}
+You can add, update, or remove data into tables using SQL statements such as \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}, and \texttt{MERGE}. These statements are part of the DML.
+
+\subsubsection{UPDATE - Updating column values in a table or view}
+\begin{itemize}
+\item can use the WHERE clause to update a selection of columns or rows that match the condition.
+\item Example: updates the commission to 10 for all the employees with ETHEL as first name:
+\begin{sqlcode}
+UPDATE employee SET commission = 10 WHERE firstnme = 'ETHEL'
+\end{sqlcode}
+\item if you do not specify a condition with the WHERE clause, all the columns in the table are updated:
+\begin{sqlcode}
+UPDATE employee SET (salary, phoneno) = (900000.50, '8888')
+\end{sqlcode}
+\item you can update a table using calculated values from a subquery:
+\begin{sqlcode}
+UPDATE employee EMP set (EMP.salary, EMP.comm) = 
+ (SELECT avg(salary), avg(comm) FROM employee WHERE firstnme = 'ETHEL')
+\end{sqlcode}
+\end{itemize}
+
+\subsubsection{Deleting data from a table or view}
+Use the DELETE statement to eliminate data from a table or view.
+\begin{itemize}
+\item To remove specific rows that match a condition, use the WHERE clause.
+\item Example: delete employees whose name starts with 'J':
+\begin{sqlcode}
+DELETE FROM employee WHERE firstnme LIKE 'J%'
+\end{sqlcode}
+\item can use a subquery in the condition to specify which rows to delete
+\begin{sqlcode}
+DELETE FROM employee WHERE lastname IN (SELECT sales_person FROM sales WHERE YEAR(sales_date) = 1971)
+\end{sqlcode}
+\item can delete all rows with one DELETE statement
+\item Example: remove all the rows from the employee table
+\begin{sqlcode}
+DELETE FROM employee
+\end{sqlcode}
+\item For a faster delete operation (ie. not generating transaction logs), use TRUNCATE TABLE statement
+to delete all the data
+\item Example:
+\begin{sqlcode}
+TRUNCATE TABLE employee IMMEDIATE
+\end{sqlcode}
+\end{itemize}
+
+\subsubsection{INSERT - Adding data to tables, nicknames, or views}
+\begin{itemize}
+\item To insert a row into a table that has columns with the NOT NULL constraint, you must specify
+values for all these columns
+\item Example: to insert data to the act table, all the columns with the NOT NULL constraints are 
+specified in the INSERT statement
+\begin{sqlcode}
+INSERT INTO act VALUES (190, 'DBA', 'CREATE DATA')
+\end{sqlcode}
+\item can specify column names in the INSERT
+\item Example:
+\begin{sqlcode}
+INSERT INTO department (deptno, deptname, admrdept) VALUES
+	('B11', 'PURCHASING', 'B01'),
+	('E41', 'DATABASE ADMINISTRATOR', 'E01')
+\end{sqlcode}
+\end{itemize}
+
+\subsection{Working with transactions}
+For DB2 databases, a transaction is a unit of work (UOW) consisting of a series of sequential SQL
+statements such as CREATE, INSERT, UPDATE or DELETE that ends when a COMMIT or ROLLBACK happens.
+\subsubsection{Committing or rolling back UOWs}
+You can explicitly set transactions by issuing a COMMIT or ROLLBACK statement after issuing a series
+of DML statements. When you issue a COMMIT statement, the database manager makes all the changes,
+within that UOW, to the database permanent. However, if there is an error in a statement within the UOW
+or you issue a ROLLBACK statement, the database manager reverts all the changes made to database and the
+database gets to the same state it was before the UOW started.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{transactions.png}
+\end{figure}
+
+\subsubsection{Using savepoints UOWs}
+\begin{itemize}
+\item Use the SAVEPOINT statement to define levels within a UOW. By setting a savepoint within a UOW,
+you can roll back to that savepoint.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{savepoint.png}
+\end{figure}
+\end{itemize}
+
+\subsection{Using a Cursor to Obtain Results from a Result Data Set}
+
+
+\subsection{Working with SQL procedures or user-defined functions}
+\subsubsection{Creating SQL prodcedures}
+\subsubsection{SQL Procedural Language}
+\subsubsection{Calling SQL procedures}
+\subsubsection{Creating user-defined functions}
+\subsubsection{Calling user-defined functions}
+
+\subsection{Retrieving data using XQuery}
+
+\subsection{Working with temporal tables}
 
 % Generate the bibliography.
 %\bibliography{latex-sample}
