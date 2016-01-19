@@ -1888,9 +1888,50 @@ See my page example
 See my page example
 
 \subsection{Retrieving data using XQuery}
-
+You can use DB2 databases to store well-formed XML data in a column of a table and use SQL,
+XQuery, or a combination of SQL and XQuery to retrieve the XML data from the database.
 \subsection{Working with temporal tables}
-
+\subsubsection{Concept revisit}
+\begin{itemize}
+\item basic concepts:
+	\begin{itemize}
+	\item System time: tracks when changes are made to the tables
+	\item Business time: tracks for which time the row is valid
+	\end{itemize}
+\item table types:
+	\begin{itemize}
+	\item System-period temporal tables:
+		\begin{itemize}
+		\item System-period temporal tables use a historical version of data. Use a system-period
+		temporal table to store the current version of data. The associated history table automatically
+		stores the updated and deleted data.
+		\item must include: 
+		\begin{inparaenum}[\itshape a\upshape)]
+		\item a SYSTEM\_TIME period column to capture the begin and end times when the data in a row is
+		current
+		\item a transaction start-ID column to capture the time when execution started for a transaction
+		that impacts the row
+		\end{inparaenum}
+		\end{itemize}
+	\item Application-period temporal tables:
+		\begin{itemize}
+		\item Use an application-period temporal table to manage data based on time criteria that 
+		defines the time period when data is valid.
+		\item Must include:
+		\begin{inparaenum}[\itshape a\upshape)]
+		\item a BUSINESS\_TIME period column to capture the begin and end times when the data in a row
+		is valid
+		\end{inparaenum}
+		\end{itemize}
+	\item Bitemporal tables:
+		\begin{itemize}
+		\item combine the capability of tracking history of system-period temporal tables and the
+		time-specific storage of application-period tables
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\subsubsection{Examples}
+See my page example
 % Generate the bibliography.
 %\bibliography{latex-sample}
 %\bibliographystyle{unsrt}
