@@ -1,6 +1,18 @@
-# build an executable named hello from hello.cpp
-all: hello.cpp
-	g++ -g -Wall -o hello hello.cpp
+# the compiler
+CC = g++
+
+# compiler flags:
+# -g     add debugging information to the executable file
+# -Wall  turn on most, but not all, compiler warnings
+CFLAGS = -g -Wall
+
+# the build target executable:
+TARGET = hello
+
+all: $(TARGET)
+
+$(TARGET): $(TARGET).cpp
+	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).cpp
 
 clean:
-	$(RM) hello
+	$(RM) $(TARGET)
