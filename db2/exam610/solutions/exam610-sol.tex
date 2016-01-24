@@ -18,6 +18,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{ulem}
+\usepackage[T1]{fontenc} %% ensure the '>' and '<' correctly rendered
 
 % Customize the Solution box
 \renewcommand{\solutiontitle}{\noindent\textbf{Explanation:}\par\noindent}
@@ -119,8 +120,8 @@ This question bank contains \numpages\ pages (including this cover page) and
 
 \begin{questions}
 
-\fullwidth{\Large \textbf{Planning}}
-
+%\fullwidth{\Large \textbf{Planning}}
+\section{Planning}
 % Basic question
 \addpoints
 % \question[10] Differentiate $f(x)=x^2$ with respect to $x$.
@@ -540,8 +541,8 @@ fewer rows will fit on a page (\textit{Answer A}).
 
 \newpage
 \addpoints
-\fullwidth{\Large \textbf{Security}}
-
+%\fullwidth{\Large \textbf{Security}}
+\section{Security}
 \question[1]
 {\color{red} A user named USER1 has been granted \texttt{DATAACCESS} authority for a database named PAYROLL. What is user USER1 allowed to do?}
 \begin{choices}
@@ -884,8 +885,8 @@ Which privilege is needed to invoke a stored procedure?
 \end{choices}
 
 \newpage
-\fullwidth{\Large \textbf{Working with Databases and Database Objects}}
-
+%\fullwidth{\Large \textbf{Working with Databases and Database Objects}}
+\section{Working with Databases and Database Objects}
 \question[1]
 Which statement about views is NOT true?
 \begin{choices}
@@ -1345,7 +1346,707 @@ When the simplest form of the CREATE DATABASE command is executed, the database 
 \end{solution}
 
 \newpage
-\fullwidth{\Large \textbf{Working with DB2 Data Using SQL}}
+%\fullwidth{\Large \textbf{Working with DB2 Data Using SQL}}
+\section{Working with DB2 Data Using SQL}
+\question[1]
+If the following result set is desired:
+\begin{verbatim}
+STATE          REGION          AVG_INCOME
+------------- --------------- -------------
+MARYLAND      MID-ATLANTIC     86056.00
+NEW JERSEY    NORTHEAST        85005.00
+CONNECTICUT   NORTHEAST        84558.00
+MASSACHUSETTS NORTHEAST        82009.00
+ALASKA        PACIFIC-ALASKA   79617.00
+\end{verbatim}
+Which SQL statement must be executed?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS ONLY
+	    \end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS ONLY
+        \end{verbatim}
+\end{choices}
+
+\question[1]
+Which type of join will usually produce the smallest result set?
+\begin{choices}
+\CorrectChoice INNER JOIN
+\choice LEFT OUTER JOIN
+\choice RIGHT OUTER JOIN
+\choice FULL OUTER JOIN
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}Which statement about SQL subqueries is NOT true?}
+\begin{choices}
+\choice A subquery can be used with an UPDATE statement to supply values for one or more columns 
+that are to be updated.
+\choice A subquery can be used with an INSERT statement to retrieve values from one base table or view
+and copy them to another.
+\CorrectChoice If a subquery is used with a DELETE statement and the result set produced is empty, every record
+will be deleted from the table specified.
+\choice If a subquery is used with an UPDATE statement and the result set produced contains multiple rows,
+the operation will fail and an error will be generated.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} If a subquery is used with a DELETE statement and the result set produced is
+empty, \textbf{no} records will be deleted from the table specified and \textbf{an error will be
+returned}.
+\item \textit{Answer D} when used with an UPDATE statement, the subselect provided must \textbf{not
+ return more than one row}.
+\end{itemize}
+\end{solution}
+
+
+\question[1]
+{\color{red} Which statement about savepoints is NOT true?}
+\begin{choices}
+\choice You can use as many savepoints as you desire within a single unit of work, provided you do not
+nest them.
+\choice Savepoints provide a way to break the work being done by a single large transaction into one or
+more smaller subsets.
+\CorrectChoice The COMMIT FROM SAVEPOINT statement is used to commit a subset of database changes that have
+been made within a unit of work.
+\choice The ROLLBACK TO SAVEPOINT statement is used to back out a subset of database changes that have
+been made within a unit of work.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} TO SAVEPOINT clause cannot be used with a COMMIT statement to apply a
+subset of database changes that have been made by a transaction to a database and make them permanent.
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which two statements about UPDATE processing are true? (Choose two.)
+\begin{choices}
+\choice A positioned UPDATE is used to modify one or more rows, and a searched UPDATE is used to 
+modify exactly one row.
+\CorrectChoice A searched UPDATE is used to modify one or more rows, and a positioned UPDATE is used to
+modify exactly one row.
+\choice When the UPDATE statement modifies parent key columns, the values of corresponding foreign key
+columns are modified as well.
+\choice The UPDATE statement can be used to remove data from specified columns in the rows of a table,
+provided those columns are not nullable.
+\CorrectChoice The UPDATE statement can be used to modify the values of specified columns in the rows
+of a table, view, or underlying table(s) of a specified fullselect.
+\end{choices} 
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer D} are \sout{not} nullable
+\item \textit{Answer C} When the UPDATE statement is used to modify the values stored in parent key 
+columns, the update rule of the corresponding referential constraint is evaluated to determine whether
+the update is allowed - the values of corresponding foreign key columns are \textit{not altered}.
+\end{itemize}
+\end{solution}
+
+\question[1]
+A table named SALES has two columns: SALES\_AMT and REGION\_CD. Which SQL statement will return the number
+of sales in each region, ordered by number of sales made?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  ORDER BY 2
+	 	\end{verbatim}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY 1
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY region_cd
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\end{choices}
+
+\newpage
+\question[1]
+A user wants to retrieve records from a table named SALES that satisfy at least one of the following
+criteria:
+	\begin{itemize}
+	\item The sales date (SALESDATE) is after June 1, 2012, and the sales amount (AMT) is greater
+	than \$40.00.
+	\item The sales was made in the hardware department. 
+	\end{itemize}
+Which SQL statement will accomplish this?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' OR (amt > 40
+		   AND (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01') OR (amt > 40)
+		    OR (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+ 		SELECT * FROM sales
+ 		  WHERE (salesdate > '2012-06-01' AND amt > 40
+ 		   AND (dept = 'Hardware')
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' AND amt > 40)
+		   OR (dept = 'Hardware')
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which two statements about INSERT operations are true?} (Choose two.)
+\begin{choices}
+\choice The INSERT statement can be used to insert rows into a table, view, or table function.
+\CorrectChoice Inserted values must satisfy the conditions of any check constraints that have been defined 
+on the table specified.
+\CorrectChoice The values provided in the VALUES clause of an INSERT statement are assigned to columns in 
+the order in which they appear.
+\choice If an INSERT statement omits any column from the inserted row that is defined as NULL or NOT
+NULL WITH DEFAULT, the statement will fail.
+\choice If the underlying table of a view that is referenced by an INSERT statement has one or more
+unique indexes, each row inserted does not have to conform to the constraints imposed by those indexes.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} INSERT statement can be used to insert rows into a table or updatable view, 
+\textit{but not a table function}
+\item \textit{Answer D} omitted column must either accept NULL values (ie. have not been defined with 
+a NOT NULL constraint) or have been defined with a default constraint (ie, NOT NULL WITH DEFAULT). \sout{not fail}
+\item \textit{Answer E} must conform
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which SQL statement should be used to select the minimum and maximum rainfall amounts (RAINFALL), by 
+month (MONTH), from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+An SQL function named REGIONAL\_SALES was created as follows:
+	\begin{verbatim}
+	CREATE FUNCTION regional_sales()
+		RETURNS TABLE (region_id VARCHAR(20),
+					   sales_amt DECIMAL(8,2))
+		READS SQL DATA
+		BEGIN ATOMIC
+		RETURN
+			SELECT region, amt
+			FROM sales
+			ORDER BY region;
+		END
+	\end{verbatim}
+Which two statements demonstrate the proper way to use this function in a query? (Choose two.)
+\begin{choices}
+\choice \texttt{SELECT * FROM regional\_sales()}
+\choice \texttt{SELECT regional\_sales (region\_id, sales\_amt)}
+\choice \texttt{SELECT region\_id, sales\_amt FROM regional\_sales()}
+\CorrectChoice \texttt{SELECT * FROM TABLE (regional\_sales()) AS results}
+\CorrectChoice \texttt{SELECT region\_id, sales\_amt FROM TABLE(region\_sales()) AS results}
+\end{choices}
+
+\newpage
+\question[1]
+If the following SQL statement is executed:
+\begin{verbatim}
+SELECT dept, AVG(salary)
+ FROM employee
+ GROUP BY dept
+ ORDER BY 2
+\end{verbatim}
+What will be the results?
+\begin{choices}
+\choice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by department.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by department.
+\CorrectChoice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by average departmental salary.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by average departmental salary.
+\end{choices}
+
+\begin{solution}
+the average salary is being calculated using data stored in the EMPLOYEE table-\textit{not in the
+DEPARTMENT table}, which is where two answers imply that salary information is to be retrieved from (
+\textit{Answer B} and \textit{Answer D}
+\end{solution}
+
+\question[1]
+If a table named SALES contains information about invoices that do not have a negative balance, which 
+two SQL statements can be used to retrieve invoice numbers for invoices that are for less than \$25,000.00
+? (Choose two.)
+\begin{choices}
+\CorrectChoice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25,000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt LESS THAN 25,000}
+\CorrectChoice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25,000}
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}An SQL function designed to convert miles to kilometers was created as follows:}
+\begin{verbatim}
+CREATE FUNCTION mi_to_km (IN miles FLOAT)
+  RETURN FLOAT
+  LANGUAGE SQL
+  SPECIFIC convert_mtok
+  READS SQL DATA
+  RETURN FLOAT (miles * 1.60934)
+\end{verbatim}
+How can this function be used to convert miles (MILES) values stored in a table named DISTANCES?
+\begin{choices}
+\choice CALL mi\_to\_km (distances.miles)
+\choice CALL convert\_mtok (distances.miles)
+\CorrectChoice SELECT mi\_to\_km (miles) FROM distances
+\choice SELECT convert\_mtok (miles) FROM distances
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item CALL statement is used to invoke a stored procedure - not a UDF
+\item Specific name that is assigned to a UDF can be used to reference or delete(drop) the UDF, but
+not to invoke it
+\end{itemize}
+\end{solution}
+
+\question[1]
+Which two statements about system-period temporal tables are true? (Choose two.)
+\begin{choices}
+\choice They store user-based period information.
+\choice They do not require a separate history table.
+\CorrectChoice They store system-based historical information.
+\CorrectChoice They can be queried without a time-period specification.
+\choice They manage data based on time criteria specified by users or applications.
+\end{choices} 
+
+\question[1]
+A table named PARTS contains a record of every part that has been manufactured by a company. A user
+wishes to see the total number of parts that have been made by each craftsman employed at the company.
+Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts}
+\CorrectChoice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts GROUP BY name}
+\choice \texttt{SELECT name, COUNT(DISTINCT name) AS parts\_made FROM parts}
+\choice \texttt{SELEC DISTINCT name, COUNT(*) AS parts\_made FROM parts GROUP BY parts\_made}
+\end{choices}
+
+\newpage
+\question[1]
+Given an EMPLOYEES table and a DEPARTMENT table, a user wants to produce a list of all departments and
+employees who work in them, including departments that no employees have been assigned to. Which SQL
+statement will produce the desired list?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		employees.dept = departments.deptno
+		\end{verbatim} 
+\choice	\begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		departments.deptno = employees.dept
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		LEFT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT employees.name, departments.deptname,
+		FROM employees
+		RIGHT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which statements are NOT allowed in the body of an SQL scalar user-defined function?}
+\begin{choices}
+\choice CALL statements
+\CorrectChoice COMMIT statements
+\choice SQL CASE statements
+\choice SQL control statements
+\end{choices}
+
+\begin{solution}
+COMMIT and ROLLBACK statements are not allowed in the body of an SQL user-defined function (UDF).
+\end{solution}
+
+\newpage
+\question[1]
+A table named TABLE\_A contains 200 rows and a user wants to update the 10 rows in this table with the
+lowest values in a column named COL1. Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC) AS temp
+		  SET col2 = 99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC) AS temp
+		  SET col2=99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC
+	  		FETCH FIRST 10 ROWS ONLY) AS temp
+	  	  SET col2=99
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC
+		    FETCH FIRST 10 ROWS ONLY) AS temp
+		  SET col2 = 99
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which statement best descirbes a transaction?}
+\begin{choices}
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+only when a savepoint is created.
+\choice A transaction is recoverable sequence of operations whose point of consistency can be obtained
+by querying the system catalog tables.
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+when a database connection is established or a savepoint is created.
+\CorrectChoice A transaction is recoverable sequence of operations whose point of consistency is established
+when an executable SQL statement is processed after a database connection has been established or a
+previous transaction has been terminated.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} and \textit{Answer C} savepoints do not define points of consistency for a transaction
+\item \textit{Answer B} System catalog has nothing to do with defining points of consistency for
+transactions
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+A table named TABLE\_A contains 200 rows and a user wants to delete
+the last 10 rows from this table. Which SQL statement will produce the
+desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a 
+		   ORDER BY col1 ASC
+		   FETCH FIRST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		DELETE FROM
+		  (SELECT * FROM table_a
+			ORDER BY col1 DESC
+			FETCH FIRST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 ASC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 DESC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\end{choices}
+
+\begin{solution}
+no FETCH LAST ... ROWS ONLY clause
+\end{solution}
+\question[1]
+Which clause could be added to the following SQL statement
+\begin{verbatim}
+SELECT student_id, enroll_date, gpa
+ FROM students
+\end{verbatim}
+to ensure that only information (STUDENT\_ID, ENROLL\_DATE, and
+GPA) for students who started school before 2012 and who have a GPA
+that is higher than 3.50 will be retrieved?
+\begin{choices}
+\choice FOR enroll\_date < '2012-01-01' OR gpa>3.50
+\choice FOR enroll\_date < '2012-01-01' AND gpa>3.50
+\CorrectChoice WHERE enroll\_date < '2012-01-01' OR gpa>3.5
+\choice	WHERE enroll\_date < '2012-01-01' AND gpa>3.5
+\end{choices}
+
+\question[1]
+{\color{red}Which statement correctly describes what a native SQL stored procedure is?}
+\begin{choices}
+\CorrectChoice A procedure whose body is written entirely in SQL or SQL PL.
+\choice A procedure that is written in a high-level programming language such as Java or REXX.
+\choice A procedure whose body is written entirely in SQL, but that is implemented as an external program.
+\choice	A procedure that accesses data using an Object Linking and Embedding, Database (OLE DB) provider.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer B} External stored procedure
+\item \textit{Answer C} External SQL stored procedure
+\item \textit{Answer D} Cannot develop a stored procedure that accesses data using an Object Linking and 
+Embedding, Database (OLE DB) provider - to access data in this manner, you must develop an OLE DB External
+Table function.
+\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red}Given the following statements}:
+\begin{verbatim}
+CREATE TABLE customer (custid INTEGER, custinfo XML);
+INSERT INTO customer VALUES (100,
+'<customerinfo>
+  <name>ACME Manufacturing</name>
+  <addr country="United States">
+     <street>25 Elm Street</street>
+ <city>Raleigh</city>
+ <state>North Carolina</state>
+ <zip>27603</zip>
+  </addr>
+</customerinfo>');
+\end{verbatim}
+If the following XQuery statement is executed:
+\begin{verbatim}
+XQUERY
+for $info in db2-fn:xmlcolumn('CUSTOMER.CUSTINFO')/customerinfo
+return $info/name
+\end{verbatim}
+What will be the result?
+\begin{choices}
+\choice \texttt{ACME Manufacturing}
+\CorrectChoice \texttt{<name>ACME Manufacturing</name>}
+\choice \texttt{<customerinfo>ACME Manufacturing</customerinfo>}
+\choice \texttt{<customerinfo><name>ACME Manufacturing</name></customerinfo>}
+\end{choices}
+
+\begin{solution}
+The FLOWER XQuery expression is comparable to the SELECT-FROM-WHERE statement/clause combination available
+with SQL. The basic syntax for a FLOWER expression is:
+\begin{verbatim}
+XQUERY
+	for $Variable1 IN Expression1
+	let $Variable2 := Expression2
+	where Expression3
+	order by Expression4 [ASCENDING | DESCENDING]
+	return Expression3
+\end{verbatim}
+Consequently, the XQuery statement used in the scenario presented will return the expression 
+"<name>ACME Manufacturing</name>". This expression is obtained by searching the XML data value
+stored in the CUSTINFO column of a table named CUSTOMER for the first opening tag found under the 
+customerinfo root (outermost) element that is followed by a value. 
+
+Had the text() function been used with the XQuery statement, the opening and closing tags for the name 
+would have been removed and the value "ACME Manufacturing" would have been returned (\textit{Answer A})
+Because the customerinfo element is the root element of the XML data value presented, it is typically
+referenced in the for expression of the XQuery statement and is not returned as part of the return
+expression(\textit{Answer C} and \textit{Answer D})
+\end{solution}
+
+\question[1]
+{\color{red}Which two statements about roll back operations are correct? }(Choose two.)
+\begin{choices}
+\CorrectChoice When a ROLLBACK statement is executed, all locks held by the terminating transaction are released.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired after the most recent
+savepoint are released.
+\choice When a ROLLBACK statement is executed, all locks acquired for open cursors that were 
+declared WITH HOLD are held.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired up to the most recent
+savepoint are released.
+\CorrectChoice When a ROLLBACK TO SAVEPOINT statement is executed, a savepoint is not automatically deleted as
+part of the rollback operation.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} are released
+\item \textit{Answer B} When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired after the
+savepoint specified was created are released-\textit{not the locks acquired after the most recent 
+savepoint}
+\item \textit{Answer D} \textit{nor the locks acquired up to the most recent savepoint}
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which SQL statement illustrates the proper way to perform a positioned update operation on a table named
+SALES?
+\begin{choices}
+\choice \texttt{UPDATE sales SET amt = 102.45}
+\choice \texttt{UPDATE sales SET amt = 102.45 WHERE cust\_id='000290'}
+\CorrectChoice \texttt{UPDATE sales SET amt = 102.45 WHERE CURRENT OF cursor1}
+\choice \begin{verbatim}
+		UPDATE sales SET amt = 102.45
+		WHERE ROWID = (SELECT ROWID FROM sales WHERE cust_id='000290')
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+Which two statements about application-period temporal tables are true? (Choose two.)
+\begin{choices}
+\CorrectChoice They are useful when one wants to keep user-based time period information.
+\choice They consist of explicitly supplied timestamps and a separate associated history table.
+\choice They are useful when one wants to keep both user-based and system-based time period information.
+\CorrectChoice They are based on explicitly supplied timestamps that define the time periods during which
+data is valid.
+\choice They consist of a pair of columns with database-manager maintained values that indicate the 
+period when a row is current.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer E} System-period temporal table
+\end{itemize}
+\end{solution}
+
+\question[1]
+When should the TRUNCATE statement be used?
+\begin{choices}
+\CorrectChoice When you want to delete all rows from a table without generating log records.
+\choice When you want to delete select rows from a table without generating log records.
+\choice When you want to delete all rows from a table and fire any delete triggers that have been 
+defined for the table.
+\choice When you want to delete select rows from a table and fire any delete triggers that have been
+defined for the table.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item If IGNORE DELETE TRIGGERS clause is specified with the TRUNCATE statement used, DELETE tiggers that 
+have been defined on the table \textit{will not be fired} as the data in the table is deleted
+\item If RESTRICT WHEN DELETE TRIGGERS clause is used instead, DB2 will examine the system catalog to 
+determine whether DELETE triggers on the table exist; if one or more triggers are found, the truncate
+operation will fail and error will be returned.
+\end{itemize}
+
+\end{solution}
+\question[1]
+Which two commands will terminate the current transaction and start a new transaction boundary?
+(Choose two.)
+\begin{choices}
+\CorrectChoice COMMIT
+\choice REFRESH
+\choice RESTART
+\choice CONNECT
+\CorrectChoice ROLLBACK
+\end{choices}
+
+\question[1]
+Which SQL statement should be used to retrieve the minimum and maximum annual temperature (TEMP) for
+each major city (CITY), sorted by city, from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY MIN(temp), MAX(temp)
+		  ORDER BY city
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red}What is the XMLTABLE() function typically used for?}
+\begin{choices}
+\choice To convert a well-formed XML document into a table of character string values.
+\CorrectChoice To obtain values from XML documents that are to be inserted into one or more tables.
+\choice To parse a character string value and return a table of well-formed XML documents.
+\choice To produce a temporary table whose columns are based on the elements found in a well-formed XML
+document.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} XMLSERIALIZE()
+\item \textit{Answer C} XMLPARSE()
+\item \textit{Answer D} No such XML function exist; need to construct a query or XQuery expression to
+perform this type of operation
+\end{itemize}
+\end{solution}
 % Question with parts
 % \newpage
 % \addpoints
