@@ -52,3 +52,7 @@ Temporary Items
 *.pyg
 *.pygtex
 *.pygstyle
+
+# emacs temp file
+*#
+*~
