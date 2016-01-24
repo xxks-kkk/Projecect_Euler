@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//Problem: https://leetcode.com/problems/valid-palindrome/
+
+
 // int isalnum (int c):: checks whether c is either a decimal digit
 //                       or an uppercase or lowercase letter
 bool isPalindrome(string s)
