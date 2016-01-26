@@ -1427,6 +1427,115 @@ What is the XMLTABLE() function typically used for?
 \choice To produce a temporary table whose columns are based on the elements found in a well-formed XML
 document.
 \end{choices}
+
+\section{Working with DB2 Tables, Views, and Indexes}
+\question[1]
+The following SQL statements were used to create a table and a unique index:
+\begin{verbatim}
+CREATE TABLE parts (part_cd INTEGER NOT NULL, part_desc VARCHAR(20));
+CREATE UNIQUE INDEX indx1 ON parts (part_cd);
+\end{verbatim}
+If the following ALTER statement is executed later:
+\begin{verbatim}
+ALTER TABLE parts ADD PRIMARY KEY (part_cd);
+\end{verbatim}
+Which two events will take place? (Choose two.)
+\begin{choices}
+\choice An error will be returned.
+\choice A warning will be returned.
+\choice Index INDX1 will become the index for the new primary key.
+\choice Index INDX1 will be marked invalid and will be rebuilt the next time it is accessed.
+\choice Index INDX1 will be dropped and a different index will be created for the primary key.
+\end{choices}
+
+\question[1]
+Which statement about unqiue constraints is true?
+\begin{choices}
+\choice A unique constraint can be used to ensure that a column will never be assigned a NULL value.
+\choice A unique constraint can be used to control which values will be accepted for a column in a table.
+\choice A unique constraint can be used to ensure that a column in a table will always be assigned a value.
+\choice A unique constraint can be used to ensure that a column in a table will never be assigned more than one NULL value.
+\end{choices}
+
+\question[1]
+Which two statements regarding triggers are true? (Choose two.)
+\begin{choices}
+\choice The triggered action (body) of a trigger cannot contain executable code.
+\choice Triggers cannot be modified; they must be dropped and recreated with new definitions.
+\choice Adding a trigger to a table that already has rows in it will cause triggered actions to be fired.
+\choice Triggers can only be fired one time per statement irrespective of the number of rows affected.
+\choice Triggers perform actions in response to an event such as an INSERT, UPDATE, or DELETE operation
+on a table.
+\end{choices}
+
+\newpage
+\question[1]
+Which statement about primary key constraints is true?
+\begin{choices}
+\choice Each primary key must have at least one corresponding foreign key.
+\choice Before a primary key can be created, a unique constraint must exist on the primary key's key
+columns.
+\choice A range partition must be defined on the key columns found in a primary key, immediately after
+the key is created.
+\choice A "unique and system-required" index will be created , if one doesn't exist, for a primary key's
+columns at the time the key is created.
+\end{choices}
+
+\question[1]
+The following SQL statement was used to create a table named PARTS:
+\begin{verbatim}
+CREATE TABLE parts(
+	part_no        VARCHAR(10),
+	description    VARCHAR(50))
+\end{verbatim}
+If values stored in the DESCRIPTION column are less than 36 characters in length, which SQL statement will
+successfully decrease the size of the DESCRIPTION column?
+\begin{choices}
+\choice ALTER TABLE parts RESIZE COLUMN description 40
+\choice ALTER TABLE parts ADJUST COLUMN description VARCHAR(40)
+\choice ALTER TABLE parts ALTER COLUMN description SET DATA TYPE VARCHAR(40)
+\choice ALTER TABLE parts ALTER COLUMN description ALTER DATA TYPE VARCHAR(40)
+\end{choices}
+
+\question[1]
+A table named SALES was created and populated using the following SQL statements:
+\begin{verbatim}
+CREATE TABLE sales (
+	invoice_no    VARCHAR(10) NOT NULL,
+	invoice_amt   DECIMAL(6,2) NOT NULL);
+	
+INSERT INTO sales VALUES ('2014-007', 102.90);
+INSERT INTO sales VALUES ('2014-024', 82.50);
+INSERT INTO sales VALUES (NULL, 224.37);
+INSERT INTO sales VALUES ('', 0.0);
+\end{verbatim}
+If the following query is executed:
+\begin{verbatim}
+SELECT count(*) FROM sales;
+\end{verbatim}
+How many rows will be returned?
+\begin{choices}
+\choice 1
+\choice 2
+\choice 3
+\choice 4
+\end{choices}
+
+\newpage
+\question[1]
+When should an informational constraint be used?
+\begin{choices}
+\choice When you want to ensure that a column will never be assigned a NULL value.
+\choice When you want to control which values can be assigned to a column in a table.
+\choice When you want to define a required relationship between select columns and tables.
+\choice When you want to tell the DB2 Optimizer that a parent-child relationship exists between two tables, but that the relationship is not enforced.
+\end{choices}
+
+
+
+
+
+
 % Question with parts
 % \newpage
 % \addpoints
