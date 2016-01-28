@@ -1,9 +1,6 @@
 # Solutions & Notes
 
-Solutions & notes to problems & books.
-
-**GOAL:** try to keep some good stuff from reading CS books and solving
-programming problems. Aside, practice to work with LaTex.
+Code base & knowledge base
 
 ## DB2
 
@@ -11,6 +8,7 @@ programming problems. Aside, practice to work with LaTex.
 
 ## Coding
 
-Codes for practice
+Code base organize by language
 
-- usaco: USA Computing Olympiad
+- C++
+    - Leetcode
