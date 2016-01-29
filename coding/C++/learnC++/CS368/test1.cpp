@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
   int sum=0;
@@ -7,5 +9,6 @@ int main()
   {
     sum += i;
   }
-  printf "%s %d" "The sum is:" sum;
+  cout << "The sum is: " << sum << endl;
   return 0;
+}

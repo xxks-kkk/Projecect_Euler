@@ -7,7 +7,7 @@ CC = g++
 CFLAGS = -g -Wall
 
 # the build target executable:
-#TARGET = hello
+#TARGET = test1
 
 all: $(TARGET)
 
