@@ -1,3 +1,5 @@
+// Assume that the declaration of Student given above has been made. Write a C++ function named NumGrads that has 2 parameters: an array of Students, and the size of the array. The function should return the number of students in the array who are grad students. 
+
 # include <iostream>
 
 using namespace std;

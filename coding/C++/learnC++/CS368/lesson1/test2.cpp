@@ -1,3 +1,5 @@
+// Write a C++ function named ArrayEq that has 3 parameters: two arrays of integers, and their size (the same size for both arrays). The function should return true if and only if the arrays contain the same values in the same order. 
+
 #include <iostream>
 
 using namespace std;
