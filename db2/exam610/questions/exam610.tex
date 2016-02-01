@@ -1543,6 +1543,99 @@ column
 where data throughput is high.
 \end{choices}
 
+\question[1]
+Which data type can be used to store character string data in such a way that any comparisons of values
+that are made will be done so in binary format, regardless of the database collating sequence used?
+\begin{choices}
+\choice BLOB(500)
+\choice VARCHAR(500)
+\choice CLOB(500) FOR BIT DATA
+\choice VARCHAR(500) FOR BIT DATA
+\end{choices}
+
+\question[1]
+Which two events will cause a trigger to be fired? (Choose two.)
+\begin{choices}
+\choice Execution of an IMPORT command.
+\choice Execution of an UPDATE command.
+\choice Execution of a TRUNCATE statement.
+\choice Execution of an LOAD ... REPLACE command.
+\choice Execution of an INSERT operation of a MERGE statement.
+\end{choices}
+
+\question[1]
+A user wants to ensure that any rows that are inserted or updated with a view will conform to the view's
+definition. Which clause of the CREATE VIEW statement can be used to accomplish this goal?
+\begin{choices}
+\choice RESTRICT
+\choice CASCADE
+\choice WITH CHECK OPTION
+\choice WITH CONTROL OPTION
+\end{choices}
+
+\question[1]
+Which statement about the TIMESTAMP data type is NOT true?
+\begin{choices}
+\choice By default, 6 digits are used to represent the fractional seconds portion of a TIMESTAMP value.
+\choice TIMESTAMP values are stored as fixed-length character string values that are 32 characters in
+length.
+\choice The TIMESTAMP data type is used to store six-or seven-part values that represent a specific
+calendar date and time.
+\choice The actual string format used to present a date or time value stored in a TIMESTAMP column is 
+dependent upon the territory code that has been assigned to the database.
+\end{choices}
+
+\question[1]
+Which of the following is the best statement to use to create a user-defined data type that will be used
+to store currency values?
+\begin{choices}
+\choice CREATE DISTINCT TYPE currency AS BIGINT
+\choice CREATE DISTINCT TYPE currency AS DOUBLE
+\choice CREATE DISTINCT TYPE currency AS SMALLINT
+\choice CREATE DISTINCT TYPE currency AS NUMERIC(7,2)
+\end{choices}
+
+\question[1]
+Which two statements about BEFORE triggers are true? (Choose two.)
+\begin{choices}
+\choice A BEFORE trigger can be used to automatically generate values for newly inserted rows.
+\choice A BEFORE trigger can be used to insert, update, or delete data in the same or in different tables.
+\choice A BEFORE trigger is fired for each row in the set of affected rows before the trigger event take
+place.
+\choice A BEFORE trigger can be used to check data against other data values in the same or in different
+tables.
+\choice A BEFORE trigger is fired for each row in the set of affected rows in place of the trigger event.
+\end{choices}
+
+\question[1]
+Which of the following is NOT a true statement about unique indexes and primary keys?
+\begin{choices}
+\choice A table can have many unique indexes but only one primary key.
+\choice A primary key is a special form of a unique constraint; both use a unique index.
+\choice Unique indexes can be defined over one or more columns; primary keys can only be defined on a 
+single column.
+\choice Unique indexes can be defined over one or more columns that allow null values; primary keys cannot
+contain null values.
+\end{choices}
+
+\question[1]
+Which type of constraint can be used to provide a method of ensuring a column's values are within a 
+specific range?
+\begin{choices}
+\choice Check
+\choice Unique
+\choice Referential
+\choice Informational
+\end{choices}
+
+\question[1]
+Which is NOT a valid reason for creating a view?
+\begin{choices}
+\choice To restrict access to sensitive data.
+\choice To combine data from multiple tables.
+\choice To enable a single SQL statement to work with a variety of tables.
+\choice To provide an alternative way of describing data that exists in one or more base tables.
+\end{choices}
 
 
 
