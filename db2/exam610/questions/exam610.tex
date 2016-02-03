@@ -1809,21 +1809,28 @@ Which SQL statement will add a column named PRICE to the ITEMS table?
 \end{choices}
 
 \question[1]
-
+Which statement about indexes is NOT true?
 \begin{choices}
-\choice 
-\choice 
-\choice 
-\choice 
+\choice In order to support a unique constraint, an index must be defined with the UNIQUE attribute.
+\choice If an index is created with INCLUDE columns, it must be defined with the UNIQUE clause.
+\choice A clustering index usually increases performance by decreasing the amount of I/O that is needed to access data.
+\choice With clustering indexes, higher PCTFREE values will increase the likelihood that index page splits will occur
+when records are added to the index.
 \end{choices}
 
 \question[1]
-
+A user wants to define a required relationship between two tables named DEPARTMENT and EMPLOYEE such that whenever
+a record is deleted from the DEPARTMENT table, any related records will be deleted from the EMPLOYEE table. What two
+things must the user do to accomplish this? (Choose two.)
 \begin{choices}
-\choice 
-\choice 
-\choice 
-\choice 
+\choice Create a primary key on the EMPLOYEE table.
+\choice Create a primary key on the DEPARTMENT table.
+\choice Create a foreign key on the DEPARTMENT table that references the EMPLOYEE table
+and adheres to the ON DELETE CASCADE rule.
+\choice Create a foreign key on the EMPLOYEE table that references the DEPARTMENT table and adheres to the ON DELETE
+RESTRICT rule.
+\choice CREATE a foreign key on the EMPLOYEE table that references the DEPARTMENT table and adheres to the ON DELETE
+CASCADE rule.
 \end{choices}
 
 \question[1]
