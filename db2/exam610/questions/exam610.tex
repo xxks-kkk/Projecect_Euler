@@ -1692,6 +1692,53 @@ the table.
 \choice The amount of space set aside to store an XML value is determined by the length specification provided when an
 XML column is defined.
 \end{choices}
+
+\question[1]
+Which type of trigger is used to perform insert, update, and delete operations against complex views?
+\begin{choices}
+\choice AFTER
+\choice BEFORE
+\choice BETWEEN
+\choice INSTEAD OF
+\end{choices}
+
+\question[1]
+Which two statements are true regarding constraints? (Choose two.)
+\begin{choices}
+\choice A table can only have one unique key constraint.
+\choice A table can have multiple primary key constraints.
+\choice Unique constraints ensure that a column in a table will never contain duplicate values.
+\choice Informational constraints tell DB2 what rules the data conforms to, but the rules are not enforced.
+\choice Foreign key constraints are enforced on the values within the rows of a table, or between the rows of two tables,
+by a unique index on the foreign key.
+\end{choices}
+
+\question[1]
+What statement about triggers is NOT true?
+\begin{choices}
+\choice Triggers can  be fired just before an insert, update, or delete operation take place.
+\choice Triggers can be fired immediately after an insert, update, or delete operation take place.
+\choice BEFORE and AFTER triggers can be used with both tables and views; INSTEAD OF triggers can only be used with views.
+\choice Triggers can be used automatically update other tables, generate or transform values for inserted or updated rows,
+and perform tasks such as issuing alerts.
+\end{choices}
+
+
+\question[1]
+Which two statements about temporary tables are true? (Choose two.)
+\begin{choices}
+\choice A temporary table is best suited for clustering data according to the time in which rows are inserted.
+\choice A temporary table is best suited for recording results from application data manipulation that is not required
+to be presistent.
+\choice When an application using a temporary table disconnects from the database unexpectedly, the data in the table
+is deleted and the table is implicitly dropped.
+\choice Three different types of temporary tables are available; declared global temporary tables, declared local temporary
+tables, and created global temporary tables.
+\choice When an application using a temporary table disconnects from the database unexpectedly, the temporary table is
+converted to a base table and its data is retained.
+\end{choices}
+
+
 \question[1]
 
 \begin{choices}
@@ -1700,6 +1747,67 @@ XML column is defined.
 \choice 
 \choice 
 \end{choices}
+
+\question[1]
+What statement about triggers is NOT true?
+\begin{choices}
+\choice Triggers can  be fired just before an insert, update, or delete operation take place.
+\choice Triggers can be fired immediately after an insert, update, or delete operation take place.
+\choice BEFORE and AFTER triggers can be used with both tables and views; INSTEAD OF triggers can only be used with views.
+\choice Triggers can be used automatically update other tables, generate or transform values for inserted or updated rows,
+and perform tasks such as issuing alerts.
+\end{choices}
+
+
+\question[1]
+Which two statements about temporary tables are true? (Choose two.)
+\begin{choices}
+\choice A temporary table is best suited for clustering data according to the time in which rows are inserted.
+\choice A temporary table is best suited for recording results from application data manipulation that is not required
+to be presistent.
+\choice When an application using a temporary table disconnects from the database unexpectedly, the data in the table
+is deleted and the table is implicitly dropped.
+\choice Three different types of temporary tables are available; declared global temporary tables, declared local temporary
+tables, and created global temporary tables.
+\choice When an application using a temporary table disconnects from the database unexpectedly, the temporary table is
+converted to a base table and its data is retained.
+\end{choices}
+
+
+\question[1]
+When does a view get populated?
+\begin{choices}
+\choice When it is first created.
+\choice When it is referenced by an INSERT statement.
+\choice Any time it is referenced by an executable SQL statement.
+\choice The first time it is referenced by an executable SQL statement.
+\end{choices}
+
+
+\question[1]
+When should the DECIMAL data type be used?
+\begin{choices}
+\choice When you need to store a 32-bit approximation of a real number. 
+\choice When you need to store numeric values that have a percision of 19 digits.
+\choice When you need to store data in a column that represents money and that accurately returns a two-position scale.
+\choice When you need to store data in a column that represents ID numbers that have a precision of five or fewer digits.
+\end{choices}
+
+\question[1]
+If the following SQL statement was used to create a table named ITEMS:
+\begin{verbatim}
+CREATE TABLE items (
+   item_no      VARCHAR(10),
+   description  VARCHAR(50))
+\end{verbatim}
+Which SQL statement will add a column named PRICE to the ITEMS table?
+\begin{choices}
+\choice ALTER TABLE items ADD COLUMN price NUMERIC(6,2)
+\choice ALTER TABLE item INSERT COLUMN price NUMERIC(6,2)
+\choice ALTER TABLE items APPEND COLUMN price NUMERIC(6,2)
+\choice ALTER TABLE items ATTACH COLUMN price NUMERIC(6,2)
+\end{choices}
+
 \question[1]
 
 \begin{choices}
@@ -1708,15 +1816,6 @@ XML column is defined.
 \choice 
 \choice 
 \end{choices}
-\question[1]
-
-\begin{choices}
-\choice 
-\choice 
-\choice 
-\choice 
-\end{choices}
-
 
 \question[1]
 
@@ -1727,7 +1826,6 @@ XML column is defined.
 \choice 
 \end{choices}
 
-
 \question[1]
 
 \begin{choices}
@@ -1736,6 +1834,7 @@ XML column is defined.
 \choice 
 \choice 
 \end{choices}
+
 
 
 
