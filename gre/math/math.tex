@@ -1,0 +1,2078 @@
+% Exam Template for UMTYMP and Math Department courses
+%
+% Using Philip Hirschhorn's exam.cls: http://www-math.mit.edu/~psh/#ExamCls
+%
+% run pdflatex on a finished exam at least three times to do the grading table on front page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These lines can probably stay unchanged, although you can remove the last
+% two packages if you're not making pictures with tikz.
+\documentclass[answers, 11pt]{exam}
+\RequirePackage{amssymb, amsfonts, amsmath, latexsym, verbatim, xspace, setspace}
+\RequirePackage{tikz, pgflibraryplotmarks}
+
+% By default LaTeX uses large margins.  This doesn't work well on exams; problems
+% end up in the "middle" of the page, reducing the amount of space for students
+% to work on them.
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{ulem}
+\usepackage[T1]{fontenc} %% ensure the '>' and '<' correctly rendered
+
+% Customize the Solution box
+\renewcommand{\solutiontitle}{\noindent\textbf{Explanation:}\par\noindent}
+
+% Here's where you edit the Class, Exam, Date, etc.
+\newcommand{\class}{GRE MATH}
+% \newcommand{\term}{Spring 2012}
+% \newcommand{\examnum}{Exam 2}
+\newcommand{\examdate}{2/8/15}
+\newcommand{\timelimit}{90 Minutes}
+
+% For an exam, single spacing is most appropriate
+\singlespacing
+% \onehalfspacing
+% \doublespacing
+
+% For an exam, we generally want to turn off paragraph indentation
+\parindent 0ex
+
+\begin{document} 
+
+% These commands set up the running header on the top of the exam pages
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+
+\begin{flushright}
+\begin{tabular}{p{2.8in} r l}
+\textbf{\class} & \\
+% \textbf{\term} &&\\
+% \textbf{\examnum} &&\\
+\textbf{\examdate} &  \\
+\textbf{Time Limit: \timelimit} & \textbf{Name (Print):} & \makebox[2in]{\hrulefill}
+\end{tabular}\\
+\end{flushright}
+\rule[1ex]{\textwidth}{.1pt}
+
+
+This question bank contains \numpages\ pages (including this cover page) and
+\numquestions\ questions. 
+
+% You may \textit{not} use your books, notes, or any calculator on this exam.\\
+
+% You are required to show your work on each problem on this exam.  The following rules apply:\\
+
+%\begin{minipage}[t]{3.7in}
+\vspace{0pt}
+\begin{itemize}
+
+\item Questions that I got wrong during the preparation for GRE MATH
+
+\item The questions selected from the following sources:
+
+\begin{itemize}
+\item \textbf{Magoosh}
+\item \textbf{XDF Redbook}
+\end{itemize}
+% \item \textbf{If you use a ``fundamental theorem'' you must indicate this} and explain
+% why the theorem may be applied.
+
+% \item \textbf{Organize your work}, in a reasonably neat and coherent way, in
+% the space provided. Work scattered all over the page without a clear or
+
+% \item \textbf{Mysterious or unsupported answers will not receive full
+% credit}.  A correct answer, unsupported by calculations, explanation,
+% or algebraic work will receive no credit; an incorrect answer supported
+% by substantially correct calculations and explanations might still receive
+% partial credit.
+
+
+% \item If you need more space, use the back of the pages; clearly indicate when you have done this.
+\end{itemize}
+
+% Do not write in the table to the right.
+% \end{minipage}
+
+% \hfill
+% \begin{minipage}[t]{2.3in}
+%% \begin{minipage}[t]{3in}
+%% \framebox[\textwidth]{test out for legend!}
+% \vspace{0pt}
+% \cellwidth{3em}
+% \gradetablestretch{2}
+% \vqword{Question}
+% \addpoints % required here by exam.cls, even though questions haven't started yet.	
+% \gradetable[v]%[pages]  % Use [pages] to have grading table by page instead of question
+% \end{minipage}
+
+\newpage % End of cover page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See http://www-math.mit.edu/~psh/#ExamCls for full documentation, but the questions
+% below give an idea of how to write questions [with parts] and have the points
+% tracked automatically on the cover page.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{questions}
+
+%\fullwidth{\Large \textbf{Planning}}
+\section{Magoosh}
+% Basic question
+% \question[10] Differentiate $f(x)=x^2$ with respect to $x$.
+\question[1]
+The Sargon Corporation, which employs both men and women, offers an optional stock-option buy-in program to its employees. If 85\% of the men and 77\% of the women choose to participate in this plan, then which of the following could be the total number of employees? Indicate all possible values for the number of employees.
+\begin{choices}
+\choice 100
+\CorrectChoice 200
+\choice 350
+\CorrectChoice 460
+\choice 525
+\CorrectChoice 640
+\choice 750
+\CorrectChoice 880
+\end{choices}
+
+\begin{solution}
+Data warehouses (\textit{Correct Answer C}) are typically used to store and manage large volumes of data that is often
+historical in nature and that is used primarily for analysis. Thus, a data warehouse could be used to identify sales patterns
+for products sold within the past three years or to summarize sales by region, on a quarterly basis. \textit{InfoSphere Warehouse} is offered for data warehouse.
+\par
+
+Online transaction processing (OLTP) systems (\textit{Answer D}), are designed to support day-to-day, mission-critical business
+activities such as web-based order entry and stock trading. \textit{DB2 pureScale feature} is offered for OLTP workloads. 
+\par
+
+{\color{red} Analytical} workloads (\textit{Answer A}) are better handled by a specialized product
+known as \textit{DB2 for i and by IBM BLU Acceleration}, which is currently available
+only with DB2 10.5 for LUW.
+
+\end{solution}
+
+\question[1]
+Which product can be used to tune performance for a single query?
+\begin{choices}
+\CorrectChoice IBM Data Studio
+\choice IBM Control Center
+\choice IBM Data Administrator
+\choice IBM Workload Manager
+\end{choices}
+
+\begin{solution}
+\textit{IBM Data Studio} (\textit{Correct Answer A}) is an Eclipse-based, integrated
+development environment (IDE) that can be used to perform instance and database
+administration, routine (SQL procedure, SQL functions, etc.) and application
+development, and performance-tuning tasks. It replaces the \textit{DB2 Control Center} 
+(\textit{Answer B}) as the standard GUI tool for DB2 database administration and
+application development.
+\par
+
+\textit{IBM Workload Manager}, or WLM (\textit{Answer D}) is a comprehensive workload
+management feature that can help identify, manage, and control database workloads to
+maximize database server \textcolor{red}{throughput} and \textcolor{red}{resource
+ utilization}.
+\par
+
+There is \textbf{NO} such product as IBM Data Administrator (\textit{Answer C}).
+
+\end{solution}
+
+\newpage
+\addpoints
+
+\question[1]
+Which two DB2 products are suitable for very large data warehouse applications? (Choose two.)
+\begin{choices}
+\choice DB2 for i
+\CorrectChoice DB2 for AIX
+\CorrectChoice DB2 for z/OS
+\choice DB2 pureScale
+\choice DB2 Express-C
+\end{choices}
+
+\begin{solution}
+\textit{DB2 for i} (\textit{Answer A}), formerly known as DB2 for i5/OS, is an
+advanced, 64-bit Relational Database Management System that leverages the high
+performance, virtualization, and energy efficiency features of IBM's Power Systems; 
+its self-managing attributes, security, and built-in analytical processing functions
+make \textit{DB2 for i} an ideal database server for {\color{red} applications that 
+are analytical in nature}.
+\par
+
+\textit{DB2 for z/OS} (\textit{Correct Answer C}) is a multiuser, full-function
+database management system that has been designed specifically for z/OS, 
+IBM's flagship mainframe operating system. Tightly integrated with the IBM mainframe,
+\textit{DB2 for z/OS} leverages the strengths of System z 64-bit architecture to
+provide, among other things, the ability to support complex {\color{red} data
+warehouses}. 
+\par
+
+In addition to DB2 for z/OS, all of the DB2 Editions available \textbf{except} 
+\textit{DB2 Express-C} (\textit{Answer E}) and \textit{DB2 Express Edition} can be
+used to create data warehouse and OLTP environments. \textbf{However},
+IBM offers two solutions that are tailored specifically for one workload type or
+the other: \textit{InfoSphere Warehouse} for {\color{red} data warehousing} workloads
+and the \textit{DB2 pureScale Feature} (\textit{Answer D}) for {\color{red} OLTP}
+workloads.
+
+\end{solution}
+
+
+\question[1]
+What is the DB2 Workload Manager (WLM) used for?
+\begin{choices}
+\choice To identify, diagnose, solve, and prevent performance problems in DB2 products and associated applications.
+\CorrectChoice To customize execution environments for the purpose of controlling system resources so that one
+		department or service class does not overwhelm the system.
+\choice To respond to significant changes in a database's workload by dynamically distributing available memory resources
+		among several different database memory consumers.
+\choice To improve the performance of applications that require frequent, but relatively transient, simultaneous user
+		connections by allocating host database resources only for the duration of an SQL transaction.
+\end{choices}
+
+\begin{solution}
+\textit{IBM InfoSphere Optim Performance Manager Extended Edition} can be used to 
+identify, diagnose, solve, and prevent performance problems in DB2 products and
+associated applications (\textit{Answer A})
+\par
+
+With \textit{DB2 Workload Manager}, it is possible to customize execution
+environments so that no single workload can control and consume all of the system
+resources available. (This prevents any one department or service class from
+overwhelming the system.) (\textit{Correct Answer B})
+\par
+
+The \textit{Self-Tuning Memory Manager (STMM)} responds to significant changes in
+a database's workload by dynamically distributing available memory resources among
+several different database memory consumers. (\textit{Answer C})
+\par
+
+The \textit{Connection Concentrator} improves the performance of applications that
+require frequent, but relatively transient, simultaneous user connections by
+allocating host database resources only for the duration of an SQL transaction. 
+(\textit{Answer D})
+
+\end{solution}
+
+
+\question[1]
+Which of the following is NOT a characteristic of a data warehouse?
+\begin{choices}
+\CorrectChoice Sub-second response time
+\choice Voluminous historical data
+\choice Heterogeneous data sources
+\choice Summarized queries that perform aggregations and joins
+\end{choices}
+
+\begin{solution}
+Sub-second response time is a feature of OLTP systems.
+\end{solution}
+
+\question[1]
+Which statement about the DB2 pureScale feature is NOT true?
+\begin{choices}
+\choice The DB2 pureScale feature provides a database cluster solution for nonmainframe platforms.
+\CorrectChoice The DB2 pureScale feature is only available as part of DB2 Advanced Enterprise Server Edition.
+\choice The DB2 pureScale feature can only work with the General Parallel File System (GPFS) file system.
+\choice The DB2 pureScale feature is best suited for online transaction processing (OLTP) workloads.
+\end{choices}
+
+\begin{solution}
+The \textit{DB2 pureScale feature} is included as part of \textit{DB2 Workgroup
+Server Edition (WSE)}, \textit{DB2 Enterprise Server Edition (ESE)}, and 
+\textit{DB2 Advanced Enterprise Server Edition (AESE)}.
+\end{solution}
+
+\newpage
+\addpoints
+
+\question[1]
+Which two statements about large object (LOB) locators are true? (Choose two.)
+\begin{choices}
+\CorrectChoice A LOB locator represents a value for a LOB resource that is stored in a database.
+\CorrectChoice A LOB locator is a simple token value that is used to refer to a much bigger LOB value.
+\choice A LOB locator is a special data type that is used to store LOB data in external binary files.
+\choice A LOB locator represents a value for a LOB resource that is stored in an external binary file.
+\choice A LOB locator is a mechanism that acts similar to an index in the way that is organizes LOB values
+		so they can be quickly located in response to a query.
+\end{choices}
+
+\begin{solution}
+A LOB locator is a mechanism that refers to a LOB value from within a transaction.
+LOB locator is \textbf{NOT} a data type (\textit{Answer C}), nor is it a database
+object. Instead, it is a token value-in the form of a host variable-that is used to
+refer to a much bigger LOB value.
+\par
+
+LOB data types-\textbf{not LOB locators}-are used to store binary data values in a DB2 database
+\textit{Answer D}.
+\par
+
+LOB locators \textbf{do not} store copies of LOB data (this is make it different from index)-they
+store a description of a base LOB value, and the actual data that a LOB locator refers to is only
+materialized when it is assigned to a specific location, such as an application host variable or
+another table record (\textit{Answer E})
+
+
+\end{solution}
+
+\question[1]
+Which type of database workload typically involves making changes to a small number of records within
+a single transaction?
+\begin{choices}
+\choice Decision support
+\choice Data warehousing
+\choice Online analytical processing (OLAP)
+\CorrectChoice Online transaction processing (OLTP)
+\end{choices}
+
+\begin{solution}
+An online transaction processing (OLTP) environment often consists of hundreds to thousands of
+users issuing millions of transactions per day against databases that vary in size.
+Consequently, the volume of data affected may be very large, even though {\color{red} each transaction
+typically makes changes to only a small number of records}.
+\par
+
+Data warehousing (\textit{Answer B}) involves storing and managing large volumes of data that is often 
+historical in nature and that is used primarily for analysis. Consequently, data warehouses are frequently
+used in reporting, online analytical processing (OLAP) (\textit{Answer C}), and decision support 
+(\textit{Answer A}) environments.
+
+
+\end{solution}
+
+
+\question[1]
+Which of the following is NOT a characteristic of an OLTP database?
+\begin{choices}
+\choice Current data
+\choice Frequent updates
+\choice Granular transactions
+\CorrectChoice Optimized for queries
+\end{choices}
+
+\begin{solution}
+Data warehouse workloads typically consist of:
+\begin{itemize}
+\item bulk load operations
+\item short-running queries
+\item long-running complex queries
+\item random queries
+\item occasional updates to data
+\item execution of online utilities
+\end{itemize}
+Therefore, data warehouses are optimized for queries (\textit{Correct Answer D}).
+\par
+
+Online transaction processing (OLTP) systems features:
+\begin{itemize}
+\item Support day-to-day, mission-critical business activities
+\item Support hundreds to thousands of users issuing millions of transactions per day (\textit{Answer C})
+against databases that vary in size
+\item Response time requirements tend to be subsecond
+\item Workloads tend to be a mix of real-time insert, update (\textit{Answer B}), and delete
+operations against current-as opposed to historical-data (\textit{Answer A})
+\end{itemize}
+
+\end{solution}
+
+\question[1]
+Which two platforms support DB2 10.1 pureScale environments? (Choose two.)
+\begin{choices}
+\choice IBM mainframes running z/OS
+\CorrectChoice IBM p Series servers running AIX
+\choice IBM p Series servers running Linux
+\CorrectChoice IBM x Series servers running Linux
+\choice IBM x Series servers running a supported version of Windows
+\end{choices}
+
+\begin{solution}
+\textit{DB2 pureScale (Version 10.1)} can \textbf{ONLY} be installed on IBM p Series or x Series
+servers that are running either the AIX (p Series) or the Linux (x Series) operating system.
+\par
+
+\textit{DB2 pureScale} \textbf{CANNOT} be installed on IBM mainframes running z/OS (\textit{Answer A}),
+IBM p Series servers running Linux (\textit{Answer C}), or IBM x Series servers running Windows
+(\textit{Answer E}).
+
+\end{solution}
+% \newpage
+% \addpoints
+
+\question[1]
+Which tool can analyze and provide recommendations for tuning individual queries?
+\begin{choices}
+\choice IBM InfoSphere Data Architect
+\CorrectChoice IBM InfoSphere Optim Query Tuner
+\choice IBM InfoSphere Optim pureQuery Runtime
+\choice IBM InfoSphere Optim Performance Manager Extended Edition
+\end{choices}
+
+\begin{solution}
+\textit{IBM InfoSphere Data Architect} offers a complete solution for designing, modeling,
+discovering, relating, and standardizing data assets (\textit{Answer A}).
+\par
+
+\textit{IBM InfoSphere Optim Query Tuner}, often referred to as the Query Tuner, can analyze
+and make recommendations on ways to tune existing queries, as well as provide expert advice
+on writing new queries (\textit{Correct Answer B}).
+\par
+
+\textit{IBM InfoSphere Optim pureQuery Runtime} bridges the gap between data and Java technology
+by harnessing the power of SQL within an easy-to-use Java data access platform (\textit{Answer C}).
+\par
+
+\textit{IBM InfoSphere Optim Performance Manager Extended Edition} can identify, diagnose, solve, 
+and prevent performance problems in DB2 products and associated applications (\textit{Answer D}).
+
+
+\end{solution}
+
+\question[1]
+Which SQL statement will create a table named EMPLOYEE that can be used to store XML data?
+\begin{choices}
+\CorrectChoice CREATE TABLE employee (empid INT, resume XML)
+\choice CREATE TABLE employee (empid INT, resume XML(2000))
+\choice CREATE TABLE employee (empid INT, resume CLOB AS XML)
+\choice CREATE TABLE employee (empid INT, resume CLOB USING XML)
+\end{choices}
+
+\begin{solution}
+The \textit{DB2 pureXML} offers a simple and efficient way to create a "hybrid" DB2 database
+that allows XML data to be stored in its native, hierarchical format. With \textit{pureXML}, XML
+documents are stored in tables that contain one or more columns that have been defined with
+the XML data type.
+\par
+
+Since the XML data type does not require a size specification (\textit{Answer B}), and because
+"CLOB AS XML" (\textit{Answer C}) and "CLOB USING XML" (\textit{Answer D}) are not valid column
+definitions, the only CREATE TABLE statement shown that will execute successfully is:
+
+\begin{verbatim}
+CREATE TABLE employee (empid INT, resume XML)
+\end{verbatim}
+
+
+\end{solution}
+
+
+\question[1]
+What DB2 product provides a complete data warehousing solution that contains components
+that facilitate data warehouse construction and administration?
+\begin{choices}
+\choice DB2 pureScale Feature
+\choice DB2 Workload Manager
+\CorrectChoice IBM InfoSphere Warehouse
+\choice Database Partitioning Feature
+\end{choices}
+
+\begin{solution}
+\textit{DB2 pureScale Feature} enables a DB2 for LUW database to continuously process incoming requests,
+even if multiple system componets fail simultaneously, which makes it ideal for OLTP workloads where 
+high availability is crucial (\textit{Answer A}).
+\par
+
+\textit{DB2 Workload Manager (WLM)} is a comprehensive workload management feature that can help identify,
+manage, and control database workloads to maximize database server throughput and resource utilization
+(\textit{Answer B}).
+\par
+
+\textit{IBM InfoSphere Warehouse} is a complete data warehousing solution that contains components
+that facilitate data warehouse construction and administration, as well as tools that enable
+embedded data mining and multidimensional online analytical processing (OLAP) (\textit{Correct Answer C}).
+\par
+
+\textit{Data Partitioning Feature (DPF)} provides the ability to divide very large databases into 
+multiple parts (known as partitions) and store them across a cluster of inexpensive servers 
+(\textit{Answer D}).
+
+\end{solution}
+
+\question[1]
+Which statement about IBM Data Studio is NOT true?
+\begin{choices}
+\CorrectChoice The IBM Data Studio administration client can be installed on servers running 
+Red Hat Linux, SUSE Linux, Windows, and AIX.
+\choice IBM Data Studio replaces the DB2 Control Center as the standard GUI interface for DB2 
+database administration and application development.
+\choice IBM Data Studio is an Eclipsed-based, integrated development environment (IDE) that can be 
+used to perform instance and database administration.
+\choice IBM Data Studio allows users to connect to a DB2 database using a wizard; however, users 
+are required to provide login credentials before a connection will be established.
+\end{choices}
+
+\begin{solution}
+There are three different IBM Data Studio components to choose from: \textit{IBM Data Studio
+administration client}, \textit{IBM Data Studio full client}, and \textit{IBM Data Studio web console}.
+All three components can be installed on servers running Red Hat Linux, SUSE Linux, and Windows; 
+IBM Data Studio web console can be installed on servers running the AIX operating system as well.
+(\textbf{IBM Data Studio administration client cannot be installed on AIX servers}).
+
+\end{solution}
+
+\question[1]
+Which statement about inline large objects (LOBs) is NOT true?
+\begin{choices} 
+\choice When a table contains columns with inline LOBs, fewer rows can fit on a page.
+\choice Inline LOBs are created by appending the INLINE LENGTH clause to a LOB column's definition.
+\CorrectChoice Because DML operations against inline LOBs are never logged, their use can reduce logging overhead.
+\choice Inline LOBs improve query performance by storing LOB data in the same data pages as the rest of a
+table's rows, rather than in a separate LOB storage object.
+\end{choices}
+
+\begin{solution}
+By default, Large object (LOB) data is stored in separate LOB storage objects and changes to LOB data
+are not recorded in transaction log files. However, LOBs that are relatively small can be stored in the
+same data pages as the rest of a table's rows-such LOBs are referred to as \textit{inline LOBs}, and
+transactions that modify inline LOB data are always logged. Consequently, the use of inline LOBs can
+increase-\textbf{not reduce}-logging overhead.
+\par
+
+Inline LOBs are created by appending the INLINE LENGTH clause to a LOB column's definition (\textit{Answer B}), which can be specified via the \texttt{CREATE TABLE} or \texttt{ALTER TABLE} statement. Inline LOBs
+improve the performance of queries that access LOB data since no additional I/O is needed to access
+this type of data (\textit{Answer D}). However, when a table has columns with inline LOBs in it,
+fewer rows will fit on a page (\textit{Answer A}).
+
+\end{solution}
+
+\newpage
+\addpoints
+%\fullwidth{\Large \textbf{Security}}
+\section{Security}
+\question[1]
+{\color{red} A user named USER1 has been granted \texttt{DATAACCESS} authority for a database named PAYROLL. What is user USER1 allowed to do?}
+\begin{choices}
+	\choice Implicitly create a new schema in the PAYROLL database.
+	\choice Grant and revoke priviledges on objects that reside in the PAYROLL database.
+	\CorrectChoice Retrieve and change data stored in user tables, views. and materialized query tables.
+	\choice Create database objects, issue database-specific DB2 commands, and run DB2 utilities that 
+	do not change data.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} IMPLICIT\_SCHEMA database privilege
+\item \textit{Answer B} ACCESSCTRL
+\item \textit{Answer D} DBMAINT
+\end{itemize}
+\end{solution}
+
+\question[1]
+Which attribute is NOT needed to define a trusted context?
+\begin{choices}
+\choice A system authorization ID
+\choice A data stream encryption value
+\CorrectChoice A system authorization password
+\choice The IP address or domain name of an incoming connection
+\end{choices}
+
+\question[1]
+Which SQL statement will take the ability to run an Embedded SQL application named 
+PERF\textunderscore REVIEW that calls a package named CORP.CALC\textunderscore Bonus away from a user named USER1?
+\begin{choices}
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{FROM} user1
+\CorrectChoice \texttt{REVOKE EXECUTION ON PACKAGE} corp.calc\textunderscore bonus \texttt{FROM} user1
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{PACKAGE} corp.calc
+\textunderscore bonus \texttt{FROM} user1
+\choice \texttt{REVOKE EXECUTION ON APPLICATION} perf\textunderscore review \texttt{USING PACKAGE} corp.calc\textunderscore bonus \texttt{FROM} user1
+\end{choices}
+
+\begin{solution}
+No APPLICATION database objects (or related privileges)
+\end{solution}
+
+\newpage
+
+\question[1]
+{\color{red}If a user is given \texttt{SELECT} privilege on a table named EMPLOYEES, which two actions are 
+they allowed to perform? (Choose two.)}
+\begin{choices}
+\choice Add data to the EMPLOYEE table.
+\CorrectChoice Create a view on the EMPLOYEE table.
+\CorrectChoice Retrieve data from the EMPLOYEE table.
+\choice Create an index for the EMPLOYEE table.
+\choice Change the definition for the EMPLOYEE table.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} INSERT table privilege
+\item \textit{Answer D} INDEX table privilege
+\item \textit{Answer E} ALTER table privilege
+\end{itemize}
+\end{solution}
+
+\question[1]
+Which SQL statement will allow a user named USER1 to both remove records from a table named
+SALES and give the ability to remove records from the SALES table to others?
+\begin{choices}
+\CorrectChoice \texttt{GRANT DELETE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT OPTION}
+\choice \texttt{GRANT REMOVE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT OPTION}
+\choice \texttt{GRANT DELETE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT PRIVILEGES}
+\choice \texttt{GRANT REMOVE ON TABLE} sales \texttt{TO} user1 \texttt{WITH GRANT PRIVILEGES}
+\end{choices}
+
+\begin{solution}
+No "REMOVE" table privilege and "WITH GRANT PRIVILEGES" clause
+\end{solution}
+
+\question[1]
+{\color{red} If a user is granted the \texttt{BIND} privilege, what are they allowed to do?}
+\begin{choices}
+\choice Create a new package.
+\CorrectChoice Bind or rebind (recreate) a specific package.
+\choice Register user-defined functions (UDFs) and procedures.
+\choice Associate user-defined functions (UDFs) and procedures with specific database objects.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} BINDADD table privilege
+\item \textit{Answer C} CREATE\_EXTERNAL\_ROUTINE table privilege
+\item \textit{Answer D} No such authority or privilege exists
+\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red} Which statement about \texttt{Security Administrator (SECADM)} authority is true?}
+\begin{choices}
+\choice Users with \texttt{SECADM} authority are not allowed to access data stored in system 
+catalog tables and views.
+\CorrectChoice Only users with \texttt{SECADM} authority are allowed to grant and revoke \texttt{SECADM}
+authority to/from others.
+\choice When a user with \texttt{SECADM} authority creates a database, that user is automatically granted
+\texttt{DBADM} authority for that database.
+\choice With DB2 for z/OS, \texttt{SYSADM} authority and \texttt{SECADM} authority are combined under
+\texttt{SYSADM} authority and cannot be separated.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} CAN access data stored in system catalog tables and views; CANNOT access user data
+\item \textit{Answer C} Individuals who possess SECADM CANNOT create databases
+\item \textit{Answer D} CAN separate: set the SEPARATE\_SECURITY system parameter on panel DSNTIPP1 to YES
+during installation or migration
+\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red} Which statement about trusted context is true?}
+\begin{choices}
+\choice Trusted context objects can only be defined by someone with \texttt{SYSADM} or \texttt{SECADM}
+authority.
+\choice An authorization ID, IP address, encryption value, and authentication type must be identified
+before a trusted context can be defined.
+\CorrectChoice After a trusted connection is established, if a switch request is made with an authorization ID
+that is not allowed on the connection, the connection is placed in the "Unconnected" state.
+\choice If a trusted context is assigned to a role, any authorization ID that uses the trusted context
+will acquire the authorities and privileges that have been assigned to the role; any authorities or
+privileges that have been granted to the authorization ID are ignored.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} can ONLY be defined by SECADM
+\item \textit{Answer B} An authentication type is NOT needed to define a trusted context
+\item \textit{Answer D} any authorities or privileges that have been granted to the authorization ID are 
+NOT ignored. (DB2 z/OS extended trusted context)
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+{\color{red} If a user has \texttt{ACCESSCTRL} authority, which two authorities and/or privileges are they 
+allowed to grant to others? (Choose two.)}
+\begin{choices}
+\choice \texttt{SYSADM}
+\choice \texttt{SECADM}
+\CorrectChoice \texttt{EXECUTE}
+\CorrectChoice \texttt{CREATETAB}
+\choice \texttt{ACCESSCTRL}
+\end{choices}
+
+\begin{solution}
+SYSADM (\textit{Answer A}), SECADM (\textit{Answer B}), and ACCESSCTRL (\textit{Answer D}) are system-
+level and database-level authorities-not object privilege. Consequently, they can only be granted by 
+SECADM.
+\end{solution}
+
+\question[1]
+Which of the following is used to group a collection of privileges together so that they can be
+simultaneously granted to and revoked from multiple users?
+\begin{choices}
+\CorrectChoice Role
+\choice Catalog
+\choice Function
+\choice Collection
+\end{choices}
+
+\question[1]
+{\color{red}Which method for restricting data access relies on the server or the local DB2 subsystem to 
+prevent unauthorized users from accessing data stored in a database?}
+\begin{choices}
+\choice Privileges
+\CorrectChoice Authentication
+\choice Label-based access control
+\choice Row and column access control
+\end{choices}
+
+\begin{solution}
+Server is the key word in this question. 
+\end{solution}
+
+\question[1]
+When is an SQL search condition used to limit access to data in a table?
+\begin{choices}
+\choice When \texttt{mandatory access control (MAC)} is used to protect the table.
+\choice When \texttt{label-based access control (LBAC)} is used to protect the table.
+\choice When \texttt{discretionary access control (DAC)} is used to protect the table.
+\CorrectChoice When \texttt{row and column access control (RCAC)} is used to protect the table.
+\end{choices}
+
+\question[1]
+{\color{red} Which SQL statement will give user USER1 the ability to create tables in a table space named USERSPACE2?}
+\begin{choices}
+\CorrectChoice \texttt{GRANT USE OF TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT ALTER ON TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT USAGE OF TABLESPACE} userspace2 \texttt{TO} user1
+\choice \texttt{GRANT CREATETAB ON TABLESPACE} userspace2 \texttt{TO} user1
+\end{choices}
+
+\begin{solution}
+Only one table space privilege exists-the USE (or USE OF TABLESPACE) privilege
+\end{solution}
+
+\question[1]
+Which SQL statement will give user USER1 the ability to assign a comment to a table named MYTABLE?
+\begin{choices}
+\CorrectChoice \texttt{GRANT ALTER ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT USAGE ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT INSERT ON TABLE} mytable \texttt{TO} user1
+\choice \texttt{GRANT UPDATE ON TABLE} mytable \texttt{TO} user1
+\end{choices}
+
+\question[1]
+Which privileges are needed to invoke an SQL stored procedure that queries a table?
+\begin{choices}
+\choice \texttt{CALL} privilege on the procedure; \texttt{SELECT} privilege on the table.
+\CorrectChoice \texttt{EXECUTE} privilege on the procedure; \texttt{SELECT} privilege on the table.
+\choice \texttt{CALL} privilege on the procedure; \texttt{REFERENCES} privilege on the table.
+\choice \texttt{EXECUTE} privilege on the procedure; \texttt{REFERENCES} privilege on the table.
+\end{choices}
+
+\question[1]
+Which privileges allows a user to use the \texttt{PREVIOUS VALUE} and \texttt{NEXT VALUE} sequence 
+expressions?
+\begin{choices}
+\choice \texttt{USE}
+\choice \texttt{ALTER}
+\CorrectChoice \texttt{USAGE}
+\choice \texttt{EXECUTE}
+\end{choices}
+
+\begin{solution}
+sequence only has two privileges - USAGE (\textbf{NOT} use) \& ALTER. ALTER privilege allows  user to
+\begin{itemize}
+\item restarting the sequence
+\item changing the increment value for the sequence
+\item add or change the comment associated with a sequence
+\end{itemize}
+\end{solution}
+
+\question[1]
+A table named CUSTOMER was created as follows:
+\begin{verbatim}
+CREATE TABLE customer
+(cust_id   INTEGER NOT NULL PRIMARY KEY,
+ f_name    VARCHAR(30),
+ l_name    VARCHAR(40),
+ cc_number NUMERIC(16,0) NOT NULL)
+\end{verbatim}
+Which two actions will prevent unauthorized users from accessing credit card number (CC\textunderscore 
+NUMBER) information? (Choose two.)
+\begin{choices}
+\choice Assign the CC\textunderscore NUMBER column to a restricted role that only authorized users
+are allowed to access.
+\choice Only grant \texttt{ACCESSCTRL} authority for the CC\textunderscore NUMBER column to users who
+need to access credit card number information.
+\choice Alter the table definition so that CC\textunderscore NUMBER data is stored in a separate schema
+that only authorized users are allowed to access.
+\CorrectChoice Create a view for the CUSTOMER table that does not contain the CC\textunderscore NUMBER column
+and require unauthorized users to use the view.
+\CorrectChoice Create a column mask for the CC\textunderscore NUMBER column with the ENABLE option specified and 
+alter the CUSTOMER table to activate column access control.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} No such thing as a "restricted" role
+\item \textit{Answer B} ACCESSCTRL does not have ability to retrieve data
+\item \textit{Answer C} Objects such as tables, views, and index can be stored in different schemas, but 
+individual table columns cannot. And even if they could, there is no privilege that can be used to 
+prevent certain individuals from accessing objects that have been stored in a particular schema
+\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red} Which authority is needed to create and drop databases?}
+\begin{choices}
+\choice \texttt{DBADM}
+\choice \texttt{DBCTRL}
+\CorrectChoice \texttt{SYSCTRL}
+\choice \texttt{SYSMAINT}
+\end{choices}
+
+\newpage
+
+\question[1]
+Which statement regarding \texttt{label-based access control (LBAC)} is true?
+\begin{choices}
+\choice Two types of security label components are supported: array and tree.
+\CorrectChoice Every LBAC-protected table must have only one security policy associated with it.
+\choice To configure a table for row-level LBAC protect, you must include the \texttt{SECURED WITH}
+clause with each column's definition.
+\choice To configure a table for column-level LBAC protection, you must include a column with the
+\texttt{DB2SECURITYLABEL} data type in the table's definition.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} Three types of security label components are supported: SET, ARRAY and TREE
+\item \textit{Answer C} To configure a table for row-level LBAC protect, you must associate a security 
+policy with the table (using the SECURITY POLICY clause of the CREATE TABLE or ALTER TABLE statement) and
+\textit{include a column with the data type in the table's definition}
+\item \textit{Answer D} To configure a table for column-level LBAC protect, you must associate a security
+policy with the table and \textit{configure each of the table's columns for protection by adding the
+SECURED WITH clause to every column's definition}
+\item \textit{Answer C} and \textit{D} are incorrect because they state just the opposite
+\end{itemize}
+\end{solution}
+
+\question[1]
+Which method for restricting data access relies on an SQL CASE expression to control the conditions
+under which a user can access for a column?
+\begin{choices}
+\choice Authority
+\choice Authentication
+\choice Label-based access control
+\CorrectChoice Row and column access control
+\end{choices}
+
+\question[1]
+Which two statements about Row and column Access Control (RCAC) are valid? (Choose two.)
+\begin{choices}
+\choice A column mask's access control rule is defined by an SQL search condition.
+\CorrectChoice A column mask's access control rule is defined by an SQL CASE expression.
+\CorrectChoice A row permission's access control rule is defined by an SQL search condition.
+\choice A row permission's access control rule is defined by an SQL CASE expression.
+\choice A column mask's access control rule is defined by a \texttt{SECURED WITH} clause of 
+a \texttt{CREATE TABLE} or \texttt{ALTER TABLE} statement.
+\end{choices}
+
+\newpage
+
+\question[1]
+Which privilege is needed to invoke a stored procedure?
+\begin{choices}
+\choice \texttt{USE}
+\choice \texttt{CALL}
+\choice \texttt{USAGE}
+\CorrectChoice \texttt{EXECUTE}
+\end{choices}
+
+\newpage
+%\fullwidth{\Large \textbf{Working with Databases and Database Objects}}
+\section{Working with Databases and Database Objects}
+\question[1]
+Which statement about views is NOT true?
+\begin{choices}
+	\CorrectChoice A view can be defined as being updatable or read-only.
+	\choice Views obtain their data from the table(s) or view(s) they are based on.
+	\choice A view can be used to limit a user's ability to retrieve data from a table
+	\choice The SQL statement provided as part of a view's definition determines what data is 
+	presented when the view is referenced.
+\end{choices}
+
+\begin{solution}
+	views can be defined as being \textit{insertable}, updatabale, \textit{deletable}, or read-only.
+\end{solution}
+
+\question[1]
+{\color{red}If the following SQL statement is executed:
+\begin{verbatim}
+CREATE DISTINCT TYPE pound_sterling AS DECIMAL (9,2) WITH COMPARISONS
+\end{verbatim}
+Which event will NOT happen?}
+\begin{choices}
+	\choice A user-defined data type that can be used to store numerical data as British currency will be
+	created.
+	\choice Six comparison functions will be created so that POUND\_STERLING values can be compared to each
+	other.
+	\choice Two casting functions will be created so that POUND\_STERLING values can be converted to DECIMAL
+	values, and vice versa.
+	\CorrectChoice A compatibility function will be created so all of DB2's built-in functions that accept DECIMAL
+	values as input can be used with POUND\_STERLING data.
+\end{choices}
+
+\begin{solution}
+	Distinct types cannot be used as arguments for most built-in functions, and built-in data types cannot be used in arguments
+	or operands that expect distinct data types. Instead, user-defined functions (UDFs) that provide similar functionality must 
+	be developed if that capability is needed.
+\end{solution}
+
+\question[1]
+{\color{red}If the following SQL statements are executed:}
+\begin{verbatim}
+CREATE TABLE sales(
+order_num      INTEGER NOT NULL,
+customer_name  VARCHAR(50),
+amount_due     DECIMAL(6,2));
+CREATE UNIQUE INDEX idx_ordernum ON sales(order_num);
+\end{verbatim}
+{\color{red}Which two statements are true? (Choose two.)}
+\begin{choices}
+	\CorrectChoice Every ORDER\_NUM value must be unique.
+	\choice Duplicate ORDER\_NUM values are allowed.
+	\choice No other indexes can be created for the SALES table.
+	\CorrectChoice A query will return rows from the SALES table in no specific order.
+	\choice Index IDX\_ORDERNUM will serve as the primary key for the SALES table.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer D} Because index do not physically change the order of records in a table, queries that do not take advantage of index
+		will return rows from a table in no specific order (To be more concise, \textbf{cluster} clause not specified in \texttt{CREATE UNIQUE INDEX} statement)
+		\item \textit{Answer E} Because ORDER\_NUM column was not defined as a primary key in the scenario presented, the index produced by the CREATE INDEX
+		statement shown will \textit{not} serve as the primary key index for the SALES table
+	\end{itemize}
+\end{solution}
+
+\question[1]
+What is the minimum product that is needed to give applications running on personal computers the 
+ability to work with DB2 databases that reside on System z platforms, without using a gateway?
+\begin{choices}
+	\CorrectChoice DB2 Connect Personal Edition
+	\choice DB2 Connect Enterprise Edition
+	\choice IBM DB2 Connect Unlimited Advanced Edition for System z
+	\choice IBM DB2 Connect Unlimited Advanced Edition for System i
+\end{choices}
+
+\newpage
+\question[1]
+Which action does NOT need to be performed to complete the definition of an application-period temporal
+table?
+\begin{choices}
+	\choice A business-time-begin column must be created for the table.
+	\choice A business-time-end column must be created for the table.
+	\choice A BUSINESS\_TIME period must be specified in a CREATE or ALTER of the table.
+	\CorrectChoice A unique index must be created that prevents overlapping of the BUSINESS\_TIME period of the 
+	table.
+\end{choices}
+
+\question[1]
+What are buffer pools used for?
+\begin{choices}
+	\CorrectChoice To cache table and index data as it is read from disk.
+	\choice To keep track of changes that are made to a database as they occur.
+	\choice To control the amount of processor resources that SQL statements can consume.
+	\choice To provide a layer of indirection between a data object and the storage where that object's data
+	resides.
+\end{choices}
+
+\question[1]
+{\color{red}Which statement regarding distributed requests is NOT true?}
+\begin{choices}
+	\CorrectChoice To implement distributed request functionality, all you need is a federated database and one
+	or more remote data sources.
+	\choice Distributed request functionality allows a UNION operation to be performed between a DB2 table and
+	an Oracle view.
+	\choice Distributed request functionality allows SQL operations to reference two or more databases or 
+	relational database management systems in a single statement.
+	\choice DB2 Connect provides the ability to perform distributed requests across members of the DB2 Family,
+	as well as across other relational database management systems.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} To implement distributed request functionality, you need \textit{a DB2 Connect instance},
+		a database that will serve as a federated database, and one or more remote data sources.
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Which statement about indexes is NOT true?
+\begin{choices}
+	\choice An index can be used to enforce the uniqueness of records in a table.
+	\choice Indexes provide a fast, efficient method for locating specific rows in a table.
+	\choice When an index is created, metadata for the index is stored in the system catalog.
+	\CorrectChoice Indexes automatically provide both a logical and physical ordering of the rows in a table.
+\end{choices}
+
+\begin{solution}
+	An index is an object that contains pointers to rows in a table that are \textit{logically} ordered according to the values
+	of one or more columns (known as keys). Special index known as \textit{clustering} index can cause the rows of a table to be physically
+	arranged according to the ordering of their key column values, but such index are not created automatically. 
+\end{solution}
+
+\question[1]
+What are Materialized Query Tables (MQTs) used for?
+\begin{choices}
+	\choice To physically cluster data on more than one dimension, simultaneously.
+	\CorrectChoice To improve the execution performance of qualified SELECT statements.
+	\choice To hold nonpresistent data temporarily, on behalf of a single application.
+	\choice To track effective dates for data that is subject to changing business conditions.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} Multidimensional clustering tables (MDC)
+		\item \textit{Answer C} Declared global temporary tables
+		\item \textit{Answer D} application-period temporal tables
+	\end{itemize}
+\end{solution}
+
+
+\question[1]
+Which two actions must be performed to track changes made to a system-period temporal table over time?
+(Choose two.)
+\begin{choices}
+	\CorrectChoice A history table must be created with columns that are identical to those of the system-period
+	temporal table.
+	\CorrectChoice The system-period temporal table must be altered using the ADD VERSIONING clause to relate it to
+	a history table.
+	\choice A primary key must be defined for the system-period temporal table that prevents overlapping
+	of SYSTEM\_TIME periods.
+	\choice A unique index must be defined on the transaction-start-id column of both the system-period 
+	temporal table and its associated history table.
+	\choice The system-period temporal table must be altered to add system-time-begin, system-time-end, 
+	transaction-start-id, and transaction-end-id columns.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item A primary key (\textit{Answer C}) or unique index (\textit{Answer D}) does not have to be included in the definition provided
+		for a system-period temporal table.
+		\item \textit{Answer E} transaction-end-id column is not needed (nor recognized by DB2)
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Which database object can be used to automatically generate a numeric value that is not tied to any
+specific column or table?
+\begin{choices}
+	\choice Alias
+	\choice Schema
+	\choice Package
+	\CorrectChoice Sequence
+\end{choices}
+
+\newpage
+\question[1]
+Which column is NOT required as part of the table definition for a system-period temporal table?
+\begin{choices}
+	\choice A row-begin column with a TIMESTAMP(12) data type
+	\choice A row-end column with a TIMESTAMP(12) data type
+	\choice A transaction-start-id column with a TIMESTAMP(12) data type
+	\CorrectChoice A transaction-stop-id column with a TIMESTAMP(12) data type
+\end{choices}
+
+\question[1]
+Which object can NOT be enabled for compression?
+\begin{choices}
+	\CorrectChoice Views
+	\choice Indexes
+	\choice Base tables
+	\choice Temporary tables
+\end{choices}
+
+\begin{solution}
+	Since views do not contain data, they cannot be enabled for compression.
+\end{solution}
+
+\question[1]
+What is a schema used for?
+\begin{choices}
+	\choice To provide an alternate name for a table or view.
+	\CorrectChoice To provide a logical grouping of database objects.
+	\choice To generate a series of numbers, in ascending or descending order.
+	\choice To provide an alternative way of describing data stored in one or more tables.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} Alias
+		\item \textit{Answer C} Sequence
+		\item \textit{Answer D} View
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Which view definition type is NOT supported?
+\begin{choices}
+	\choice Insertable
+	\choice Updatable
+	\choice Read-only
+	\CorrectChoice Write-only
+\end{choices}
+
+\newpage
+\question[1]
+When should an application-period temporal table be used?
+\begin{choices}
+	\choice When you want to keep track of historical versions of a table's rows.
+	\CorrectChoice When you want to define specific time periods in which data is valid.
+	\choice When you want to cluster data according to the time in which rows are inserted.
+	\choice When you want to cluster data on more than one key or dimension, simultaneously.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} system-period temporal table
+		\item \textit{Answer C} insert time clustering (ITC) tables
+		\item \textit{Answer D} multidimensional clustering (MDC) tables 
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Which statement about buffer pools is NOT true?
+\begin{choices}
+	\choice Every table space must have a buffer pool assigned to it.
+	\choice One buffer pool is created automatically as part of the database creation process.
+	\CorrectChoice Dirty pages are automatically removed from a buffer pool when they are written to storage.
+	\choice Once a page has been copied to a buffer pool, it remains there until the space it occupies is 
+	needed.
+\end{choices}
+
+\question[1]
+Which DB2 object can a view NOT be derived from?
+\begin{choices}
+	\choice Alias
+	\choice View
+	\choice Table
+	\CorrectChoice Procedure
+\end{choices}
+
+\question[1]
+Which two expressions can be used with a sequence? (Choose two.)
+\begin{choices}
+	\CorrectChoice NEXT VALUE
+	\choice PRIOR VALUE
+	\choice CURRENT VALUE
+	\CorrectChoice PREVIOUS VALUE
+	\choice SUBSEQUENT VALUE
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}Which object is a distinct data type defined into?}
+\begin{choices}
+	\CorrectChoice Schema
+	\choice Package
+	\choice Database
+	\choice Table space
+\end{choices}
+
+\begin{solution}
+	When table spaces, tables, index, \textit{distnct data types}, functions, stored procedures, and triggers are created, they are
+	automatically assigned to (or defined into) a schema, based upon the qualifier that was provided as part of the user-supplied name.
+\end{solution}
+
+\question[1]
+Which two objects can NOT be created in DB2? (Choose two.)
+\begin{choices}
+	\CorrectChoice Plan
+	\choice Trigger
+	\CorrectChoice Scheme
+	\choice Function
+	\choice Sequence
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} While packages can contain data access plans that were implicitly created, there is no way to explicitly create a 
+		data access plan.
+		\item \textit{Answer C} There is no such thing as a "scheme" object, scheme objects cannot be explicitly created.
+	\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red}Which statement about Type 2 connections is true?}
+\begin{choices}
+	\choice Type 2 connections cannot be used with DB2 for z/OS
+	\choice Type 2 connections are used by default with DB2 for Linux, Unix, and Windows.
+	\choice Type 2 connections allow applications to be connected to only one database at a time.
+	\CorrectChoice Type 2 connections allow applications to connect to and work with multiple DB2 databases 
+	simultaneously.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} Type 2 connections can be used with DB2 for z/OS
+		\item \textit{Answer B} Type 1 connections are used by default with DB2 LUW; Type 2 connections are used by default with DB2 z/OS.
+		\item \textit{Answer C} Type 2 connections allow a single transaction to connect to and work with multiple databases simultaneously.
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Which two statements about bitemporal tables are valid? (Choose two.)
+\begin{choices}
+	\choice Bitemporal tables are system tables and can only be queried by the table owner.
+	\CorrectChoice When data in a bitemporal table is updated, a row is added to its associated history table.
+	\choice Creating a bitemporal table is similar to creating a base table except users must define a 
+	SYSTEM\_TIME\_PERIOD column.
+	\CorrectChoice When querying a bitemporal table, you have the option of providing a system time-period 
+	specification, a business time-period specification, or both.
+	\choice Bitemporal tables must contain bitemporal-time-begin, bitemporal-time-end, and transaction-start-i
+	id columns, along with SYSTEM\_TIME and BUSINESS\_TIME periods.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} Bitemporal tables are user tables, NOT system tables.
+		\item \textit{Answer C} Created by executing a CREATE TABLE statement with both the PERIOD SYSTEM\_TIME clause and the PERIOD BUSINESS\_TIME clause specified.
+		\item \textit{Answer D} No "bitemporal-time-begin" and "bitemporal-time-end" columns exist.
+	\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red}Which programming interface is widely used for database access because it allows applications to run, 
+unchanged, on most hardware platforms?}
+\begin{choices}
+	\choice ODBC
+	\choice SQLJ
+	\CorrectChoice JDBC
+	\choice OLE DB
+\end{choices}
+
+\question[1]
+Which two types of temporal tables can be used to store time-sensitive data? (Choose two.)
+\begin{choices}
+	\CorrectChoice Bitemporal
+	\choice Time-period
+	\choice System-period
+	\choice Business-period
+	\CorrectChoice Application-period
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}In which of the following scenarios would a stored procedure be beneficial?}
+\begin{choices}
+	\choice An application running on a remote client needs to track every modification made to a 
+	table that contains sensitive data.
+	\choice An application running on a remote client needs to be able to convert degress Celsius to degrees
+	Fahrenheit and vice versa.
+	\choice An application running on a remote client needs to ensure that every new employee that joins the 
+	company is assigned a unique, sequential employee number.
+	\CorrectChoice An application running on a remote client needs to collect input values from a user, 
+	perform a calculation using the values provided, and store the input data, along with the calculation
+	results, in a base table.
+\end{choices}
+
+\begin{solution}
+	\begin{itemize}
+		\item \textit{Answer A} trigger
+		\item \textit{Answer B} UDF
+		\item \textit{Answer C} sequence
+	\end{itemize}
+\end{solution}
+
+\question[1]
+Given the following SQL statement:
+\begin{verbatim}
+CREATE ALIAS emp_info FOR employees
+\end{verbatim}
+Which two objects can the name EMPLOYEES refer to? (Choose two.)
+\begin{choices}
+	\CorrectChoice A view
+	\CorrectChoice An alias
+	\choice An index
+	\choice A sequence
+	\choice A procedure
+\end{choices}
+
+\question[1]
+{\color{red}Which operation can NOT be performed by executing an ALTER SEQUENCE statement?}
+\begin{choices}
+	\CorrectChoice Change a sequence's data type.
+	\choice Change whether a sequence cycles.
+	\choice Establish new minimum and maximum sequence values.
+	\choice Change the number of sequence numbers that are cached.
+\end{choices}
+
+\question[1]
+Which object must exist before an index can be created?
+\begin{choices}
+	\choice View
+	\CorrectChoice Table
+	\choice Schema
+	\choice Sequence
+\end{choices}
+
+\question[1]
+{\color{red}If the following SQL statement is executed:}
+\begin{verbatim}
+CREATE DATABASE payroll
+\end{verbatim}
+Which two statements are true? (Choose two.)
+\begin{choices}
+	\CorrectChoice The PAYROLL database will have a page size of 4KB.
+	\choice The PAYROLL database will have a page size of 8KB.
+	\CorrectChoice The PAYROLL database will be an automatic storage database.
+	\choice The PAYROLL database will not be an automatic storage database.
+	\choice The PAYROLL database will be assigned the comment "PAYROLL DATABASE."
+\end{choices}
+
+\begin{solution}
+When the simplest form of the CREATE DATABASE command is executed, the database will be
+\begin{itemize}
+	\item an automatic storage database
+	\item have a page size of 4 KB
+	\item be created on the default database path that is specified in the \textit{dftdbpath} database manager configuration parameter
+	\item default table spaces (SYSCATSPACE, TEMPSPACE1, and USERSPACE1) will be automatic storage table spaces (Their containers will also be created on
+	the default database path.)
+\end{itemize}	
+---------------------
+
+\begin{itemize}
+	\item \textit{Answer B} PAGESIZE 8192 option
+	\item \textit{Answer C} AUTOMATIC STORAGE NO option
+	\item \textit{Answer D} WITH "PAYROLL DATABASE" option 
+\end{itemize}
+\end{solution}
+
+\newpage
+%\fullwidth{\Large \textbf{Working with DB2 Data Using SQL}}
+\section{Working with DB2 Data Using SQL}
+\question[1]
+If the following result set is desired:
+\begin{verbatim}
+STATE          REGION          AVG_INCOME
+------------- --------------- -------------
+MARYLAND      MID-ATLANTIC     86056.00
+NEW JERSEY    NORTHEAST        85005.00
+CONNECTICUT   NORTHEAST        84558.00
+MASSACHUSETTS NORTHEAST        82009.00
+ALASKA        PACIFIC-ALASKA   79617.00
+\end{verbatim}
+Which SQL statement must be executed?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3
+		  FETCH FIRST 5 ROWS ONLY
+	    \end{verbatim}
+\choice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT state, region, avg_income
+		  FROM census_data
+		  ORDER BY 3 DESC
+		  FETCH FIRST 5 ROWS ONLY
+        \end{verbatim}
+\end{choices}
+
+\question[1]
+Which type of join will usually produce the smallest result set?
+\begin{choices}
+\CorrectChoice INNER JOIN
+\choice LEFT OUTER JOIN
+\choice RIGHT OUTER JOIN
+\choice FULL OUTER JOIN
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}Which statement about SQL subqueries is NOT true?}
+\begin{choices}
+\choice A subquery can be used with an UPDATE statement to supply values for one or more columns 
+that are to be updated.
+\choice A subquery can be used with an INSERT statement to retrieve values from one base table or view
+and copy them to another.
+\CorrectChoice If a subquery is used with a DELETE statement and the result set produced is empty, every record
+will be deleted from the table specified.
+\choice If a subquery is used with an UPDATE statement and the result set produced contains multiple rows,
+the operation will fail and an error will be generated.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} If a subquery is used with a DELETE statement and the result set produced is
+empty, \textbf{no} records will be deleted from the table specified and \textbf{an error will be
+returned}.
+\item \textit{Answer D} when used with an UPDATE statement, the subselect provided must \textbf{not
+ return more than one row}.
+\end{itemize}
+\end{solution}
+
+
+\question[1]
+{\color{red} Which statement about savepoints is NOT true?}
+\begin{choices}
+\choice You can use as many savepoints as you desire within a single unit of work, provided you do not
+nest them.
+\choice Savepoints provide a way to break the work being done by a single large transaction into one or
+more smaller subsets.
+\CorrectChoice The COMMIT FROM SAVEPOINT statement is used to commit a subset of database changes that have
+been made within a unit of work.
+\choice The ROLLBACK TO SAVEPOINT statement is used to back out a subset of database changes that have
+been made within a unit of work.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} TO SAVEPOINT clause cannot be used with a COMMIT statement to apply a
+subset of database changes that have been made by a transaction to a database and make them permanent.
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which two statements about UPDATE processing are true? (Choose two.)
+\begin{choices}
+\choice A positioned UPDATE is used to modify one or more rows, and a searched UPDATE is used to 
+modify exactly one row.
+\CorrectChoice A searched UPDATE is used to modify one or more rows, and a positioned UPDATE is used to
+modify exactly one row.
+\choice When the UPDATE statement modifies parent key columns, the values of corresponding foreign key
+columns are modified as well.
+\choice The UPDATE statement can be used to remove data from specified columns in the rows of a table,
+provided those columns are not nullable.
+\CorrectChoice The UPDATE statement can be used to modify the values of specified columns in the rows
+of a table, view, or underlying table(s) of a specified fullselect.
+\end{choices} 
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer D} are \sout{not} nullable
+\item \textit{Answer C} When the UPDATE statement is used to modify the values stored in parent key 
+columns, the update rule of the corresponding referential constraint is evaluated to determine whether
+the update is allowed - the values of corresponding foreign key columns are \textit{not altered}.
+\end{itemize}
+\end{solution}
+
+\question[1]
+A table named SALES has two columns: SALES\_AMT and REGION\_CD. Which SQL statement will return the number
+of sales in each region, ordered by number of sales made?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  ORDER BY 2
+	 	\end{verbatim}
+\choice \begin{verbatim}
+		SELECT sales_amt, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY 1
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY region_cd
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT region_cd, COUNT(*)
+		  FROM sales
+		  GROUP BY sales_amt
+		  ORDER BY COUNT(*)
+		\end{verbatim}
+\end{choices}
+
+\newpage
+\question[1]
+A user wants to retrieve records from a table named SALES that satisfy at least one of the following
+criteria:
+	\begin{itemize}
+	\item The sales date (SALESDATE) is after June 1, 2012, and the sales amount (AMT) is greater
+	than \$40.00.
+	\item The sales was made in the hardware department. 
+	\end{itemize}
+Which SQL statement will accomplish this?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' OR (amt > 40
+		   AND (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01') OR (amt > 40)
+		    OR (dept = 'Hardware')
+		\end{verbatim}
+\choice \begin{verbatim}
+ 		SELECT * FROM sales
+ 		  WHERE (salesdate > '2012-06-01' AND amt > 40
+ 		   AND (dept = 'Hardware')
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT * FROM sales
+		  WHERE (salesdate > '2012-06-01' AND amt > 40)
+		   OR (dept = 'Hardware')
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which two statements about INSERT operations are true?} (Choose two.)
+\begin{choices}
+\choice The INSERT statement can be used to insert rows into a table, view, or table function.
+\CorrectChoice Inserted values must satisfy the conditions of any check constraints that have been defined 
+on the table specified.
+\CorrectChoice The values provided in the VALUES clause of an INSERT statement are assigned to columns in 
+the order in which they appear.
+\choice If an INSERT statement omits any column from the inserted row that is defined as NULL or NOT
+NULL WITH DEFAULT, the statement will fail.
+\choice If the underlying table of a view that is referenced by an INSERT statement has one or more
+unique indexes, each row inserted does not have to conform to the constraints imposed by those indexes.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} INSERT statement can be used to insert rows into a table or updatable view, 
+\textit{but not a table function}
+\item \textit{Answer D} omitted column must either accept NULL values (ie. have not been defined with 
+a NOT NULL constraint) or have been defined with a default constraint (ie, NOT NULL WITH DEFAULT). \sout{not fail}
+\item \textit{Answer E} must conform
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which SQL statement should be used to select the minimum and maximum rainfall amounts (RAINFALL), by 
+month (MONTH), from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  GROUP BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT month, MIN(rainfall), MAX(rainfall)
+		  FROM weather
+		  ORDER BY month, MIN(rainfall), MAX(rainfall)
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+An SQL function named REGIONAL\_SALES was created as follows:
+	\begin{verbatim}
+	CREATE FUNCTION regional_sales()
+		RETURNS TABLE (region_id VARCHAR(20),
+					   sales_amt DECIMAL(8,2))
+		READS SQL DATA
+		BEGIN ATOMIC
+		RETURN
+			SELECT region, amt
+			FROM sales
+			ORDER BY region;
+		END
+	\end{verbatim}
+Which two statements demonstrate the proper way to use this function in a query? (Choose two.)
+\begin{choices}
+\choice \texttt{SELECT * FROM regional\_sales()}
+\choice \texttt{SELECT regional\_sales (region\_id, sales\_amt)}
+\choice \texttt{SELECT region\_id, sales\_amt FROM regional\_sales()}
+\CorrectChoice \texttt{SELECT * FROM TABLE (regional\_sales()) AS results}
+\CorrectChoice \texttt{SELECT region\_id, sales\_amt FROM TABLE(region\_sales()) AS results}
+\end{choices}
+
+\newpage
+\question[1]
+If the following SQL statement is executed:
+\begin{verbatim}
+SELECT dept, AVG(salary)
+ FROM employee
+ GROUP BY dept
+ ORDER BY 2
+\end{verbatim}
+What will be the results?
+\begin{choices}
+\choice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by department.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by department.
+\CorrectChoice The department number and average salary for all employees will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in ascending order, by average departmental salary.
+\choice The department number and average salary for all departments will be retrieved from a table named
+EMPLOYEE, and the results will be arranged in descending order, by average departmental salary.
+\end{choices}
+
+\begin{solution}
+the average salary is being calculated using data stored in the EMPLOYEE table-\textit{not in the
+DEPARTMENT table}, which is where two answers imply that salary information is to be retrieved from (
+\textit{Answer B} and \textit{Answer D}
+\end{solution}
+
+\question[1]
+If a table named SALES contains information about invoices that do not have a negative balance, which 
+two SQL statements can be used to retrieve invoice numbers for invoices that are for less than \$25,000.00
+? (Choose two.)
+\begin{choices}
+\CorrectChoice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt < 25,000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt LESS THAN 25,000}
+\CorrectChoice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25000}
+\choice \texttt{SELECT invoice\_num FROM sales WHERE amt BETWEEN 0 AND 25,000}
+\end{choices}
+
+\newpage
+\question[1]
+{\color{red}An SQL function designed to convert miles to kilometers was created as follows:}
+\begin{verbatim}
+CREATE FUNCTION mi_to_km (IN miles FLOAT)
+  RETURN FLOAT
+  LANGUAGE SQL
+  SPECIFIC convert_mtok
+  READS SQL DATA
+  RETURN FLOAT (miles * 1.60934)
+\end{verbatim}
+How can this function be used to convert miles (MILES) values stored in a table named DISTANCES?
+\begin{choices}
+\choice CALL mi\_to\_km (distances.miles)
+\choice CALL convert\_mtok (distances.miles)
+\CorrectChoice SELECT mi\_to\_km (miles) FROM distances
+\choice SELECT convert\_mtok (miles) FROM distances
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item CALL statement is used to invoke a stored procedure - not a UDF
+\item Specific name that is assigned to a UDF can be used to reference or delete(drop) the UDF, but
+not to invoke it
+\end{itemize}
+\end{solution}
+
+\question[1]
+Which two statements about system-period temporal tables are true? (Choose two.)
+\begin{choices}
+\choice They store user-based period information.
+\choice They do not require a separate history table.
+\CorrectChoice They store system-based historical information.
+\CorrectChoice They can be queried without a time-period specification.
+\choice They manage data based on time criteria specified by users or applications.
+\end{choices} 
+
+\question[1]
+A table named PARTS contains a record of every part that has been manufactured by a company. A user
+wishes to see the total number of parts that have been made by each craftsman employed at the company.
+Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts}
+\CorrectChoice \texttt{SELECT name, COUNT(*) AS parts\_made FROM parts GROUP BY name}
+\choice \texttt{SELECT name, COUNT(DISTINCT name) AS parts\_made FROM parts}
+\choice \texttt{SELEC DISTINCT name, COUNT(*) AS parts\_made FROM parts GROUP BY parts\_made}
+\end{choices}
+
+\newpage
+\question[1]
+Given an EMPLOYEES table and a DEPARTMENT table, a user wants to produce a list of all departments and
+employees who work in them, including departments that no employees have been assigned to. Which SQL
+statement will produce the desired list?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		employees.dept = departments.deptno
+		\end{verbatim} 
+\choice	\begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		INNER JOIN department ON
+		departments.deptno = employees.dept
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT employees.name, departments.deptname
+		FROM employees
+		LEFT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT employees.name, departments.deptname,
+		FROM employees
+		RIGHT OUTER JOIN departments ON
+		employees.dept = departments.deptno
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which statements are NOT allowed in the body of an SQL scalar user-defined function?}
+\begin{choices}
+\choice CALL statements
+\CorrectChoice COMMIT statements
+\choice SQL CASE statements
+\choice SQL control statements
+\end{choices}
+
+\begin{solution}
+COMMIT and ROLLBACK statements are not allowed in the body of an SQL user-defined function (UDF).
+\end{solution}
+
+\newpage
+\question[1]
+A table named TABLE\_A contains 200 rows and a user wants to update the 10 rows in this table with the
+lowest values in a column named COL1. Which SQL statement will produce the desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC) AS temp
+		  SET col2 = 99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC) AS temp
+		  SET col2=99
+		  FETCH FIRST 10 ROWS ONLY
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 ASC
+	  		FETCH FIRST 10 ROWS ONLY) AS temp
+	  	  SET col2=99
+		\end{verbatim}
+\choice \begin{verbatim}
+		UPDATE
+		  (SELECT * FROM table_a
+		    ORDER BY col1 DESC
+		    FETCH FIRST 10 ROWS ONLY) AS temp
+		  SET col2 = 99
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red} Which statement best descirbes a transaction?}
+\begin{choices}
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+only when a savepoint is created.
+\choice A transaction is recoverable sequence of operations whose point of consistency can be obtained
+by querying the system catalog tables.
+\choice A transaction is a recoverable sequence of operations whose point of consistency is established
+when a database connection is established or a savepoint is created.
+\CorrectChoice A transaction is recoverable sequence of operations whose point of consistency is established
+when an executable SQL statement is processed after a database connection has been established or a
+previous transaction has been terminated.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} and \textit{Answer C} savepoints do not define points of consistency for a transaction
+\item \textit{Answer B} System catalog has nothing to do with defining points of consistency for
+transactions
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+A table named TABLE\_A contains 200 rows and a user wants to delete
+the last 10 rows from this table. Which SQL statement will produce the
+desired results?
+\begin{choices}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a 
+		   ORDER BY col1 ASC
+		   FETCH FIRST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		DELETE FROM
+		  (SELECT * FROM table_a
+			ORDER BY col1 DESC
+			FETCH FIRST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 ASC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\choice \begin{verbatim}
+		DELETE FROM
+		 (SELECT * FROM table_a
+		   ORDER BY col1 DESC
+		   FETCH LAST 10 ROWS ONLY) AS result
+		\end{verbatim}
+\end{choices}
+
+\begin{solution}
+no FETCH LAST ... ROWS ONLY clause
+\end{solution}
+\question[1]
+Which clause could be added to the following SQL statement
+\begin{verbatim}
+SELECT student_id, enroll_date, gpa
+ FROM students
+\end{verbatim}
+to ensure that only information (STUDENT\_ID, ENROLL\_DATE, and
+GPA) for students who started school before 2012 and who have a GPA
+that is higher than 3.50 will be retrieved?
+\begin{choices}
+\choice FOR enroll\_date < '2012-01-01' OR gpa>3.50
+\choice FOR enroll\_date < '2012-01-01' AND gpa>3.50
+\CorrectChoice WHERE enroll\_date < '2012-01-01' OR gpa>3.5
+\choice	WHERE enroll\_date < '2012-01-01' AND gpa>3.5
+\end{choices}
+
+\question[1]
+{\color{red}Which statement correctly describes what a native SQL stored procedure is?}
+\begin{choices}
+\CorrectChoice A procedure whose body is written entirely in SQL or SQL PL.
+\choice A procedure that is written in a high-level programming language such as Java or REXX.
+\choice A procedure whose body is written entirely in SQL, but that is implemented as an external program.
+\choice	A procedure that accesses data using an Object Linking and Embedding, Database (OLE DB) provider.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer B} External stored procedure
+\item \textit{Answer C} External SQL stored procedure
+\item \textit{Answer D} Cannot develop a stored procedure that accesses data using an Object Linking and 
+Embedding, Database (OLE DB) provider - to access data in this manner, you must develop an OLE DB External
+Table function.
+\end{itemize}
+\end{solution}
+
+\question[1]
+{\color{red}Given the following statements}:
+\begin{verbatim}
+CREATE TABLE customer (custid INTEGER, custinfo XML);
+INSERT INTO customer VALUES (100,
+'<customerinfo>
+  <name>ACME Manufacturing</name>
+  <addr country="United States">
+     <street>25 Elm Street</street>
+ <city>Raleigh</city>
+ <state>North Carolina</state>
+ <zip>27603</zip>
+  </addr>
+</customerinfo>');
+\end{verbatim}
+If the following XQuery statement is executed:
+\begin{verbatim}
+XQUERY
+for $info in db2-fn:xmlcolumn('CUSTOMER.CUSTINFO')/customerinfo
+return $info/name
+\end{verbatim}
+What will be the result?
+\begin{choices}
+\choice \texttt{ACME Manufacturing}
+\CorrectChoice \texttt{<name>ACME Manufacturing</name>}
+\choice \texttt{<customerinfo>ACME Manufacturing</customerinfo>}
+\choice \texttt{<customerinfo><name>ACME Manufacturing</name></customerinfo>}
+\end{choices}
+
+\begin{solution}
+The FLOWER XQuery expression is comparable to the SELECT-FROM-WHERE statement/clause combination available
+with SQL. The basic syntax for a FLOWER expression is:
+\begin{verbatim}
+XQUERY
+	for $Variable1 IN Expression1
+	let $Variable2 := Expression2
+	where Expression3
+	order by Expression4 [ASCENDING | DESCENDING]
+	return Expression3
+\end{verbatim}
+Consequently, the XQuery statement used in the scenario presented will return the expression 
+"<name>ACME Manufacturing</name>". This expression is obtained by searching the XML data value
+stored in the CUSTINFO column of a table named CUSTOMER for the first opening tag found under the 
+customerinfo root (outermost) element that is followed by a value. 
+
+Had the text() function been used with the XQuery statement, the opening and closing tags for the name 
+would have been removed and the value "ACME Manufacturing" would have been returned (\textit{Answer A})
+Because the customerinfo element is the root element of the XML data value presented, it is typically
+referenced in the for expression of the XQuery statement and is not returned as part of the return
+expression(\textit{Answer C} and \textit{Answer D})
+\end{solution}
+
+\question[1]
+{\color{red}Which two statements about roll back operations are correct? }(Choose two.)
+\begin{choices}
+\CorrectChoice When a ROLLBACK statement is executed, all locks held by the terminating transaction are released.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired after the most recent
+savepoint are released.
+\choice When a ROLLBACK statement is executed, all locks acquired for open cursors that were 
+declared WITH HOLD are held.
+\choice When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired up to the most recent
+savepoint are released.
+\CorrectChoice When a ROLLBACK TO SAVEPOINT statement is executed, a savepoint is not automatically deleted as
+part of the rollback operation.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer C} are released
+\item \textit{Answer B} When a ROLLBACK TO SAVEPOINT statement is executed, all locks acquired after the
+savepoint specified was created are released-\textit{not the locks acquired after the most recent 
+savepoint}
+\item \textit{Answer D} \textit{nor the locks acquired up to the most recent savepoint}
+\end{itemize}
+\end{solution}
+
+\newpage
+\question[1]
+Which SQL statement illustrates the proper way to perform a positioned update operation on a table named
+SALES?
+\begin{choices}
+\choice \texttt{UPDATE sales SET amt = 102.45}
+\choice \texttt{UPDATE sales SET amt = 102.45 WHERE cust\_id='000290'}
+\CorrectChoice \texttt{UPDATE sales SET amt = 102.45 WHERE CURRENT OF cursor1}
+\choice \begin{verbatim}
+		UPDATE sales SET amt = 102.45
+		WHERE ROWID = (SELECT ROWID FROM sales WHERE cust_id='000290')
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+Which two statements about application-period temporal tables are true? (Choose two.)
+\begin{choices}
+\CorrectChoice They are useful when one wants to keep user-based time period information.
+\choice They consist of explicitly supplied timestamps and a separate associated history table.
+\choice They are useful when one wants to keep both user-based and system-based time period information.
+\CorrectChoice They are based on explicitly supplied timestamps that define the time periods during which
+data is valid.
+\choice They consist of a pair of columns with database-manager maintained values that indicate the 
+period when a row is current.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer E} System-period temporal table
+\end{itemize}
+\end{solution}
+
+\question[1]
+When should the TRUNCATE statement be used?
+\begin{choices}
+\CorrectChoice When you want to delete all rows from a table without generating log records.
+\choice When you want to delete select rows from a table without generating log records.
+\choice When you want to delete all rows from a table and fire any delete triggers that have been 
+defined for the table.
+\choice When you want to delete select rows from a table and fire any delete triggers that have been
+defined for the table.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item If IGNORE DELETE TRIGGERS clause is specified with the TRUNCATE statement used, DELETE tiggers that 
+have been defined on the table \textit{will not be fired} as the data in the table is deleted
+\item If RESTRICT WHEN DELETE TRIGGERS clause is used instead, DB2 will examine the system catalog to 
+determine whether DELETE triggers on the table exist; if one or more triggers are found, the truncate
+operation will fail and error will be returned.
+\end{itemize}
+
+\end{solution}
+\question[1]
+Which two commands will terminate the current transaction and start a new transaction boundary?
+(Choose two.)
+\begin{choices}
+\CorrectChoice COMMIT
+\choice REFRESH
+\choice RESTART
+\choice CONNECT
+\CorrectChoice ROLLBACK
+\end{choices}
+
+\question[1]
+Which SQL statement should be used to retrieve the minimum and maximum annual temperature (TEMP) for
+each major city (CITY), sorted by city, from a table named WEATHER?
+\begin{choices}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		\end{verbatim}
+\CorrectChoice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY city
+		  ORDER BY city
+		\end{verbatim}
+\choice \begin{verbatim}
+		SELECT city, MIN(temp), MAX(temp)
+		  FROM weather
+		  GROUP BY MIN(temp), MAX(temp)
+		  ORDER BY city
+		\end{verbatim}
+\end{choices}
+
+\question[1]
+{\color{red}What is the XMLTABLE() function typically used for?}
+\begin{choices}
+\choice To convert a well-formed XML document into a table of character string values.
+\CorrectChoice To obtain values from XML documents that are to be inserted into one or more tables.
+\choice To parse a character string value and return a table of well-formed XML documents.
+\choice To produce a temporary table whose columns are based on the elements found in a well-formed XML
+document.
+\end{choices}
+
+\begin{solution}
+\begin{itemize}
+\item \textit{Answer A} XMLSERIALIZE()
+\item \textit{Answer C} XMLPARSE()
+\item \textit{Answer D} No such XML function exist; need to construct a query or XQuery expression to
+perform this type of operation
+\end{itemize}
+\end{solution}
+% Question with parts
+% \newpage
+% \addpoints
+% \question Consider the function $f(x)=x^2$.
+% \begin{parts}
+% \part[5] Find $f'(x)$ using the limit definition of derivative.
+% \vfill
+% \part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
+% \vfill
+% \end{parts}
+
+% If you want the total number of points for a question displayed at the top,
+% as well as the number of points for each part, then you must turn off the point-counter
+% or they will be double counted.
+% \newpage
+% \addpoints
+% \question[10] Consider the function $f(x)=x^3$.
+% \noaddpoints % If you remove this line, the grading table will show 20 points for this problem.
+% \begin{parts}
+% \part[5] Find $f'(x)$ using the limit definition of derivative.
+% \vspace{4.5in}
+% \part[5] Find the line tangent to the graph of $y=f(x)$ at the point where $x=2$.
+% \end{parts}
+
+
+
+\end{questions}
+\end{document}
