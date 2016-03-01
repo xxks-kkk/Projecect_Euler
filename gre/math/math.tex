@@ -125,7 +125,7 @@ This question bank contains \numpages\ pages (including this cover page) and
 \section{Magoosh}
 % Basic question
 % \question[10] Differentiate $f(x)=x^2$ with respect to $x$.
-\question[1]
+\question
 The Sargon Corporation, which employs both men and women, offers an optional stock-option buy-in program to its employees. If 85\% of the men and 77\% of the women choose to participate in this plan, then which of the following could be the total number of employees? Indicate all possible values for the number of employees.
 \begin{choices}
 \choice 100
@@ -140,19 +140,19 @@ The Sargon Corporation, which employs both men and women, offers an optional sto
 
 \begin{solution}
 For the men,
-\begin{equation}
+\begin{equation*}
 85\% = 0.85 = \frac{85}{100} = \frac{17}{20}
-\end{equation}
+\end{equation*}
 So the number of men must be 20 or a multiple of 20.\\ 
 For the women,
-\begin{equation}
+\begin{equation*}
 77\% = 0.77 = \frac{77}{100}
-\end{equation}
+\end{equation*}
 So the number of women must be 100 or a multiple of 100.\\ 
 Thus, The total number of employees must be a number that we can write in the form
-\begin{equation}
+\begin{equation*}
 (multiple of 100) + (multiple of 20) 
-\end{equation} 
+\end{equation*} 
 \begin{itemize}
 \item\textit{Answer A} 100 = this could be 100 women and no men, or 100 men and no women, but the first sentence tells us that Sargon "employs both men and women," so neither can be zero.
 This doesn't work. 
@@ -166,32 +166,30 @@ This doesn't work.
 \end{itemize}
 \end{solution}
 
-\question[1]
-Which product can be used to tune performance for a single query?
+\question
+n is a positive integer
+\begin{center}
+\begin{tabular} { l  r}
+\hline
+Column A & Column B \\
+\hline
+$(0.99)^n$ & 0.01 \\ \hline
+\end{tabular}
+\end{center}
 \begin{choices}
-\CorrectChoice IBM Data Studio
-\choice IBM Control Center
-\choice IBM Data Administrator
-\choice IBM Workload Manager
+\choice The quantity in Column A is greater
+\choice The quantity in Column B is greater
+\choice The two quantities are equal
+\CorrectChoice The relationship cannot be determined from the information given
 \end{choices}
 
 \begin{solution}
-\textit{IBM Data Studio} (\textit{Correct Answer A}) is an Eclipse-based, integrated
-development environment (IDE) that can be used to perform instance and database
-administration, routine (SQL procedure, SQL functions, etc.) and application
-development, and performance-tuning tasks. It replaces the \textit{DB2 Control Center} 
-(\textit{Answer B}) as the standard GUI tool for DB2 database administration and
-application development.
-\par
 
-\textit{IBM Workload Manager}, or WLM (\textit{Answer D}) is a comprehensive workload
-management feature that can help identify, manage, and control database workloads to
-maximize database server \textcolor{red}{throughput} and \textcolor{red}{resource
- utilization}.
-\par
-
-There is \textbf{NO} such product as IBM Data Administrator (\textit{Answer C}).
-
+\begin{equation*}
+(0.99)^n = (\frac{1}{(\frac{1}{0.99})})^n
+\end{equation*}
+As $n \to \infty$, $(0.99)^n \to 0$. So, eventually $(0.99)^n$ will smaller
+than $0.01$. However, $(0.99)^1$ is larger than $0.01$. So \textit{Answer D}. 
 \end{solution}
 
 \newpage
